@@ -1,4 +1,3 @@
-
 """
 Radar navires - Saye Armand
 Verifie les navires actuellement a quai a Pointe-Noire et Abidjan
