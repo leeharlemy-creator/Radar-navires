@@ -1,8 +1,5 @@
 """
-Radar navires - Saye Armand
-Verifie les navires actuellement a quai a Pointe-Noire et Abidjan
-(source : myshiptracking.com, gratuit) et envoie une alerte Telegram
-des qu'un nouveau navire apparait.
+Radar navires - Saye Armand (version diagnostic)
 """
 
 import json
@@ -26,7 +23,8 @@ HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
         "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
-    )
+    ),
+    "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
 }
 
 VESSEL_LINK_RE = re.compile(
@@ -34,13 +32,27 @@ VESSEL_LINK_RE = re.compile(
 )
 
 
-def fetch_vessels_in_port(url):
+def fetch_vessels_in_port(url, port_name):
     resp = requests.get(url, headers=HEADERS, timeout=20)
-    resp.raise_for_status()
     html = resp.text
+
+    print(f"  Statut HTTP : {resp.status_code}")
+    print(f"  Taille de la reponse : {len(html)} caracteres")
+    print(f"  'Vessels In Port' present : {'Vessels In Port' in html}")
+    print(f"  '/vessels/' present : {'/vessels/' in html}")
+    print(f"  'captcha' ou 'blocked' present : {'captcha' in html.lower() or 'blocked' in html.lower() or 'access denied' in html.lower()}")
+
+    raw_vessel_links = re.findall(r'/vessels/[a-z0-9\-]+', html)
+    print(f"  Nombre de liens /vessels/ bruts trouves : {len(raw_vessel_links)}")
+    if raw_vessel_links:
+        print(f"  Exemple de lien brut : {raw_vessel_links[0]}")
+
+    resp.raise_for_status()
+
     start = html.find("Vessels In Port")
     end = html.find("Expected Arrivals")
     section = html[start:end] if start != -1 and end != -1 else html
+
     vessels = {}
     for mmsi, name in VESSEL_LINK_RE.findall(section):
         vessels[mmsi] = name.strip()
@@ -84,7 +96,7 @@ def main():
     for port, url in PORTS.items():
         print(f"Verification de {port}...")
         try:
-            vessels = fetch_vessels_in_port(url)
+            vessels = fetch_vessels_in_port(url, port)
             print(f"  {len(vessels)} navire(s) trouve(s) a {port}")
         except Exception as e:
             print(f"  Erreur en recuperant {port} : {e}")
