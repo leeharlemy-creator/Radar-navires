@@ -1,5 +1,8 @@
 """
-Radar navires - Saye Armand (version diagnostic)
+Radar navires - Saye Armand
+Verifie les navires actuellement a quai a Pointe-Noire et Abidjan
+(source : myshiptracking.com, gratuit) et envoie une alerte Telegram
+des qu'un nouveau navire apparait.
 """
 
 import json
@@ -27,9 +30,16 @@ HEADERS = {
     "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
 }
 
+# Le nom du navire est reconstruit depuis l'adresse du lien elle-meme
+# (ex: /vessels/msc-douala-viii-mmsi-255915817-imo-9983695)
+# plutot que depuis le texte affiche, plus fiable si la structure HTML change.
 VESSEL_LINK_RE = re.compile(
-    r'/vessels/[a-z0-9\-]+-mmsi-(\d+)-imo-\d+"[^>]*>\s*([^<]+?)\s*<'
+    r'/vessels/([a-z0-9]+(?:-[a-z0-9]+)*)-mmsi-(\d+)-imo-\d+'
 )
+
+
+def slug_to_name(slug):
+    return " ".join(word.capitalize() for word in slug.split("-"))
 
 
 def fetch_vessels_in_port(url, port_name):
@@ -38,14 +48,6 @@ def fetch_vessels_in_port(url, port_name):
 
     print(f"  Statut HTTP : {resp.status_code}")
     print(f"  Taille de la reponse : {len(html)} caracteres")
-    print(f"  'Vessels In Port' present : {'Vessels In Port' in html}")
-    print(f"  '/vessels/' present : {'/vessels/' in html}")
-    print(f"  'captcha' ou 'blocked' present : {'captcha' in html.lower() or 'blocked' in html.lower() or 'access denied' in html.lower()}")
-
-    raw_vessel_links = re.findall(r'/vessels/[a-z0-9\-]+', html)
-    print(f"  Nombre de liens /vessels/ bruts trouves : {len(raw_vessel_links)}")
-    if raw_vessel_links:
-        print(f"  Exemple de lien brut : {raw_vessel_links[0]}")
 
     resp.raise_for_status()
 
@@ -54,8 +56,8 @@ def fetch_vessels_in_port(url, port_name):
     section = html[start:end] if start != -1 and end != -1 else html
 
     vessels = {}
-    for mmsi, name in VESSEL_LINK_RE.findall(section):
-        vessels[mmsi] = name.strip()
+    for slug, mmsi in VESSEL_LINK_RE.findall(section):
+        vessels[mmsi] = slug_to_name(slug)
     return vessels
 
 
