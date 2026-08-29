@@ -30,9 +30,6 @@ HEADERS = {
     "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
 }
 
-# Le nom du navire est reconstruit depuis l'adresse du lien elle-meme
-# (ex: /vessels/msc-douala-viii-mmsi-255915817-imo-9983695)
-# plutot que depuis le texte affiche, plus fiable si la structure HTML change.
 VESSEL_LINK_RE = re.compile(
     r'/vessels/([a-z0-9]+(?:-[a-z0-9]+)*)-mmsi-(\d+)-imo-\d+'
 )
@@ -51,12 +48,10 @@ def fetch_vessels_in_port(url, port_name):
 
     resp.raise_for_status()
 
-    start = html.find("Vessels In Port")
-    end = html.find("Expected Arrivals")
-    section = html[start:end] if start != -1 and end != -1 else html
-
+    # On cherche dans toute la page (pas de decoupe par section,
+    # qui s'est averee peu fiable selon l'ordre des blocs sur la page).
     vessels = {}
-    for slug, mmsi in VESSEL_LINK_RE.findall(section):
+    for slug, mmsi in VESSEL_LINK_RE.findall(html):
         vessels[mmsi] = slug_to_name(slug)
     return vessels
 
