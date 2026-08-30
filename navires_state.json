@@ -3,7 +3,7 @@
     "636016321": "Tyndall",
     "352004477": "Yc Fortitude",
     "538003015": "Genco Pyrenees",
-    "210639000": "Gfs Rhea",
+    "205178000": "Cma Cgm Masai Mara",
     "566961000": "Apl Mexico City",
     "205350000": "Antwerpens T",
     "256807000": "Cma Cgm Paraty",
@@ -13,11 +13,10 @@
     "255805868": "Msc Desiree",
     "636015447": "Eastern Gardenia",
     "636016702": "Msc Oak F",
-    "412525000": "Jun Hai 2",
-    "615404000": "Leketi",
-    "376108000": "Lahama",
     "677044800": "Volgo Balt 242",
-    "636021004": "Gsl Lalo"
+    "412525000": "Jun Hai 2",
+    "376108000": "Lahama",
+    "375455000": "Starling"
   },
   "Abidjan": {
     "241505000": "Sea Champion",
@@ -33,13 +32,14 @@
     "314001039": "Dsm Ferro",
     "255806005": "Msc India",
     "636014241": "Cote D Ivoirian Star",
-    "255806145": "Bocs Vision",
     "477717700": "Tj Vanda",
-    "538005650": "Uog Tinos",
-    "538007197": "Joyce",
+    "255806145": "Bocs Vision",
     "563202500": "Ea Centaurus",
+    "538007197": "Joyce",
+    "538005650": "Uog Tinos",
     "538010426": "Yasa Lotus",
-    "414199000": "Sheng Ji Hai",
+    "309841000": "Baltic Pearl",
+    "311001133": "Savanna Wind",
     "357919000": "Lady Rosehip",
     "636014964": "Loyalty",
     "312868000": "Echo Star",
@@ -47,7 +47,6 @@
     "538008592": "Captain John",
     "215551000": "Ft Sturla",
     "312235000": "Icm Nautical Jr 5",
-    "218847000": "Msc Cadiz",
-    "636018869": "Green K Max 4"
+    "218847000": "Msc Cadiz"
   }
 }
