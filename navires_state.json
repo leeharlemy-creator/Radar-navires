@@ -16,6 +16,10 @@
       "nom": "Cma Cgm Masai Mara",
       "eta_brut": "2026-08-30 13:07"
     },
+    "538005069": {
+      "nom": "Rig Andromeda",
+      "eta_brut": "2026-09-01 07:06"
+    },
     "566961000": {
       "nom": "Apl Mexico City",
       "eta_brut": "2026-09-01 08:22"
@@ -26,11 +30,11 @@
     },
     "256807000": {
       "nom": "Cma Cgm Paraty",
-      "eta_brut": "2026-09-02 09:13"
+      "eta_brut": "2026-09-02 09:02"
     },
     "636024601": {
       "nom": "Msc Kerry Vii",
-      "eta_brut": "2026-09-02 11:11"
+      "eta_brut": "2026-09-02 11:20"
     },
     "256909000": {
       "nom": "Cma Cgm Belem",
@@ -42,7 +46,7 @@
     },
     "215922000": {
       "nom": "Cma Cgm Kribi",
-      "eta_brut": "2026-09-04 21:12"
+      "eta_brut": "2026-09-04 22:01"
     },
     "255805868": {
       "nom": "Msc Desiree",
@@ -52,9 +56,9 @@
       "nom": "Luanda Express",
       "eta_brut": "2026-09-06 11:01"
     },
-    "636015447": {
-      "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 09:47"
+    "412525000": {
+      "nom": "Jun Hai 2",
+      "eta_brut": "2026-08-31 11:01"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
@@ -114,45 +118,49 @@
       "nom": "Halit Bey",
       "eta_brut": "2026-08-28 08:44"
     },
+    "219117000": {
+      "nom": "Maersk Brownsville",
+      "eta_brut": "2026-08-31 17:01"
+    },
     "636020177": {
       "nom": "Star Monica",
-      "eta_brut": "2026-08-31 21:14"
+      "eta_brut": "2026-08-31 21:43"
     },
     "636014241": {
       "nom": "Cote D Ivoirian Star",
-      "eta_brut": "2026-09-01 04:54"
-    },
-    "314001039": {
-      "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-01 17:30"
+      "eta_brut": "2026-09-01 04:16"
     },
     "255806145": {
       "nom": "Bocs Vision",
-      "eta_brut": "2026-09-01 20:50"
+      "eta_brut": "2026-09-01 20:52"
+    },
+    "314001039": {
+      "nom": "Dsm Ferro",
+      "eta_brut": "2026-09-01 21:45"
     },
     "477717700": {
       "nom": "Tj Vanda",
-      "eta_brut": "2026-09-01 21:08"
+      "eta_brut": "2026-09-01 21:52"
     },
-    "538007197": {
-      "nom": "Joyce",
-      "eta_brut": "2026-09-02 09:46"
+    "538009430": {
+      "nom": "Team Tombi",
+      "eta_brut": "2026-09-01 23:07"
     },
     "636017239": {
       "nom": "Msc Spring Iii",
-      "eta_brut": "2026-09-02 09:56"
+      "eta_brut": "2026-09-02 09:09"
+    },
+    "538007197": {
+      "nom": "Joyce",
+      "eta_brut": "2026-09-02 09:38"
     },
     "563202500": {
       "nom": "Ea Centaurus",
-      "eta_brut": "2026-09-02 11:30"
+      "eta_brut": "2026-09-02 11:47"
     },
-    "538010426": {
-      "nom": "Yasa Lotus",
-      "eta_brut": "2026-09-03 06:07"
-    },
-    "311000873": {
-      "nom": "Rt Champion",
-      "eta_brut": "2026-09-05 11:02"
+    "563142900": {
+      "nom": "Sea Prajna",
+      "eta_brut": "2026-08-31 09:49"
     },
     "351675000": {
       "nom": "Msc Katyayni Vi",
@@ -172,7 +180,7 @@
     },
     "341739001": {
       "nom": "Trio Can Berat",
-      "eta_brut": "2026-08-30 15:53"
+      "eta_brut": ""
     }
   }
 }
