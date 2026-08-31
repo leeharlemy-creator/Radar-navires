@@ -3,6 +3,8 @@ Radar navires - Saye Armand
 Verifie les navires actuellement a quai a Pointe-Noire et Abidjan
 (source : myshiptracking.com, gratuit) et envoie une alerte Telegram
 des qu'un nouveau navire apparait.
+Tente aussi d'extraire une heure/date d'arrivee approximative
+(fonctionnalite experimentale, a ajuster selon les resultats reels).
 """
 
 import json
@@ -34,6 +36,13 @@ VESSEL_LINK_RE = re.compile(
     r'/vessels/([a-z0-9]+(?:-[a-z0-9]+)*)-mmsi-(\d+)-imo-\d+'
 )
 
+# Cherche une heure/date approximative pres du lien du navire
+# (ex. "Aug 26, 08:00"). Experimental : le format exact du site
+# n'est pas garanti, a verifier avec les lignes de diagnostic.
+ETA_NEAR_RE = re.compile(
+    r'([A-Z][a-z]{2}\s+\d{1,2},?\s+\d{1,2}:\d{2})'
+)
+
 
 def slug_to_name(slug):
     return " ".join(word.capitalize() for word in slug.split("-"))
@@ -48,11 +57,21 @@ def fetch_vessels_in_port(url, port_name):
 
     resp.raise_for_status()
 
-    # On cherche dans toute la page (pas de decoupe par section,
-    # qui s'est averee peu fiable selon l'ordre des blocs sur la page).
     vessels = {}
-    for slug, mmsi in VESSEL_LINK_RE.findall(html):
-        vessels[mmsi] = slug_to_name(slug)
+    for match in VESSEL_LINK_RE.finditer(html):
+        slug, mmsi = match.group(1), match.group(2)
+        nom = slug_to_name(slug)
+
+        # Fenetre de texte apres le lien pour chercher une heure/date
+        fenetre = html[match.end():match.end() + 300]
+        eta_match = ETA_NEAR_RE.search(fenetre)
+        eta_brut = eta_match.group(1) if eta_match else ""
+
+        if mmsi not in vessels:
+            vessels[mmsi] = {"nom": nom, "eta_brut": eta_brut}
+            if eta_brut:
+                print(f"    Heure trouvee pour {nom} : {eta_brut}")
+
     return vessels
 
 
@@ -103,12 +122,15 @@ def main():
         new_state[port] = vessels
         previous = state.get(port, {})
         newly_arrived = {
-            mmsi: name for mmsi, name in vessels.items() if mmsi not in previous
+            mmsi: v for mmsi, v in vessels.items() if mmsi not in previous
         }
 
         if newly_arrived:
-            names = ", ".join(newly_arrived.values())
-            alerts.append(f"Nouveau(x) navire(s) a {port} : {names}")
+            noms = ", ".join(
+                f"{v['nom']} ({v['eta_brut']})" if v['eta_brut'] else v['nom']
+                for v in newly_arrived.values()
+            )
+            alerts.append(f"Nouveau(x) navire(s) a {port} : {noms}")
 
     if alerts:
         send_telegram("Radar navires Saye Armand :\n" + "\n".join(alerts))
