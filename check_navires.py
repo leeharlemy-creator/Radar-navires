@@ -3,8 +3,8 @@ Radar navires - Saye Armand
 Verifie les navires actuellement a quai a Pointe-Noire et Abidjan
 (source : myshiptracking.com, gratuit) et envoie une alerte Telegram
 des qu'un nouveau navire apparait.
-Tente aussi d'extraire une heure/date d'arrivee approximative
-(fonctionnalite experimentale, a ajuster selon les resultats reels).
+Version diagnostic : affiche le texte brut autour d'un navire pour
+comprendre le vrai format de la page et ajuster l'extraction d'heure.
 """
 
 import json
@@ -36,9 +36,6 @@ VESSEL_LINK_RE = re.compile(
     r'/vessels/([a-z0-9]+(?:-[a-z0-9]+)*)-mmsi-(\d+)-imo-\d+'
 )
 
-# Cherche une heure/date approximative pres du lien du navire
-# (ex. "Aug 26, 08:00"). Experimental : le format exact du site
-# n'est pas garanti, a verifier avec les lignes de diagnostic.
 ETA_NEAR_RE = re.compile(
     r'([A-Z][a-z]{2}\s+\d{1,2},?\s+\d{1,2}:\d{2})'
 )
@@ -49,7 +46,15 @@ def slug_to_name(slug):
 
 
 def fetch_vessels_in_port(url, port_name):
-        vessels = {}
+    resp = requests.get(url, headers=HEADERS, timeout=20)
+    html = resp.text
+
+    print(f"  Statut HTTP : {resp.status_code}")
+    print(f"  Taille de la reponse : {len(html)} caracteres")
+
+    resp.raise_for_status()
+
+    vessels = {}
     premier_extrait_affiche = False
     for match in VESSEL_LINK_RE.finditer(html):
         slug, mmsi = match.group(1), match.group(2)
@@ -62,24 +67,6 @@ def fetch_vessels_in_port(url, port_name):
             print(f"    {fenetre!r}")
             premier_extrait_affiche = True
 
-        eta_match = ETA_NEAR_RE.search(fenetre)
-        eta_brut = eta_match.group(1) if eta_match else ""
-
-    resp = requests.get(url, headers=HEADERS, timeout=20)
-    html = resp.text
-
-    print(f"  Statut HTTP : {resp.status_code}")
-    print(f"  Taille de la reponse : {len(html)} caracteres")
-
-    resp.raise_for_status()
-
-    vessels = {}
-    for match in VESSEL_LINK_RE.finditer(html):
-        slug, mmsi = match.group(1), match.group(2)
-        nom = slug_to_name(slug)
-
-        # Fenetre de texte apres le lien pour chercher une heure/date
-        fenetre = html[match.end():match.end() + 300]
         eta_match = ETA_NEAR_RE.search(fenetre)
         eta_brut = eta_match.group(1) if eta_match else ""
 
