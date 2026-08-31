@@ -49,6 +49,22 @@ def slug_to_name(slug):
 
 
 def fetch_vessels_in_port(url, port_name):
+        vessels = {}
+    premier_extrait_affiche = False
+    for match in VESSEL_LINK_RE.finditer(html):
+        slug, mmsi = match.group(1), match.group(2)
+        nom = slug_to_name(slug)
+
+        fenetre = html[match.end():match.end() + 300]
+
+        if not premier_extrait_affiche:
+            print(f"    [DIAGNOSTIC] Texte brut apres le lien de '{nom}' :")
+            print(f"    {fenetre!r}")
+            premier_extrait_affiche = True
+
+        eta_match = ETA_NEAR_RE.search(fenetre)
+        eta_brut = eta_match.group(1) if eta_match else ""
+
     resp = requests.get(url, headers=HEADERS, timeout=20)
     html = resp.text
 
