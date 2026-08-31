@@ -2,9 +2,7 @@
 Radar navires - Saye Armand
 Verifie les navires actuellement a quai a Pointe-Noire et Abidjan
 (source : myshiptracking.com, gratuit) et envoie une alerte Telegram
-des qu'un nouveau navire apparait.
-Version diagnostic : affiche le texte brut autour d'un navire pour
-comprendre le vrai format de la page et ajuster l'extraction d'heure.
+des qu'un nouveau navire apparait, avec heure locale si disponible.
 """
 
 import json
@@ -36,8 +34,9 @@ VESSEL_LINK_RE = re.compile(
     r'/vessels/([a-z0-9]+(?:-[a-z0-9]+)*)-mmsi-(\d+)-imo-\d+'
 )
 
+# Format reel observe sur le site : "2026-08-30 <b>18:26</b>" (heure locale, "LT")
 ETA_NEAR_RE = re.compile(
-    r'([A-Z][a-z]{2}\s+\d{1,2},?\s+\d{1,2}:\d{2})'
+    r'(\d{4}-\d{2}-\d{2})\s*<b>(\d{1,2}:\d{2})</b>'
 )
 
 
@@ -55,25 +54,16 @@ def fetch_vessels_in_port(url, port_name):
     resp.raise_for_status()
 
     vessels = {}
-    premier_extrait_affiche = False
     for match in VESSEL_LINK_RE.finditer(html):
         slug, mmsi = match.group(1), match.group(2)
         nom = slug_to_name(slug)
 
-        fenetre = html[match.end():match.end() + 300]
-
-        if not premier_extrait_affiche:
-            print(f"    [DIAGNOSTIC] Texte brut apres le lien de '{nom}' :")
-            print(f"    {fenetre!r}")
-            premier_extrait_affiche = True
-
+        fenetre = html[match.end():match.end() + 400]
         eta_match = ETA_NEAR_RE.search(fenetre)
-        eta_brut = eta_match.group(1) if eta_match else ""
+        eta_brut = f"{eta_match.group(1)} {eta_match.group(2)}" if eta_match else ""
 
         if mmsi not in vessels:
             vessels[mmsi] = {"nom": nom, "eta_brut": eta_brut}
-            if eta_brut:
-                print(f"    Heure trouvee pour {nom} : {eta_brut}")
 
     return vessels
 
@@ -117,6 +107,8 @@ def main():
         try:
             vessels = fetch_vessels_in_port(url, port)
             print(f"  {len(vessels)} navire(s) trouve(s) a {port}")
+            avec_heure = sum(1 for v in vessels.values() if v['eta_brut'])
+            print(f"  {avec_heure} navire(s) avec heure detectee")
         except Exception as e:
             print(f"  Erreur en recuperant {port} : {e}")
             new_state[port] = state.get(port, {})
