@@ -1,50 +1,178 @@
 {
   "Pointe-Noire": {
-    "636016321": "Tyndall",
-    "352004477": "Yc Fortitude",
-    "538003015": "Genco Pyrenees",
-    "205178000": "Cma Cgm Masai Mara",
-    "210639000": "Gfs Rhea",
-    "566961000": "Apl Mexico City",
-    "256807000": "Cma Cgm Paraty",
-    "636024601": "Msc Kerry Vii",
-    "205350000": "Antwerpens T",
-    "310760000": "Quebec Express",
-    "256909000": "Cma Cgm Belem",
-    "215922000": "Cma Cgm Kribi",
-    "255805868": "Msc Desiree",
-    "636092986": "Luanda Express",
-    "311001558": "Rt Tough",
-    "677044800": "Volgo Balt 242",
-    "376108000": "Lahama",
-    "375455000": "Starling",
-    "357036000": "Surfer 19014"
+    "636016321": {
+      "nom": "Tyndall",
+      "eta_brut": ""
+    },
+    "352004477": {
+      "nom": "Yc Fortitude",
+      "eta_brut": ""
+    },
+    "538003015": {
+      "nom": "Genco Pyrenees",
+      "eta_brut": ""
+    },
+    "205178000": {
+      "nom": "Cma Cgm Masai Mara",
+      "eta_brut": ""
+    },
+    "566961000": {
+      "nom": "Apl Mexico City",
+      "eta_brut": ""
+    },
+    "256807000": {
+      "nom": "Cma Cgm Paraty",
+      "eta_brut": ""
+    },
+    "636024601": {
+      "nom": "Msc Kerry Vii",
+      "eta_brut": ""
+    },
+    "205350000": {
+      "nom": "Antwerpens T",
+      "eta_brut": ""
+    },
+    "310760000": {
+      "nom": "Quebec Express",
+      "eta_brut": ""
+    },
+    "256909000": {
+      "nom": "Cma Cgm Belem",
+      "eta_brut": ""
+    },
+    "215922000": {
+      "nom": "Cma Cgm Kribi",
+      "eta_brut": ""
+    },
+    "255805868": {
+      "nom": "Msc Desiree",
+      "eta_brut": ""
+    },
+    "636092986": {
+      "nom": "Luanda Express",
+      "eta_brut": ""
+    },
+    "636015447": {
+      "nom": "Eastern Gardenia",
+      "eta_brut": ""
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": ""
+    },
+    "311001558": {
+      "nom": "Rt Tough",
+      "eta_brut": ""
+    },
+    "376108000": {
+      "nom": "Lahama",
+      "eta_brut": ""
+    },
+    "375455000": {
+      "nom": "Starling",
+      "eta_brut": ""
+    }
   },
   "Abidjan": {
-    "341541001": "Trio Firat",
-    "241505000": "Sea Champion",
-    "564538000": "Viyada Naree",
-    "563008600": "Aom Bianca",
-    "636021168": "Cartier",
-    "210903000": "Frio Aegean",
-    "249388000": "Nord Brave",
-    "577147000": "Jorix",
-    "232043367": "Maersk Campton",
-    "314516000": "Halit Bey",
-    "636020177": "Star Monica",
-    "636014241": "Cote D Ivoirian Star",
-    "314001039": "Dsm Ferro",
-    "311000958": "Star Prima",
-    "477717700": "Tj Vanda",
-    "255806145": "Bocs Vision",
-    "538007197": "Joyce",
-    "563202500": "Ea Centaurus",
-    "538005650": "Uog Tinos",
-    "538010426": "Yasa Lotus",
-    "565253000": "Grasmere Maersk",
-    "314001133": "Kefalonia",
-    "636022085": "Prime Star",
-    "341739001": "Trio Can Berat",
-    "538011388": "Ssi Formidable Ii"
+    "341541001": {
+      "nom": "Trio Firat",
+      "eta_brut": ""
+    },
+    "241505000": {
+      "nom": "Sea Champion",
+      "eta_brut": ""
+    },
+    "564538000": {
+      "nom": "Viyada Naree",
+      "eta_brut": ""
+    },
+    "563008600": {
+      "nom": "Aom Bianca",
+      "eta_brut": ""
+    },
+    "636021168": {
+      "nom": "Cartier",
+      "eta_brut": ""
+    },
+    "210903000": {
+      "nom": "Frio Aegean",
+      "eta_brut": ""
+    },
+    "249388000": {
+      "nom": "Nord Brave",
+      "eta_brut": ""
+    },
+    "577147000": {
+      "nom": "Jorix",
+      "eta_brut": ""
+    },
+    "232043367": {
+      "nom": "Maersk Campton",
+      "eta_brut": ""
+    },
+    "314516000": {
+      "nom": "Halit Bey",
+      "eta_brut": ""
+    },
+    "219117000": {
+      "nom": "Maersk Brownsville",
+      "eta_brut": ""
+    },
+    "636020177": {
+      "nom": "Star Monica",
+      "eta_brut": ""
+    },
+    "636014241": {
+      "nom": "Cote D Ivoirian Star",
+      "eta_brut": ""
+    },
+    "314001039": {
+      "nom": "Dsm Ferro",
+      "eta_brut": ""
+    },
+    "311000958": {
+      "nom": "Star Prima",
+      "eta_brut": ""
+    },
+    "477717700": {
+      "nom": "Tj Vanda",
+      "eta_brut": ""
+    },
+    "255806145": {
+      "nom": "Bocs Vision",
+      "eta_brut": ""
+    },
+    "538007197": {
+      "nom": "Joyce",
+      "eta_brut": ""
+    },
+    "636017239": {
+      "nom": "Msc Spring Iii",
+      "eta_brut": ""
+    },
+    "563202500": {
+      "nom": "Ea Centaurus",
+      "eta_brut": ""
+    },
+    "351675000": {
+      "nom": "Msc Katyayni Vi",
+      "eta_brut": ""
+    },
+    "565253000": {
+      "nom": "Grasmere Maersk",
+      "eta_brut": ""
+    },
+    "314001133": {
+      "nom": "Kefalonia",
+      "eta_brut": ""
+    },
+    "636022085": {
+      "nom": "Prime Star",
+      "eta_brut": ""
+    },
+    "341739001": {
+      "nom": "Trio Can Berat",
+      "eta_brut": ""
+    }
   }
 }
