@@ -12,21 +12,13 @@
       "nom": "Genco Pyrenees",
       "eta_brut": "2026-08-27 15:03"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-02 01:06"
-    },
-    "256807000": {
-      "nom": "Cma Cgm Paraty",
-      "eta_brut": "2026-09-02 05:48"
-    },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-02 20:44"
+      "eta_brut": "2026-09-02 20:48"
     },
     "310760000": {
       "nom": "Quebec Express",
-      "eta_brut": "2026-09-03 04:29"
+      "eta_brut": "2026-09-03 04:59"
     },
     "256909000": {
       "nom": "Cma Cgm Belem",
@@ -38,7 +30,7 @@
     },
     "215922000": {
       "nom": "Cma Cgm Kribi",
-      "eta_brut": "2026-09-05 04:07"
+      "eta_brut": "2026-09-05 04:42"
     },
     "255805868": {
       "nom": "Msc Desiree",
@@ -46,15 +38,23 @@
     },
     "636092986": {
       "nom": "Luanda Express",
-      "eta_brut": "2026-09-06 15:10"
+      "eta_brut": "2026-09-06 12:42"
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 10:47"
+      "eta_brut": "2026-09-07 06:52"
+    },
+    "314001086": {
+      "nom": "Iskandar",
+      "eta_brut": "2026-09-11 03:04"
+    },
+    "636015447": {
+      "nom": "Eastern Gardenia",
+      "eta_brut": "2026-09-11 09:38"
     },
     "375455000": {
       "nom": "Starling",
-      "eta_brut": "2026-09-01 18:23"
+      "eta_brut": "2026-09-01 18:47"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
@@ -63,6 +63,10 @@
     "375772000": {
       "nom": "Sili Melen",
       "eta_brut": "2026-09-01 18:07"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-01 17:43"
     },
     "376108000": {
       "nom": "Lahama",
@@ -74,7 +78,7 @@
     },
     "210636000": {
       "nom": "Gfs Leto",
-      "eta_brut": "2026-09-01 16:47"
+      "eta_brut": ""
     }
   },
   "Abidjan": {
@@ -118,45 +122,45 @@
       "nom": "Musky",
       "eta_brut": "2026-08-28 21:36"
     },
-    "255806145": {
-      "nom": "Bocs Vision",
-      "eta_brut": "2026-09-01 19:23"
-    },
-    "636021428": {
-      "nom": "Nordic Incheon",
-      "eta_brut": "2026-09-01 19:32"
-    },
     "477717700": {
       "nom": "Tj Vanda",
-      "eta_brut": "2026-09-02 02:07"
-    },
-    "538009430": {
-      "nom": "Team Tombi",
-      "eta_brut": "2026-09-02 09:01"
+      "eta_brut": "2026-09-02 02:57"
     },
     "563202500": {
       "nom": "Ea Centaurus",
-      "eta_brut": "2026-09-02 10:17"
+      "eta_brut": "2026-09-02 10:33"
+    },
+    "538009430": {
+      "nom": "Team Tombi",
+      "eta_brut": "2026-09-02 12:25"
     },
     "538007197": {
       "nom": "Joyce",
-      "eta_brut": "2026-09-02 16:25"
+      "eta_brut": "2026-09-02 19:30"
     },
     "636020177": {
       "nom": "Star Monica",
-      "eta_brut": "2026-09-02 19:23"
+      "eta_brut": "2026-09-02 23:18"
     },
     "219028421": {
       "nom": "Torm Cavatina",
-      "eta_brut": "2026-09-03 00:23"
+      "eta_brut": "2026-09-03 03:18"
     },
     "538010426": {
       "nom": "Yasa Lotus",
-      "eta_brut": "2026-09-03 03:25"
+      "eta_brut": "2026-09-03 03:41"
     },
     "636022782": {
       "nom": "Xin Zhi Sea",
       "eta_brut": "2026-09-03 10:02"
+    },
+    "636017239": {
+      "nom": "Msc Spring Iii",
+      "eta_brut": "2026-09-03 13:38"
+    },
+    "309841000": {
+      "nom": "Baltic Pearl",
+      "eta_brut": "2026-09-03 21:32"
     },
     "229407000": {
       "nom": "Seafriend",
@@ -164,6 +168,10 @@
     },
     "636018071": {
       "nom": "Msc Aditi",
+      "eta_brut": "2026-09-01 16:30"
+    },
+    "312880000": {
+      "nom": "Icm Nautical Junior2",
       "eta_brut": "2026-09-01 15:16"
     },
     "232043367": {
@@ -186,16 +194,8 @@
       "nom": "Asian Majesty",
       "eta_brut": "2026-09-01 08:44"
     },
-    "312880000": {
-      "nom": "Icm Nautical Junior2",
-      "eta_brut": "2026-09-01 08:08"
-    },
     "636014241": {
       "nom": "Cote D Ivoirian Star",
-      "eta_brut": "2026-09-01 06:41"
-    },
-    "636021168": {
-      "nom": "Cartier",
       "eta_brut": ""
     }
   }
