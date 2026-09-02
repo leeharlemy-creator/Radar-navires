@@ -12,33 +12,33 @@
       "nom": "Prince Of Seas",
       "eta_brut": "2026-09-02 01:39"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-02 18:28"
-    },
     "310760000": {
       "nom": "Quebec Express",
-      "eta_brut": "2026-09-03 03:46"
-    },
-    "256521000": {
-      "nom": "Endo Ponente",
-      "eta_brut": "2026-09-03 09:01"
+      "eta_brut": "2026-09-03 03:11"
     },
     "256909000": {
       "nom": "Cma Cgm Belem",
-      "eta_brut": "2026-09-03 15:20"
+      "eta_brut": "2026-09-03 05:39"
+    },
+    "538005069": {
+      "nom": "Rig Andromeda",
+      "eta_brut": "2026-09-03 07:11"
+    },
+    "256521000": {
+      "nom": "Endo Ponente",
+      "eta_brut": "2026-09-03 15:01"
     },
     "538009604": {
       "nom": "Boston",
       "eta_brut": "2026-09-05 04:03"
     },
-    "636092986": {
-      "nom": "Luanda Express",
-      "eta_brut": "2026-09-05 05:06"
-    },
     "215922000": {
       "nom": "Cma Cgm Kribi",
-      "eta_brut": "2026-09-05 05:14"
+      "eta_brut": "2026-09-05 04:36"
+    },
+    "636092986": {
+      "nom": "Luanda Express",
+      "eta_brut": "2026-09-05 05:33"
     },
     "255805868": {
       "nom": "Msc Desiree",
@@ -46,11 +46,19 @@
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 16:43"
+      "eta_brut": "2026-09-07 17:11"
     },
-    "636015447": {
-      "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 14:09"
+    "352335000": {
+      "nom": "Msc Marianna",
+      "eta_brut": "2026-09-08 21:58"
+    },
+    "412525000": {
+      "nom": "Jun Hai 2",
+      "eta_brut": "2026-09-02 15:11"
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-02 13:15"
     },
     "376912000": {
       "nom": "Men Goe",
@@ -67,14 +75,6 @@
     "377762000": {
       "nom": "Baltic Star",
       "eta_brut": "2026-09-02 10:39"
-    },
-    "677044800": {
-      "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-02 10:15"
-    },
-    "376108000": {
-      "nom": "Lahama",
-      "eta_brut": "2026-09-02 08:43"
     }
   },
   "Abidjan": {
@@ -118,37 +118,29 @@
       "nom": "Musky",
       "eta_brut": "2026-08-28 21:36"
     },
+    "636021428": {
+      "nom": "Nordic Incheon",
+      "eta_brut": "2026-09-02 17:31"
+    },
     "229550000": {
       "nom": "Seadream",
       "eta_brut": "2026-09-02 17:51"
-    },
-    "228459700": {
-      "nom": "Cma Cgm Laguna",
-      "eta_brut": "2026-09-02 18:30"
-    },
-    "477717700": {
-      "nom": "Tj Vanda",
-      "eta_brut": "2026-09-02 19:19"
-    },
-    "538007197": {
-      "nom": "Joyce",
-      "eta_brut": "2026-09-02 20:59"
     },
     "311000958": {
       "nom": "Star Prima",
       "eta_brut": "2026-09-02 21:25"
     },
+    "477717700": {
+      "nom": "Tj Vanda",
+      "eta_brut": "2026-09-02 22:42"
+    },
     "538010426": {
       "nom": "Yasa Lotus",
-      "eta_brut": "2026-09-03 00:26"
+      "eta_brut": "2026-09-03 00:14"
     },
     "538009430": {
       "nom": "Team Tombi",
       "eta_brut": "2026-09-03 04:18"
-    },
-    "538006782": {
-      "nom": "Federal Nakagawa",
-      "eta_brut": "2026-09-03 11:41"
     },
     "636017239": {
       "nom": "Msc Spring Iii",
@@ -156,7 +148,23 @@
     },
     "309841000": {
       "nom": "Baltic Pearl",
-      "eta_brut": "2026-09-03 19:44"
+      "eta_brut": "2026-09-03 19:41"
+    },
+    "636022782": {
+      "nom": "Xin Zhi Sea",
+      "eta_brut": "2026-09-04 14:10"
+    },
+    "636020177": {
+      "nom": "Star Monica",
+      "eta_brut": "2026-09-04 16:09"
+    },
+    "636024483": {
+      "nom": "Puerto Limon Express",
+      "eta_brut": "2026-09-02 12:25"
+    },
+    "636020599": {
+      "nom": "Msc Michelle",
+      "eta_brut": "2026-09-02 10:24"
     },
     "538007233": {
       "nom": "Sahara Gas",
@@ -184,14 +192,6 @@
     },
     "314001133": {
       "nom": "Kefalonia",
-      "eta_brut": "2026-09-01 21:09"
-    },
-    "441947000": {
-      "nom": "Asian Majesty",
-      "eta_brut": "2026-09-01 17:45"
-    },
-    "229407000": {
-      "nom": "Seafriend",
       "eta_brut": ""
     }
   }
