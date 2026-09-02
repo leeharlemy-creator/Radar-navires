@@ -8,21 +8,25 @@
       "nom": "Msc Yang R",
       "eta_brut": "2026-09-01 14:02"
     },
+    "247275400": {
+      "nom": "Grande Benin",
+      "eta_brut": "2026-09-02 22:55"
+    },
     "311001644": {
       "nom": "Prince Of Seas",
       "eta_brut": "2026-09-02 01:39"
     },
     "310760000": {
       "nom": "Quebec Express",
-      "eta_brut": "2026-09-03 03:23"
+      "eta_brut": "2026-09-03 03:39"
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-03 18:05"
+      "eta_brut": "2026-09-03 19:39"
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-04 01:54"
+      "eta_brut": "2026-09-04 04:09"
     },
     "538009604": {
       "nom": "Boston",
@@ -30,7 +34,7 @@
     },
     "215922000": {
       "nom": "Cma Cgm Kribi",
-      "eta_brut": "2026-09-05 04:36"
+      "eta_brut": "2026-09-05 04:37"
     },
     "255805868": {
       "nom": "Msc Desiree",
@@ -38,19 +42,23 @@
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 15:33"
+      "eta_brut": "2026-09-07 15:45"
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 11:43"
+      "eta_brut": "2026-09-10 14:45"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-11 05:54"
+      "eta_brut": "2026-09-11 07:07"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-12 06:12"
+      "eta_brut": "2026-09-12 07:09"
+    },
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-02 22:27"
     },
     "511101258": {
       "nom": "Asg Portofino",
@@ -67,18 +75,6 @@
     "376912000": {
       "nom": "Men Goe",
       "eta_brut": "2026-09-02 20:23"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-02 17:51"
-    },
-    "375455000": {
-      "nom": "Starling",
-      "eta_brut": "2026-09-02 17:43"
-    },
-    "256338000": {
-      "nom": "Minerva Oceania",
-      "eta_brut": ""
     }
   },
   "Abidjan": {
@@ -124,11 +120,11 @@
     },
     "311000958": {
       "nom": "Star Prima",
-      "eta_brut": "2026-09-02 21:54"
+      "eta_brut": "2026-09-02 22:09"
     },
     "477717700": {
       "nom": "Tj Vanda",
-      "eta_brut": "2026-09-02 22:05"
+      "eta_brut": "2026-09-02 22:48"
     },
     "538010426": {
       "nom": "Yasa Lotus",
@@ -138,9 +134,13 @@
       "nom": "Cma Cgm Laguna",
       "eta_brut": "2026-09-03 01:43"
     },
+    "563202500": {
+      "nom": "Ea Centaurus",
+      "eta_brut": "2026-09-03 14:01"
+    },
     "309841000": {
       "nom": "Baltic Pearl",
-      "eta_brut": "2026-09-03 20:16"
+      "eta_brut": "2026-09-03 20:11"
     },
     "636022782": {
       "nom": "Xin Zhi Sea",
@@ -152,15 +152,15 @@
     },
     "636020177": {
       "nom": "Star Monica",
-      "eta_brut": "2026-09-05 03:37"
+      "eta_brut": "2026-09-05 05:31"
     },
     "636017239": {
       "nom": "Msc Spring Iii",
       "eta_brut": "2026-09-05 07:40"
     },
-    "305560000": {
-      "nom": "Ual Brazil",
-      "eta_brut": "2026-09-06 00:31"
+    "636018869": {
+      "nom": "Green K Max 4",
+      "eta_brut": "2026-09-02 18:06"
     },
     "636014241": {
       "nom": "Cote D Ivoirian Star",
@@ -193,10 +193,6 @@
     "375188000": {
       "nom": "Svitzer Pacuare",
       "eta_brut": "2026-09-02 04:43"
-    },
-    "247233800": {
-      "nom": "Grande Angola",
-      "eta_brut": ""
     }
   }
 }
