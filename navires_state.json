@@ -14,43 +14,43 @@
     },
     "357036000": {
       "nom": "Surfer 19014",
-      "eta_brut": "2026-09-02 09:11"
+      "eta_brut": "2026-09-02 12:14"
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-02 22:48"
-    },
-    "256521000": {
-      "nom": "Endo Ponente",
-      "eta_brut": "2026-09-03 01:21"
+      "eta_brut": "2026-09-02 23:07"
     },
     "310760000": {
       "nom": "Quebec Express",
       "eta_brut": "2026-09-03 03:54"
     },
+    "256521000": {
+      "nom": "Endo Ponente",
+      "eta_brut": "2026-09-03 03:57"
+    },
     "256909000": {
       "nom": "Cma Cgm Belem",
       "eta_brut": "2026-09-03 12:02"
-    },
-    "215922000": {
-      "nom": "Cma Cgm Kribi",
-      "eta_brut": "2026-09-05 03:49"
     },
     "538009604": {
       "nom": "Boston",
       "eta_brut": "2026-09-05 04:03"
     },
+    "636092986": {
+      "nom": "Luanda Express",
+      "eta_brut": "2026-09-05 04:21"
+    },
+    "215922000": {
+      "nom": "Cma Cgm Kribi",
+      "eta_brut": "2026-09-05 04:24"
+    },
     "255805868": {
       "nom": "Msc Desiree",
       "eta_brut": "2026-09-05 08:10"
     },
-    "636092986": {
-      "nom": "Luanda Express",
-      "eta_brut": "2026-09-06 15:10"
-    },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 13:04"
+      "eta_brut": "2026-09-07 13:23"
     },
     "376108000": {
       "nom": "Lahama",
@@ -110,45 +110,45 @@
       "nom": "Musky",
       "eta_brut": "2026-08-28 21:36"
     },
-    "563202500": {
-      "nom": "Ea Centaurus",
-      "eta_brut": "2026-09-02 13:56"
+    "228459700": {
+      "nom": "Cma Cgm Laguna",
+      "eta_brut": "2026-09-02 15:10"
     },
     "477717700": {
       "nom": "Tj Vanda",
-      "eta_brut": "2026-09-02 14:10"
+      "eta_brut": "2026-09-02 15:51"
+    },
+    "563202500": {
+      "nom": "Ea Centaurus",
+      "eta_brut": "2026-09-02 15:57"
     },
     "538007197": {
       "nom": "Joyce",
-      "eta_brut": "2026-09-02 19:28"
+      "eta_brut": "2026-09-02 19:52"
     },
     "311000958": {
       "nom": "Star Prima",
-      "eta_brut": "2026-09-02 21:47"
+      "eta_brut": "2026-09-02 21:25"
     },
     "538010426": {
       "nom": "Yasa Lotus",
-      "eta_brut": "2026-09-03 02:02"
+      "eta_brut": "2026-09-03 01:28"
     },
     "538009430": {
       "nom": "Team Tombi",
       "eta_brut": "2026-09-03 04:18"
     },
+    "538006782": {
+      "nom": "Federal Nakagawa",
+      "eta_brut": "2026-09-03 06:38"
+    },
     "636022782": {
       "nom": "Xin Zhi Sea",
       "eta_brut": "2026-09-03 10:02"
     },
-    "538006782": {
-      "nom": "Federal Nakagawa",
-      "eta_brut": "2026-09-03 11:38"
-    },
     "636017239": {
       "nom": "Msc Spring Iii",
       "eta_brut": "2026-09-03 13:38"
-    },
-    "636020177": {
-      "nom": "Star Monica",
-      "eta_brut": "2026-09-03 18:57"
     },
     "311001635": {
       "nom": "Orange Stream",
