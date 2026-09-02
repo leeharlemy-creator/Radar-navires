@@ -1,0 +1,2593 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>Eagle Control — Gestion maritime</title>
+<meta name="theme-color" content="#0a1628">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Eagle Control">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
+<style>
+  :root{
+    --navy:#0a1628;
+    --navy-2:#0d2440;
+    --gold:#b8935a;
+    --gold-light:#e8dcc4;
+    --cream:#f7f4ee;
+    --ink:#111318;
+    --muted:#5c6570;
+    --border:#dcd6c8;
+    --green:#2f6b4f;
+    --amber:#a5711f;
+    --red:#a13b3b;
+    --white:#ffffff;
+    --surface:#ffffff;
+    --page-bg:var(--cream);
+  }
+  html[data-theme="dark"]{
+    --cream:#0f141b;
+    --ink:#e8dcc4;
+    --white:#182230;
+    --surface:#182230;
+    --border:#2c3948;
+    --muted:#8b96a5;
+    --page-bg:#0a0e13;
+  }
+  html[data-theme="dark"] .note{
+    background:#182230;
+  }
+  html[data-theme="dark"] tr:hover td{background:#1d2836;}
+  *{box-sizing:border-box;}
+  html,body{height:100%;}
+  body{
+    margin:0;
+    font-family:Arial, Helvetica, sans-serif;
+    background:var(--page-bg);
+    color:var(--ink);
+    padding-bottom:0;
+    overflow-x:hidden;
+  }
+  .theme-toggle{
+    background:transparent;
+    border:1.5px solid var(--gold);
+    color:var(--gold-light);
+    border-radius:20px;
+    padding:6px 14px;
+    font-size:12px;
+    font-weight:700;
+    cursor:pointer;
+  }
+  .live-indicator{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    font-size:10px;
+    letter-spacing:1.5px;
+    text-transform:uppercase;
+    color:var(--gold-light);
+  }
+  .live-dot{
+    width:9px;
+    height:9px;
+    border-radius:50%;
+    background:#3fd3c6;
+    box-shadow:0 0 0 0 rgba(63,211,198,0.7);
+    animation:eagle-pulse 2s infinite;
+  }
+  @keyframes eagle-pulse{
+    0% { box-shadow:0 0 0 0 rgba(63,211,198,0.6); }
+    70% { box-shadow:0 0 0 10px rgba(63,211,198,0); }
+    100% { box-shadow:0 0 0 0 rgba(63,211,198,0); }
+  }
+  header.app{
+    background:var(--navy);
+    color:var(--gold-light);
+    padding:20px 28px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    border-bottom:3px solid var(--gold);
+  }
+  header.app .brand{
+    display:flex;
+    align-items:center;
+    gap:14px;
+  }
+  header.app .mark{
+    width:38px;height:38px;border-radius:50%;
+    background:var(--navy-2);
+    border:1.5px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:Georgia, serif;font-weight:700;color:var(--gold-light);font-size:14px;
+  }
+  header.app h1{
+    font-family:Georgia, 'Times New Roman', serif;
+    font-size:20px;
+    margin:0;
+    letter-spacing:1px;
+  }
+  header.app p{
+    margin:2px 0 0;
+    font-size:11px;
+    letter-spacing:2px;
+    color:var(--gold);
+    text-transform:uppercase;
+  }
+  nav.tabs{
+    display:flex;
+    gap:4px;
+    padding:0 28px;
+    background:var(--navy-2);
+  }
+  nav.tabs button{
+    background:transparent;
+    border:none;
+    color:#c9cfd9;
+    padding:14px 18px;
+    font-size:14px;
+    font-weight:700;
+    cursor:pointer;
+    border-bottom:3px solid transparent;
+  }
+  .tab-icon{ margin-right:6px; font-size:14px; }
+  nav.tabs button.active{
+    color:var(--gold-light);
+    border-bottom-color:var(--gold);
+  }
+  @media (max-width:720px){
+    nav.tabs{
+      position:fixed;
+      bottom:0;left:0;right:0;
+      z-index:50;
+      padding:0;
+      justify-content:flex-start;
+      overflow-x:auto;
+      -webkit-overflow-scrolling:touch;
+      scrollbar-width:none;
+      border-top:2px solid var(--gold);
+      padding-bottom:env(safe-area-inset-bottom, 0);
+    }
+    nav.tabs::-webkit-scrollbar{ display:none; }
+    nav.tabs button{
+      flex:0 0 auto;
+      min-width:78px;
+      padding:10px 10px 8px;
+      font-size:10px;
+      border-bottom:none;
+      border-top:3px solid transparent;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      gap:2px;
+      letter-spacing:0;
+      white-space:nowrap;
+    }
+    .tab-icon{ margin-right:0; font-size:18px; }
+    nav.tabs button.active{
+      border-top-color:var(--gold);
+      border-bottom:none;
+    }
+    main{padding-bottom:84px;}
+    nav.tabs [data-secondary]{ display:none; }
+    #btn-more{ display:flex; }
+  }
+  #btn-more{ display:none; }
+  #more-menu{ display:none; }
+  #more-menu.open{ display:block; position:fixed; inset:0; z-index:100; }
+  #more-menu-backdrop{ position:absolute; inset:0; background:rgba(15,23,32,0.55); }
+  #more-menu-sheet{
+    position:absolute; left:0; right:0; bottom:0;
+    background:#fff;
+    border-radius:16px 16px 0 0;
+    padding:8px 8px calc(16px + env(safe-area-inset-bottom, 0));
+    box-shadow:0 -8px 24px rgba(0,0,0,0.2);
+  }
+  #more-menu-header{
+    display:flex; justify-content:space-between; align-items:center;
+    padding:12px 12px 8px;
+    font-weight:700;
+    color:var(--navy);
+  }
+  #more-menu-header button{
+    background:none; border:none; font-size:18px; color:var(--muted); cursor:pointer;
+  }
+  .more-menu-item{
+    display:block; width:100%; text-align:left;
+    background:none; border:none;
+    padding:14px 12px;
+    font-size:15px;
+    color:var(--navy);
+    border-top:1px solid #eee;
+    cursor:pointer;
+  }
+  main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:28px;
+  }
+  .panel{display:none;}
+  .panel.active{display:block;}
+  .toolbar{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    align-items:center;
+    margin-bottom:18px;
+  }
+  select, input, textarea{
+    font-family:inherit;
+    font-size:13px;
+    padding:8px 10px;
+    border:1px solid var(--border);
+    border-radius:4px;
+    background:var(--surface);
+    color:var(--ink);
+  }
+  .btn{
+    background:var(--navy);
+    color:var(--gold-light);
+    border:none;
+    padding:9px 16px;
+    border-radius:4px;
+    font-size:13px;
+    font-weight:700;
+    cursor:pointer;
+    letter-spacing:0.4px;
+  }
+  .btn:hover{background:var(--navy-2);}
+  .btn.secondary{
+    background:transparent;
+    color:var(--navy);
+    border:1px solid var(--navy);
+  }
+  .btn.danger{
+    background:transparent;
+    color:var(--red);
+    border:1px solid var(--red);
+  }
+  table{
+    width:100%;
+    border-collapse:collapse;
+    background:var(--surface);
+    border:1px solid var(--border);
+    display:block;
+    overflow-x:auto;
+    -webkit-overflow-scrolling:touch;
+  }
+  th{
+    background:var(--navy);
+    color:var(--gold-light);
+    text-align:left;
+    font-size:11px;
+    letter-spacing:1px;
+    text-transform:uppercase;
+    padding:10px 12px;
+  }
+  td{
+    padding:10px 12px;
+    font-size:13px;
+    border-top:1px solid var(--border);
+    vertical-align:top;
+  }
+  tr:hover td{background:#faf8f3;}
+  .pill{
+    display:inline-block;
+    padding:3px 9px;
+    border-radius:12px;
+    font-size:11px;
+    font-weight:700;
+    letter-spacing:0.3px;
+  }
+  .pill.arrivee{background:#e4efe8;color:var(--green);}
+  .pill.transit{background:#f4ecdc;color:var(--amber);}
+  .pill.mouillage{background:#f0e6e0;color:var(--red);}
+  .pill.prospection{background:#eceff2;color:var(--muted);}
+  .pill.negociation{background:#f4ecdc;color:var(--amber);}
+  .pill.signe{background:#e4efe8;color:var(--green);}
+  .pill.perdu{background:#f2e2e2;color:var(--red);}
+  .pill.attente{background:#f2e2e2;color:var(--red);}
+  .pill.sourcing{background:#f4ecdc;color:var(--amber);}
+  .pill.camion{background:#e4e9f0;color:#2a4d7a;}
+  .pill.livre{background:#e4efe8;color:var(--green);}
+  .note{
+    font-size:12px;
+    color:var(--muted);
+    background:#fbf9f4;
+    border:1px solid var(--border);
+    border-left:3px solid var(--gold);
+    padding:10px 14px;
+    margin-bottom:18px;
+    line-height:1.6;
+  }
+  .card-form{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-radius:6px;
+    padding:18px;
+    margin-bottom:18px;
+    display:none;
+  }
+  .card-form.open{display:block;}
+  .card-form h3{
+    font-family:Georgia, serif;
+    margin:0 0 12px;
+    font-size:16px;
+    color:var(--navy);
+  }
+  .grid2{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+  }
+  .grid2 label{
+    display:block;
+    font-size:11px;
+    color:var(--muted);
+    margin-bottom:4px;
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .grid2 .full{grid-column:1/-1;}
+  .form-actions{
+    margin-top:14px;
+    display:flex;
+    gap:8px;
+  }
+  .empty{
+    text-align:center;
+    padding:40px 20px;
+    color:var(--muted);
+    font-size:13px;
+  }
+  .actions-cell{white-space:nowrap;}
+  .actions-cell button{
+    font-size:11px;
+    padding:4px 8px;
+    margin-right:4px;
+  }
+  .stat-row{
+    display:flex;
+    gap:14px;
+    margin-bottom:18px;
+    flex-wrap:wrap;
+  }
+  .stat{
+    background:var(--surface);
+    border:1px solid var(--border);
+    border-top:3px solid var(--gold);
+    padding:14px 18px;
+    min-width:140px;
+  }
+  .stat .num{
+    font-family:Georgia, serif;
+    font-size:24px;
+    color:var(--navy);
+    font-weight:700;
+  }
+  .stat .lbl{
+    font-size:11px;
+    color:var(--muted);
+    text-transform:uppercase;
+    letter-spacing:0.5px;
+  }
+  .hero{
+    background:linear-gradient(135deg,var(--navy),var(--navy-2));
+    border:1px solid var(--gold);
+    border-radius:10px;
+    padding:30px;
+    color:var(--white);
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+    align-items:center;
+    margin-bottom:22px;
+  }
+  .eyebrow{font-size:10px;letter-spacing:2.5px;color:var(--gold);font-weight:700;}
+  .hero h2{font-family:Georgia,serif;font-size:32px;margin:8px 0;line-height:1.05;color:var(--gold-light);}
+  .hero h2 span{color:var(--gold-light);font-size:21px;font-weight:400;}
+  .hero p{max-width:610px;color:#c9cfd9;line-height:1.6;margin:0;}
+  .hero-badge{border:1px solid var(--gold);border-radius:8px;padding:15px 18px;min-width:190px;text-align:center;background:rgba(255,255,255,.04);}
+  .hero-badge strong{display:block;color:var(--gold-light);font-family:Georgia,serif;font-size:18px;}
+  .hero-badge span{font-size:10px;text-transform:uppercase;letter-spacing:1px;color:var(--gold);display:block;margin-top:6px;}
+  .weather-card{background:linear-gradient(135deg,#1B3A6B,#2E75B6);color:#fff;border:none;}
+  .weather-head{display:flex;align-items:center;justify-content:space-between;}
+  .weather-temp{font-size:30px;font-weight:700;margin:0;font-family:Georgia,serif;}
+  .weather-cond{font-size:12px;opacity:.85;margin:2px 0 0;}
+  .weather-ico{font-size:32px;}
+  .weather-stats{display:flex;gap:8px;margin-top:12px;}
+  .weather-stat{flex:1;background:rgba(255,255,255,.14);border-radius:8px;padding:8px 4px;text-align:center;}
+  .ws-ico{display:block;font-size:14px;}
+  .ws-val{display:block;font-size:12.5px;font-weight:700;margin-top:2px;}
+  .ws-label{display:block;font-size:9.5px;opacity:.75;margin-top:1px;}
+  .dashboard-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-bottom:18px;}
+  .dash-card{background:var(--surface);border:1px solid var(--border);border-radius:8px;padding:18px;}
+  .card-title{font-family:Georgia,serif;color:var(--navy);font-weight:700;margin-bottom:13px;font-size:16px;}
+  html[data-theme="dark"] .card-title{color:var(--gold-light);}
+  .source-row{display:flex;align-items:center;gap:10px;padding:9px 0;border-top:1px solid var(--border);font-size:13px;}
+  .source-row:first-of-type{border-top:none;}
+  .source-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0;box-shadow:0 0 6px var(--green);}
+  .source-label{flex:1;}
+  .source-badge{color:var(--green);font-weight:700;font-size:11px;letter-spacing:0.03em;}
+  .mini-list{display:flex;flex-direction:column;gap:9px;}
+  .mini-item{padding:10px 0;border-bottom:1px solid var(--border);font-size:12px;}
+  .mini-item:last-child{border-bottom:none;}
+  .mini-item strong{display:block;color:var(--navy);}
+  html[data-theme="dark"] .mini-item strong{color:var(--gold-light);}
+  .mini-item span{color:var(--muted);font-size:11px;}
+  .financial-card{margin-top:4px;}
+  .performance-row{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;}
+  .performance-row div{background:#fbf9f4;border-left:3px solid var(--gold);padding:13px;}
+  html[data-theme="dark"] .performance-row div{background:#182230;}
+  .performance-row span{display:block;color:var(--muted);font-size:11px;text-transform:uppercase;}
+  .performance-row strong{display:block;color:var(--navy);font-family:Georgia,serif;font-size:18px;margin-top:5px;}
+  html[data-theme="dark"] .performance-row strong{color:var(--gold-light);}
+  @media(max-width:760px){
+    .hero{padding:22px;display:block;}
+    .hero-badge{margin-top:18px;}
+    .dashboard-grid,.performance-row{grid-template-columns:1fr;}
+  }  .radar-sweep{
+    animation: radar-spin 4s linear infinite;
+  }
+  @keyframes radar-spin{
+    from{ transform: rotate(0deg); }
+    to{ transform: rotate(360deg); }
+  }
+  .radar-blip{
+    animation: radar-blip-pulse 4s linear infinite;
+    opacity:0;
+  }
+  @keyframes radar-blip-pulse{
+    0%, 92%{ opacity:0; r:6; }
+    94%{ opacity:1; r:6; }
+    100%{ opacity:0; r:14; }
+  }
+</style>
+</head>
+<body>
+
+<header class="app">
+  <div class="brand">
+    <div class="mark">EC</div>
+    <div>
+      <h1>Eagle Control</h1>
+      <p>Suivi &amp; gestion maritime</p>
+    </div>
+  </div>
+  <div class="live-indicator">
+    <div class="live-dot"></div>
+    <span>En direct</span>
+  </div>
+  <button class="theme-toggle" id="btn-theme">Mode sombre</button>
+</header>
+
+<nav class="tabs">
+  <button class="tab-btn active" data-tab="dashboard"><span class="tab-icon">🧭</span>Tableau de bord</button>
+  <button class="tab-btn" data-tab="navires"><span class="tab-icon">🚢</span>Navires en approche</button>
+  <button class="tab-btn" data-tab="carte" data-secondary><span class="tab-icon">🗺️</span>Carte</button>
+  <button class="tab-btn" data-tab="radar"><span class="tab-icon">📡</span>Radar maritime</button>
+  <button class="tab-btn" data-tab="marches" data-secondary><span class="tab-icon">📦</span>Marchés d'avitaillement</button>
+  <button class="tab-btn" data-tab="dechets" data-secondary><span class="tab-icon">♻️</span>Prospection déchets</button>
+  <button class="tab-btn" data-tab="reseau"><span class="tab-icon">🤝</span>Réseau consignataires</button>
+  <button class="tab-btn" data-tab="config" data-secondary><span class="tab-icon">⚙️</span>Configuration API</button>
+  <button class="tab-btn" id="btn-more" type="button"><span class="tab-icon">☰</span>Plus</button>
+</nav>
+
+<div id="more-menu">
+  <div id="more-menu-backdrop"></div>
+  <div id="more-menu-sheet">
+    <div id="more-menu-header">
+      <span>Plus de rubriques</span>
+      <button id="btn-more-close" type="button">✕</button>
+    </div>
+    <button class="more-menu-item" data-tab="carte">🗺️ Carte</button>
+    <button class="more-menu-item" data-tab="marches">📦 Marchés d'avitaillement</button>
+    <button class="more-menu-item" data-tab="dechets">♻️ Prospection déchets</button>
+    <button class="more-menu-item" data-tab="config">⚙️ Configuration API</button>
+  </div>
+</div>
+
+<main>
+
+  <!-- PANEL DASHBOARD -->
+  <section id="panel-dashboard" class="panel active">
+    <div class="note" style="border-left:3px solid var(--green);">
+      <strong>🛡️ Sécurité maritime — Golfe de Guinée :</strong> selon le rapport 2026 du Bureau Maritime International (IMB), la piraterie dans la zone est au niveau le plus bas depuis 30 ans (un seul vol signalé au mouillage de Takoradi, Ghana, ce trimestre) — nette amélioration grâce aux renforcements navals régionaux (ex. programme "Deep Blue" du Nigeria). La vigilance reste de mise sur les mouillages isolés, mais la zone n'est plus classée à très haut risque comme les années précédentes.
+    </div>
+
+    <div class="hero">
+      <div>
+        <div class="eyebrow">CENTRE DE PILOTAGE</div>
+        <h2>EAGLE CONTROL<br><span>Maritime Operations</span></h2>
+        <p>Suivez vos navires, opportunités commerciales et opérations d\u2019avitaillement depuis un seul espace.</p>
+      </div>
+      <div class="hero-badge">
+        <strong id="dash-date">—</strong>
+        <span>Situation opérationnelle</span>
+      </div>
+    </div>
+
+    <div class="stat-row" id="dashboard-stats"></div>
+
+    <div class="note" id="sync-auto-bandeau" style="display:none;border-left:3px solid var(--gold);font-size:12.5px;"></div>
+
+    <div class="dashboard-grid" style="margin-bottom:16px;">
+      <div class="dash-card weather-card">
+        <div class="weather-head">
+          <div>
+            <p class="weather-temp" id="w-temp-Abidjan">—°C</p>
+            <p class="weather-cond" id="w-cond-Abidjan">Chargement…</p>
+          </div>
+          <div class="weather-ico" id="w-ico-Abidjan">🌊</div>
+        </div>
+        <div class="weather-stats">
+          <div class="weather-stat"><span class="ws-ico">💨</span><span class="ws-val" id="w-wind-Abidjan">—</span><span class="ws-label">Vent</span></div>
+          <div class="weather-stat"><span class="ws-ico">🌊</span><span class="ws-val" id="w-waves-Abidjan">—</span><span class="ws-label">Vagues</span></div>
+          <div class="weather-stat"><span class="ws-ico">💧</span><span class="ws-val" id="w-hum-Abidjan">—</span><span class="ws-label">Humidité</span></div>
+        </div>
+        <p style="font-size:10.5px;color:rgba(255,255,255,.65);margin:8px 0 0;">Météo marine réelle — Abidjan · <span id="w-updated-Abidjan">—</span> · <a href="#" id="w-refresh-Abidjan" style="color:#fff;text-decoration:underline;">Actualiser</a></p>
+      </div>
+      <div class="dash-card weather-card">
+        <div class="weather-head">
+          <div>
+            <p class="weather-temp" id="w-temp-PointeNoire">—°C</p>
+            <p class="weather-cond" id="w-cond-PointeNoire">Chargement…</p>
+          </div>
+          <div class="weather-ico" id="w-ico-PointeNoire">🌊</div>
+        </div>
+        <div class="weather-stats">
+          <div class="weather-stat"><span class="ws-ico">💨</span><span class="ws-val" id="w-wind-PointeNoire">—</span><span class="ws-label">Vent</span></div>
+          <div class="weather-stat"><span class="ws-ico">🌊</span><span class="ws-val" id="w-waves-PointeNoire">—</span><span class="ws-label">Vagues</span></div>
+          <div class="weather-stat"><span class="ws-ico">💧</span><span class="ws-val" id="w-hum-PointeNoire">—</span><span class="ws-label">Humidité</span></div>
+        </div>
+        <p style="font-size:10.5px;color:rgba(255,255,255,.65);margin:8px 0 0;">Météo marine réelle — Pointe-Noire · <span id="w-updated-PointeNoire">—</span> · <a href="#" id="w-refresh-PointeNoire" style="color:#fff;text-decoration:underline;">Actualiser</a></p>
+      </div>
+    </div>
+
+    <div class="dashboard-grid">
+      <div class="dash-card">
+        <div class="card-title">🚢 Arrivées prioritaires</div>
+        <div id="dash-arrivals" class="mini-list"></div>
+      </div>
+      <div class="dash-card">
+        <div class="card-title">💼 Opportunités commerciales</div>
+        <div id="dash-opportunities" class="mini-list"></div>
+      </div>
+      <div class="dash-card">
+        <div class="card-title">🔔 Alertes &amp; actions</div>
+        <div id="dash-alerts" class="mini-list"></div>
+      </div>
+    </div>
+
+    <div class="dash-card financial-card">
+      <div class="card-title">🌊 Aperçu trafic portuaire</div>
+      <div class="note" style="margin-bottom:12px;">
+        Rubrique 100% manuelle. Les sources gratuites publiques (VesselFinder etc.) se sont révélées peu fiables — chiffres figés, non représentatifs du jour réel. Aucune valeur par défaut n'est pré-remplie : à toi de saisir des chiffres vérifiés (via un abonnement AIS, ou l'agent portuaire) si tu veux t'en servir.
+      </div>
+      <div class="performance-row" style="grid-template-columns:repeat(3,1fr);">
+        <div><span>Navires arrivés (24h) — Abidjan</span><strong id="trafic-abj-arr">—</strong></div>
+        <div><span>Attendus (30j) — Abidjan</span><strong id="trafic-abj-att">—</strong></div>
+        <div><span>Au port — Abidjan</span><strong id="trafic-abj-port">—</strong></div>
+        <div><span>Navires arrivés (24h) — Pointe-Noire</span><strong id="trafic-png-arr">—</strong></div>
+        <div><span>Attendus (30j) — Pointe-Noire</span><strong id="trafic-png-att">—</strong></div>
+        <div><span>Au port — Pointe-Noire</span><strong id="trafic-png-port">—</strong></div>
+      </div>
+      <div style="margin-top:12px;font-size:11px;color:var(--muted);">Dernière mise à jour : <span id="trafic-date">jamais</span></div>
+      <div class="form-actions" style="margin-top:10px;">
+        <button class="btn secondary" id="btn-edit-trafic">Modifier ces chiffres</button>
+      </div>
+      <div class="card-form" id="form-trafic" style="max-width:100%;">
+        <div class="grid2">
+          <div><label>Abidjan — arrivés 24h</label><input id="tf-abj-arr" type="number" min="0"></div>
+          <div><label>Abidjan — attendus 30j</label><input id="tf-abj-att" type="number" min="0"></div>
+          <div><label>Abidjan — au port</label><input id="tf-abj-port" type="number" min="0"></div>
+          <div><label>Pointe-Noire — arrivés 24h</label><input id="tf-png-arr" type="number" min="0"></div>
+          <div><label>Pointe-Noire — attendus 30j</label><input id="tf-png-att" type="number" min="0"></div>
+          <div><label>Pointe-Noire — au port</label><input id="tf-png-port" type="number" min="0"></div>
+        </div>
+        <div class="form-actions">
+          <button class="btn" id="btn-save-trafic">Enregistrer</button>
+          <button class="btn secondary" id="btn-cancel-trafic">Annuler</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="dash-card financial-card">
+      <div class="card-title">📋 Documents généralement requis — avitaillement maritime</div>
+      <div class="note" style="margin-bottom:12px;">
+        Liste indicative pour te présenter avec sérieux face à un client ou un agent. Les exigences exactes varient selon le port, l'armateur et la nature des produits — à confirmer au cas par cas.
+      </div>
+      <div class="mini-list">
+        <div class="mini-item"><strong>Bon de commande / Purchase Order (PO)</strong><span>Émis par le commandant, l'armateur ou l'agent consignataire</span></div>
+        <div class="mini-item"><strong>Facture proforma</strong><span>Détail des produits/services, quantités, prix, avant livraison</span></div>
+        <div class="mini-item"><strong>Bon de livraison (Delivery Note)</strong><span>Signé par le commandant ou son représentant à la livraison</span></div>
+        <div class="mini-item"><strong>Certificat sanitaire / phytosanitaire</strong><span>Obligatoire pour denrées alimentaires et produits frais</span></div>
+        <div class="mini-item"><strong>Autorisation d'accès portuaire</strong><span>Badge ou laissez-passer pour accéder au quai (via l'agent ou la capitainerie)</span></div>
+        <div class="mini-item"><strong>Facture définitive</strong><span>Émise après livraison confirmée, base du paiement</span></div>
+        <div class="mini-item"><strong>Registre HSE / contrôle qualité</strong><span>Température, conditions de stockage et transport si produits sensibles</span></div>
+      </div>
+    </div>
+
+    <div class="dash-card financial-card">
+      <div class="card-title">📊 Contexte marché — Pointe-Noire</div>
+      <div class="performance-row" style="grid-template-columns:1fr;">
+        <div><span>Temps d'attente moyen en rade (source Kuehne+Nagel, données 2026, à re-vérifier chaque semaine)</span><strong>≈ 7 à 7,5 jours</strong></div>
+      </div>
+      <div class="note" style="margin-top:12px;margin-bottom:0;">
+        Plus l'attente en rade est longue, plus les besoins d'avitaillement (vivres, eau, évacuation déchets) s'accumulent avant l'accostage — un argument commercial concret pour approcher les agents/armateurs.
+      </div>
+      <div class="card-title" style="margin-top:16px;">🎯 Priorités de prospection (non chiffré, à titre indicatif)</div>
+      <div class="mini-list">
+        <div class="mini-item"><strong>Grands armateurs conteneurs</strong><span>Maersk, MSC, CMA CGM, COSCO — escales régulières et récurrentes, volume de contrats potentiel le plus élevé</span></div>
+        <div class="mini-item"><strong>Vraquiers / cargos généraux</strong><span>Séjours à quai souvent plus longs — plus de temps pour négocier sur place</span></div>
+        <div class="mini-item"><strong>Pétroliers / supply offshore</strong><span>Liés à l'activité pétrolière locale (zone de Djéno) — trafic soutenu et continu</span></div>
+      </div>
+    </div>
+
+    <div class="dash-card financial-card">
+      <div class="card-title">🚀 Plan d'action pour décrocher du travail</div>
+      <div class="mini-list">
+        <div class="mini-item"><strong>1. Obtenir les autorisations légales</strong><span>Agrément de prestataire de services auprès du PAPN, badges d'accès pour équipes et véhicules, partenariat avec un site de décharge/traitement agréé</span></div>
+        <div class="mini-item"><strong>2. Démarcher les consignataires (tes vrais clients)</strong><span>Les armateurs ne contactent jamais directement un prestataire local — tout passe par l'agent maritime qui gère le Port Log. Cible en priorité AGL/Bolloré, CMA CGM, Supermaritime, OMA Logistics — déjà dans ton onglet Réseau</span></div>
+        <div class="mini-item"><strong>3. Identifier les loueurs de barges/vedettes (pour la rade)</strong><span>Pour les navires au mouillage, tu auras besoin d'un partenaire logistique nautique — Global Maritime Solutions ou Congo Marine Corporation, ajoutés à ton Réseau</span></div>
+      </div>
+      <div class="note" style="margin-top:12px;margin-bottom:0;">
+        Conseil : ne loue jamais une barge/vedette à l'avance. Attends une commande ferme, et répercute ce coût logistique séparément dans ta facture au client (ligne "Frais de transfert nautique") plutôt que de l'avancer toi-même.
+      </div>
+    </div>
+
+    <div class="dash-card financial-card">
+      <div class="card-title">🥊 Paysage concurrentiel — collecte de déchets à Pointe-Noire</div>
+      <div class="note" style="margin-bottom:12px;">
+        Entre 5 et 10 prestataires agréés actifs sur la place, mais la plupart visent les gros contrats industriels/pétroliers (hydrocarbures, MARPOL Annexe I) — ce qui laisse de la place sur les ordures ménagères classiques (MARPOL Annexe V), moins disputées.
+      </div>
+      <div class="mini-list">
+        <div class="mini-item"><strong>Grands acteurs (déchets industriels/hydrocarbures)</strong><span>Tecor Congo (groupe Ortec) — 42 Bd de Loango, +242 06 672 15 52 · Tank Services · Albayrak (marché urbain municipal, pas les navires)</span></div>
+        <div class="mini-item"><strong>Acteurs multiservices</strong><span>IMEX Environnement (créée 2014) · PSDC · Shekinah Bopeto</span></div>
+        <div class="mini-item"><strong>Ton positionnement</strong><span>Les gros groupes délaissent souvent les petits/moyens navires et la flexibilité horaire (nuit, week-end). Une réactivité 24h/24 et des prix compétitifs sur les ordures ménagères classiques restent un angle d'attaque réaliste pour démarrer</span></div>
+      </div>
+    </div>
+
+    <div class="dash-card financial-card">
+      <div class="card-title">🗑️ Structure tarifaire indicative — collecte de déchets (MARPOL Annexe V)</div>
+      <div class="note" style="margin-bottom:12px;">
+        Structure générale observée dans la plupart des ports internationaux — <strong>aucun montant précis ci-dessous n'est confirmé pour Pointe-Noire</strong>. Les tarifs réels doivent être obtenus directement auprès du Port Autonome de Pointe-Noire (PAPN) ou d'un agent consignataire de ton réseau (ex. Socotrans, AGL) avant toute proposition à un client.
+      </div>
+      <div class="mini-list">
+        <div class="mini-item"><strong>Redevance forfaitaire par escale</strong><span>Souvent intégrée aux droits de port, couvre un volume standard de déchets ménagers — montant à confirmer localement</span></div>
+        <div class="mini-item"><strong>Facturation au volume supplémentaire</strong><span>Au-delà du forfait, facturation au m³ ou au conteneur — tarif à confirmer localement</span></div>
+        <div class="mini-item"><strong>Déchets spéciaux / dangereux</strong><span>Slops, boues d'hydrocarbures, déchets électroniques — barème généralement plus élevé et distinct</span></div>
+        <div class="mini-item"><strong>Majoration hors horaires</strong><span>Intervention de nuit, week-end ou jour férié — majoration généralement appliquée, taux à confirmer</span></div>
+        <div class="mini-item"><strong>Mode de collecte</strong><span>Camion à quai généralement moins coûteux qu'une collecte par barge pour un navire au mouillage</span></div>
+      </div>
+    </div>
+  </section>
+  <section id="panel-navires" class="panel">
+    <div class="note">
+      Le suivi en temps réel des navires (AIS) nécessite une source de données externe payante (ex. MarineTraffic, VesselFinder). Ci-dessous, une liste de travail que tu peux compléter manuellement ou brancher plus tard sur un flux AIS. Chaque navire listé peut devenir un dossier de négociation d'avitaillement en un clic.
+      <br><br>
+      <strong>💡 Bon plan gratuit :</strong> le Port Autonome de Pointe-Noire publie sa propre programmation officielle des navires (avec noms réels et consignataires) sur
+      <a href="https://papn-cg.org/programmation-des-navires-navires-prevus/" target="_blank" rel="noopener">papn-cg.org — Navires attendus</a>,
+      <a href="https://papn-cg.org/programmation-des-navires-navires-a-quai/" target="_blank" rel="noopener">Navires à quai</a> et
+      <a href="https://papn-cg.org/programmation-des-navires-depats/" target="_blank" rel="noopener">Départs</a>.
+      À vérifier directement sur le site (la fraîcheur des données n'est pas garantie).
+      <br><br>
+      <strong>✅ Mise à jour du 27/08/2026 :</strong> navires réels et actuels des deux ports, récupérés gratuitement sur <strong>myshiptracking.com</strong> (sans compte, sans abonnement) — contrairement au PAPN (tableau figé) et à VesselFinder (noms cachés sans abonnement). Tu peux consulter toi-même en direct :
+      <br>• Pointe-Noire : myshiptracking.com/ports/port-of-pointe-noire-in-cg-congo-id-3364
+      <br>• Abidjan : myshiptracking.com/ports/port-of-abidjan-in-ci-ivory-coast-id-3337
+      <br>Onglets utiles sur leur page : « IN PORT » (à quai) et « EXPECTED » (attendus, avec date/heure précise). Mets cette page en favori sur ton téléphone pour un suivi à jour même quand tu n'es pas encore sur place.
+      <br><br>
+      <strong>📈 Argument commercial (garbage/déchets) :</strong> le temps d'attente moyen en rade à Pointe-Noire est estimé à 7–7,5 jours en 2026 (source Kuehne+Nagel). Plus l'attente est longue, plus les besoins du navire s'accumulent (déchets, vivres, eau) — cible en priorité les navires immobiles en rade depuis plusieurs jours pour proposer une collecte rapide, en insistant sur une disponibilité 24h/24 et 7j/7 (créneau souvent délaissé par les gros prestataires comme Tecor Congo ou Tank Services, focalisés sur les contrats pétroliers/hydrocarbures).
+    </div>
+
+    <div class="note">
+      <strong>📋 Documents type pour un dossier client (garbage/avitaillement) :</strong> bon de commande (PO) émis par l'agent ou le commandant · facture proforma détaillant les tarifs avant prestation · bon de livraison signé par le commandant à la fin du ramassage · autorisation d'accès portuaire (badge/laissez-passer) · facture définitive pour déclencher le paiement.
+    </div>
+
+    <div class="stat-row" id="navires-stats"></div>
+
+    <div class="toolbar">
+      <input type="search" id="recherche-navire" placeholder="Rechercher (nom, pavillon, type, notes...)" style="min-width:220px;">
+      <select id="filtre-destination">
+        <option value="">Toutes destinations</option>
+        <option value="Abidjan">Abidjan</option>
+        <option value="Pointe-Noire">Pointe-Noire</option>
+      </select>
+      <select id="filtre-statut">
+        <option value="">Tous statuts</option>
+        <option value="transit">En transit</option>
+        <option value="mouillage">Au mouillage</option>
+        <option value="arrivee">Arrivé</option>
+      </select>
+      <select id="filtre-livraison">
+        <option value="">Toutes livraisons</option>
+        <option value="attente">En attente</option>
+        <option value="sourcing">Sourcing en cours</option>
+        <option value="camion">En camion</option>
+        <option value="livre">Livré</option>
+      </select>
+      <button class="btn" id="btn-add-navire">+ Ajouter un navire</button>
+      <button class="btn secondary" id="btn-import-radar">📡 Importer depuis le radar</button>
+      <button class="btn secondary" id="btn-export-navires">Exporter CSV</button>
+    </div>
+    <div class="note" id="import-radar-status" style="display:none;margin-top:8px;"></div>
+
+    <div class="card-form" id="form-navire">
+      <h3 id="form-navire-titre">Ajouter un navire</h3>
+      <input type="hidden" id="nv-edit-id">
+      <div class="grid2">
+        <div><label>Nom du navire</label><input id="nv-nom" placeholder="ex. MSC Abidjan"></div>
+        <div><label>Pavillon</label><input id="nv-pavillon" placeholder="ex. Panama"></div>
+        <div><label>Destination</label>
+          <select id="nv-destination">
+            <option value="Abidjan">Abidjan</option>
+            <option value="Pointe-Noire">Pointe-Noire</option>
+          </select>
+        </div>
+        <div><label>Statut</label>
+          <select id="nv-statut">
+            <option value="transit">En transit</option>
+            <option value="mouillage">Au mouillage</option>
+            <option value="arrivee">Arrivé</option>
+          </select>
+        </div>
+        <div><label>ETA (date)</label><input id="nv-eta" type="date"></div>
+        <div><label>Type de navire</label>
+          <select id="nv-type">
+            <option value="">— Sélectionner —</option>
+            <option value="Pétrolier">Pétrolier</option>
+            <option value="Cargo">Cargo</option>
+            <option value="Cargo général">Cargo général</option>
+            <option value="Porte-conteneurs">Porte-conteneurs</option>
+            <option value="Porte-conteneurs (feeder)">Porte-conteneurs (feeder)</option>
+            <option value="Vraquier">Vraquier</option>
+            <option value="Rouleur (RORO)">Rouleur (RORO)</option>
+            <option value="Tanker offshore">Tanker offshore</option>
+            <option value="Supply / servitude offshore">Supply / servitude offshore</option>
+            <option value="Remorqueur">Remorqueur</option>
+            <option value="Chimiquier">Chimiquier</option>
+            <option value="Gazier (LNG/LPG)">Gazier (LNG/LPG)</option>
+            <option value="Autre">Autre</option>
+          </select>
+        </div>
+        <div><label>Tirant d'eau (m)</label><input id="nv-tirant-eau" type="number" step="0.1" min="0" placeholder="ex. 12.5"></div>
+        <div><label>N° IMO</label><input id="nv-imo" placeholder="ex. 9983695"></div>
+        <div><label>N° MMSI</label><input id="nv-mmsi" placeholder="ex. 255915817"></div>
+        <div><label>Statut livraison</label>
+          <select id="nv-livraison">
+            <option value="">—</option>
+            <option value="attente">En attente</option>
+            <option value="sourcing">Sourcing en cours</option>
+            <option value="camion">En camion</option>
+            <option value="livre">Livré</option>
+          </select>
+        </div>
+        <div><label>Responsable</label><input id="nv-responsable" placeholder="Nom du responsable"></div>
+        <div><label>Date de relance</label><input id="nv-relance" type="date"></div>
+        <div><label>Date de départ (retire du suivi ensuite)</label><input id="nv-depart" type="date"></div>
+        <div class="full"><label>Agent consignataire</label>
+          <select id="nv-agent">
+            <option value="">— Non assigné —</option>
+          </select>
+        </div>
+        <div class="full"><label>Notes</label><textarea id="nv-notes" rows="2" placeholder="Besoins estimés, agent maritime, contact, contrôle HSE..."></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" id="btn-save-navire">Enregistrer</button>
+        <button class="btn secondary" id="btn-cancel-navire">Annuler</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Navire</th><th>Destination</th><th>Statut</th><th>ETA</th><th>Agent consignataire</th><th>Livraison</th><th>Relance</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="tbl-navires"></tbody>
+    </table>
+  </section>
+
+  <!-- PANEL CARTE -->
+  <section id="panel-carte" class="panel">
+    <div class="note">
+      Carte Mapbox avec les positions réelles de tes navires (GitHub radar + VesselAPI). Les deux ports sont positionnés précisément. Clique sur un marqueur pour voir le détail.
+    </div>
+    <div class="toolbar">
+      <button class="btn secondary" id="btn-refresh-carte-github">📡 Actualiser depuis le radar GitHub</button>
+      <button class="btn secondary" id="btn-refresh-carte-ais">🔄 Actualiser avec l'AIS (VesselAPI)</button>
+      <span style="font-size:11px;color:var(--muted);">Place les vrais navires détectés (position GPS réelle) sur la carte — consomme 2 requêtes sur ton quota mensuel.</span>
+    </div>
+    <div class="note" id="carte-ais-status" style="display:none;"></div>
+    <div id="map" style="width:100%;height:480px;border-radius:8px;border:1px solid var(--border);"></div>
+  </section>
+
+
+  <!-- PANEL RADAR -->
+  <section id="panel-radar" class="panel">
+    <div class="note">
+      Radar de suivi construit à partir de tes navires enregistrés manuellement (onglet "Navires en approche"). Plus un point est proche du centre, plus l'arrivée est proche. Ce n'est pas un radar satellite en direct — la position réelle en mer viendra avec le flux AIS une fois l'abonnement actif.
+    </div>
+    <div class="toolbar">
+      <button class="btn secondary" id="btn-check-vesselapi">🔄 Vérifier les navires réels (VesselAPI)</button>
+      <button class="btn secondary" id="btn-test-singapour" style="opacity:0.8;">🧪 Test Singapour (vérifier que ça marche)</button>
+      <span style="font-size:11px;color:var(--muted);">Consomme 2 requêtes sur ton quota mensuel (150/mois) à chaque clic — vérifie seulement quand tu en as besoin.</span>
+    </div>
+    <div class="note" id="vesselapi-status" style="display:none;margin-bottom:14px;"></div>
+    <div id="vesselapi-results" style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;margin-bottom:20px;"></div>
+    <div id="radar-wrap" style="display:flex;gap:24px;flex-wrap:wrap;justify-content:center;"></div>
+  </section>
+
+  <!-- PANEL MARCHES -->
+  <section id="panel-marches" class="panel">
+    <div class="stat-row" id="marches-stats"></div>
+
+
+    <div class="toolbar">
+      <select id="filtre-etape">
+        <option value="">Toutes les étapes</option>
+        <option value="prospection">Prospection</option>
+        <option value="negociation">Négociation</option>
+        <option value="signe">Signé</option>
+        <option value="perdu">Perdu</option>
+      </select>
+      <button class="btn" id="btn-add-marche">+ Nouveau dossier</button>
+    </div>
+
+    <div class="card-form" id="form-marche">
+      <h3>Nouveau dossier d'avitaillement</h3>
+      <div class="grid2">
+        <div><label>Navire / Client</label><input id="mc-navire" placeholder="ex. MSC Abidjan / Compagnie X"></div>
+        <div><label>Port</label>
+          <select id="mc-port">
+            <option value="Abidjan">Abidjan</option>
+            <option value="Pointe-Noire">Pointe-Noire</option>
+          </select>
+        </div>
+        <div><label>Étape</label>
+          <select id="mc-etape">
+            <option value="prospection">Prospection</option>
+            <option value="negociation">Négociation</option>
+            <option value="signe">Signé</option>
+            <option value="perdu">Perdu</option>
+          </select>
+        </div>
+        <div><label>Valeur estimée (FCFA)</label><input id="mc-valeur" type="number" placeholder="ex. 5000000"></div>
+        <div><label>Date prévue</label><input id="mc-date" type="date"></div>
+        <div><label>Contact</label><input id="mc-contact" placeholder="Agent, capitaine, armateur..."></div>
+        <div class="full"><label>Détails du besoin</label><textarea id="mc-details" rows="3" placeholder="Vivres, carburant, eau douce, pièces techniques..."></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" id="btn-save-marche">Enregistrer</button>
+        <button class="btn secondary" id="btn-cancel-marche">Annuler</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Navire / Client</th><th>Port</th><th>Étape</th><th>Valeur estimée</th><th>Date prévue</th><th></th>
+        </tr>
+      </thead>
+      <tbody id="tbl-marches"></tbody>
+    </table>
+  </section>
+
+  <!-- PANEL DECHETS -->
+  <section id="panel-dechets" class="panel">
+    <div class="note">
+      Activité : collecte et traitement des ordures ménagères des navires (garbage, MARPOL Annexe V). Créneau délaissé par les gros prestataires (Tecor Congo/Ortec, Tank Services, IMEX Environnement, PSDC), focalisés sur les contrats pétroliers/hydrocarbures. Argument commercial : attente moyenne en rade de 7 à 7,5 jours à Pointe-Noire en 2026 (source Kuehne+Nagel) — plus l'attente est longue, plus les déchets s'accumulent. Cibler en priorité les navires immobiles en rade.
+    </div>
+
+    <h3 style="margin:18px 0 8px;">Grille tarifaire de référence (ordres de grandeur marché)</h3>
+    <table>
+      <thead>
+        <tr><th>Prestation</th><th>Tarif estimé</th><th>Notes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Forfait d'escale à quai (obligatoire)</td><td>250 € – 400 €</td><td>Inclut le dépôt de 2 à 3 m³</td></tr>
+        <tr><td>Volume supplémentaire</td><td>40 € – 60 € / m³</td><td>Au-delà du forfait</td></tr>
+        <tr><td>Grande benne à quai (6 m³)</td><td>250 € – 350 €</td><td>Dépose + collecte</td></tr>
+        <tr><td>Vedette / taxi-boat (rade, par rotation)</td><td>400 € – 700 €</td><td>Petits volumes en sacs</td></tr>
+        <tr><td>Vedette / taxi-boat (rade, journée)</td><td>1 000 € – 1 500 €</td><td>8h à disposition, équipage + carburant inclus</td></tr>
+        <tr><td>Barge + pousseur (rade, clés en main, journée)</td><td>2 500 € – 4 500 €</td><td>Gros volumes / offshore</td></tr>
+      </tbody>
+    </table>
+    <div class="note" style="margin-top:10px;">
+      Règle d'or : séparer la ligne « prestation de collecte » (ta marge) de la ligne « frais de transfert nautique » (coût du loueur de bateau) sur la facture, et exiger un acompte du consignataire avant le départ de la vedette pour toute opération en rade.
+      <br><br>
+      Documents type à préparer : bon de commande (PO) · facture proforma · bon de livraison signé par le commandant · autorisation d'accès portuaire (badge) · facture définitive.
+    </div>
+
+    <h3 style="margin:22px 0 8px;">Suivi des visites de prospection</h3>
+    <div class="stat-row" id="dechets-stats"></div>
+
+    <div class="toolbar">
+      <select id="filtre-dechets-statut">
+        <option value="">Tous les statuts</option>
+        <option value="a_faire">À faire</option>
+        <option value="visite">Visité</option>
+        <option value="relance">À relancer</option>
+        <option value="signe">Signé</option>
+        <option value="perdu">Perdu / pas intéressé</option>
+      </select>
+      <button class="btn" id="btn-add-prospect">+ Nouvelle visite</button>
+    </div>
+
+    <div class="card-form" id="form-prospect">
+      <h3>Nouvelle visite de prospection</h3>
+      <div class="grid2">
+        <div><label>Société / Agence</label><input id="pr-societe" placeholder="ex. Supermaritime Congo"></div>
+        <div><label>Port</label>
+          <select id="pr-port">
+            <option value="Abidjan">Abidjan</option>
+            <option value="Pointe-Noire">Pointe-Noire</option>
+          </select>
+        </div>
+        <div><label>Statut</label>
+          <select id="pr-statut">
+            <option value="a_faire">À faire</option>
+            <option value="visite">Visité</option>
+            <option value="relance">À relancer</option>
+            <option value="signe">Signé</option>
+            <option value="perdu">Perdu / pas intéressé</option>
+          </select>
+        </div>
+        <div><label>Date de visite</label><input id="pr-date" type="date"></div>
+        <div><label>Personne rencontrée</label><input id="pr-personne" placeholder="ex. Responsable Opérations Maritimes"></div>
+        <div><label>Date de relance</label><input id="pr-relance" type="date"></div>
+        <div class="full"><label>Notes</label><textarea id="pr-notes" rows="2" placeholder="Ce qui a été dit, prochaine étape..."></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" id="btn-save-prospect">Enregistrer</button>
+        <button class="btn secondary" id="btn-cancel-prospect">Annuler</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Société</th><th>Port</th><th>Statut</th><th>Visite</th><th>Relance</th><th></th></tr>
+      </thead>
+      <tbody id="tbl-prospects"></tbody>
+    </table>
+  </section>
+
+  <!-- PANEL RESEAU -->
+  <section id="panel-reseau" class="panel">
+    <div class="note">
+      Agents consignataires identifiés à Abidjan et Pointe-Noire, à partir de sources publiques (annuaires professionnels, douanes, sites d'entreprises). Vérifie les coordonnées avant contact, certaines peuvent avoir changé. Tu peux ajouter tes propres contacts au fur et à mesure de tes échanges.
+    </div>
+
+    <div class="toolbar">
+      <select id="filtre-reseau-port">
+        <option value="">Tous les ports</option>
+        <option value="Abidjan">Abidjan</option>
+        <option value="Pointe-Noire">Pointe-Noire</option>
+      </select>
+      <button class="btn" id="btn-add-contact">+ Ajouter un contact</button>
+    </div>
+
+    <div class="card-form" id="form-contact">
+      <h3>Ajouter un contact</h3>
+      <div class="grid2">
+        <div><label>Nom de la société</label><input id="ct-nom" placeholder="ex. Oracle Shipping"></div>
+        <div><label>Port</label>
+          <select id="ct-port">
+            <option value="Abidjan">Abidjan</option>
+            <option value="Pointe-Noire">Pointe-Noire</option>
+          </select>
+        </div>
+        <div><label>Téléphone</label><input id="ct-tel" placeholder="+225 ..."></div>
+        <div><label>Site web / email</label><input id="ct-web" placeholder="ex. oracle-shipping.com"></div>
+        <div class="full"><label>Adresse</label><input id="ct-adresse" placeholder="Quartier, rue, immeuble..."></div>
+        <div class="full"><label>Notes</label><textarea id="ct-notes" rows="2" placeholder="Contact pris, statut de la relation..."></textarea></div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" id="btn-save-contact">Enregistrer</button>
+        <button class="btn secondary" id="btn-cancel-contact">Annuler</button>
+      </div>
+    </div>
+
+    <table>
+      <thead>
+        <tr><th>Société</th><th>Port</th><th>Téléphone</th><th>Web / Email</th><th>Adresse</th><th>Contact rapide</th><th></th></tr>
+      </thead>
+      <tbody id="tbl-contacts"></tbody>
+    </table>
+  </section>
+
+  <!-- PANEL CONFIG -->
+  <section id="panel-config" class="panel">
+    <div class="dash-card" style="max-width:420px;margin-bottom:16px;">
+      <div class="card-title">📡 Sources de données</div>
+      <div class="source-row"><span class="source-dot"></span><span class="source-label">VesselAPI (AIS)</span><span class="source-badge">ACTIF</span></div>
+      <div class="source-row"><span class="source-dot"></span><span class="source-label">Radar GitHub (myshiptracking.com)</span><span class="source-badge">CONNECTÉ</span></div>
+    </div>
+
+    <div class="note">
+      <strong>🔔 Radar automatique (alertes Telegram, gratuit)</strong><br>
+      Un script séparé (dossier <code>radar-navires/</code>, livré à part) vérifie automatiquement les navires à quai à Pointe-Noire et Abidjan toutes les 3h via myshiptracking.com, et envoie une alerte Telegram uniquement si un nouveau navire apparaît. Il tourne gratuitement sur GitHub Actions, indépendamment de cette app (qui reste 100% autonome, sans dépendance à ce script pour fonctionner).
+      <br><br>
+      Statut : <strong id="radar-auto-statut">Pas encore configuré</strong> — voir <code>SETUP.md</code> fourni avec le script pour l'activer (création d'un bot Telegram + compte GitHub gratuits, ~15-20 min). Une fois configuré, coche la case ci-dessous pour que l'app garde une trace que c'est fait.
+      <br><br>
+      <label style="display:flex;align-items:center;gap:8px;font-weight:600;cursor:pointer;">
+        <input type="checkbox" id="radar-auto-check" style="width:16px;height:16px;">
+        J'ai configuré le radar automatique (Telegram + GitHub Actions)
+      </label>
+    </div>
+
+    <div class="note" style="border-left:3px solid var(--gold);">
+      🔜 <strong>Connexion aux données AIS réelles — à activer plus tard</strong><br>
+      Pas besoin de clé API pour l'instant : l'app fonctionne entièrement en mode manuel (saisie des navires à la main dans l'onglet "Navires en approche"). Quand tu seras prêt à brancher un vrai fournisseur de données (MarineTraffic, VesselFinder, Datalastic...), reviens ici et clique ci-dessous pour afficher les réglages.
+      <br><br>
+      <button class="btn secondary" id="btn-show-config">Afficher les réglages de connexion API</button>
+    </div>
+
+    <div class="note" id="config-api-note" style="display:none;">
+      Tout est réuni ici, dans ce seul fichier. Tant qu'aucune clé n'est enregistrée, l'outil fonctionne en mode manuel. Une fois ta clé collée ci-dessous, utilise le bouton "Récupérer les navires maintenant" pour interroger l'API et remplir automatiquement la liste des navires vers Abidjan et Pointe-Noire — sans script séparé, sans terminal.
+    </div>
+
+    <div class="card-form" id="config-api-form" style="max-width:560px;">
+      <h3>Clé API AIS</h3>
+      <div class="grid2">
+        <div class="full">
+          <label>Fournisseur</label>
+          <select id="cfg-provider">
+            <option value="vesselapi">VesselAPI (gratuit — 150 requêtes/mois)</option>
+            <option value="marinetraffic">MarineTraffic (payant)</option>
+            <option value="vesselfinder">VesselFinder (payant)</option>
+            <option value="datalastic">Datalastic (payant)</option>
+            <option value="autre">Autre (URL personnalisée)</option>
+          </select>
+        </div>
+        <div class="full" id="cfg-url-wrap" style="display:none;">
+          <label>URL de base de l'API (fournisseur "Autre")</label>
+          <input id="cfg-url" type="text" placeholder="https://api.exemple.com/v1">
+        </div>
+        <div class="full">
+          <label>Clé API</label>
+          <input id="cfg-apikey" type="text" placeholder="Colle ta clé API ici">
+        </div>
+      </div>
+      <div class="form-actions">
+        <button class="btn" id="btn-save-config">Enregistrer la clé</button>
+        <button class="btn secondary" id="btn-fetch-api">Récupérer les navires maintenant</button>
+      </div>
+      <p id="cfg-status" style="font-size:12px;color:var(--muted);margin-top:10px;"></p>
+    </div>
+
+    <div class="note" id="config-api-footnote" style="margin-top:6px;display:none;">
+      Chaque fournisseur AIS a son propre format de réponse. Au premier clic sur "Récupérer les navires maintenant" sans réglage fin, l'outil tentera un appel générique — s'il échoue (message d'erreur affiché), c'est normal : dis-le moi avec le nom exact de ton fournisseur et je adapte l'appel à sa documentation réelle.
+    </div>
+  </section>
+
+</main>
+
+<script>
+// --- Icônes / manifest / service worker intégrés (fichier unique, aucune dépendance externe) ---
+const ICON_192 = "data:image/png;base64,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";
+const ICON_512 = "data:image/png;base64,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";
+const ICON_192_M = "data:image/png;base64,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";
+const ICON_512_M = "data:image/png;base64,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";
+
+(function setupIcons(){
+  const linkTouch = document.createElement('link');
+  linkTouch.rel = 'apple-touch-icon';
+  linkTouch.href = ICON_192;
+  document.head.appendChild(linkTouch);
+
+  const linkIcon = document.createElement('link');
+  linkIcon.rel = 'icon';
+  linkIcon.href = ICON_192;
+  document.head.appendChild(linkIcon);
+
+  const manifestObj = {
+    name: "Eagle Control — Gestion maritime",
+    short_name: "Eagle Control",
+    description: "Suivi des navires, radar maritime, carte, dossiers d'avitaillement et réseau de consignataires.",
+    start_url: ".",
+    scope: ".",
+    display: "standalone",
+    orientation: "portrait-primary",
+    background_color: "#0a1628",
+    theme_color: "#0a1628",
+    lang: "fr",
+    icons: [
+      { src: ICON_192, sizes: "192x192", type: "image/png", purpose: "any" },
+      { src: ICON_512, sizes: "512x512", type: "image/png", purpose: "any" },
+      { src: ICON_192_M, sizes: "192x192", type: "image/png", purpose: "maskable" },
+      { src: ICON_512_M, sizes: "512x512", type: "image/png", purpose: "maskable" }
+    ]
+  };
+  const manifestBlob = new Blob([JSON.stringify(manifestObj)], {type: 'application/manifest+json'});
+  const linkManifest = document.createElement('link');
+  linkManifest.rel = 'manifest';
+  linkManifest.href = URL.createObjectURL(manifestBlob);
+  document.head.appendChild(linkManifest);
+})();
+
+if('serviceWorker' in navigator){
+  const swCode = [
+    "const CACHE_NAME = 'eagle-control-v3';",
+    "self.addEventListener('install', (event) => { self.skipWaiting(); });",
+    "self.addEventListener('activate', (event) => { self.clients.claim(); });",
+    "self.addEventListener('fetch', (event) => {",
+    "  if (event.request.method !== 'GET') return;",
+    "  event.respondWith(",
+    "    fetch(event.request)",
+    "      .then((response) => {",
+    "        const copy = response.clone();",
+    "        caches.open(CACHE_NAME).then((cache) => cache.put(event.request, copy));",
+    "        return response;",
+    "      })",
+    "      .catch(() => caches.match(event.request))",
+    "  );",
+    "});"
+  ].join("\n");
+  const swBlob = new Blob([swCode], {type: 'application/javascript'});
+  const swUrl = URL.createObjectURL(swBlob);
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register(swUrl).catch(()=>{});
+  });
+}
+
+let navires = [];
+let marches = [];
+let prospects = [];
+
+const seedProspects = [
+  {id:'p1', societe:'Supermaritime Congo', port:'Pointe-Noire', statut:'a_faire', date:'', personne:'', relance:'', notes:'Cible prioritaire — gère beaucoup de navires industriels et cargaisons en vrac (bois, minerais), ouverte aux sous-traitants'},
+  {id:'p2', societe:'OMA Logistics Congo', port:'Pointe-Noire', statut:'a_faire', date:'', personne:'', relance:'', notes:'Cible prioritaire — agence régionale, demander le Responsable des Opérations Maritimes'},
+  {id:'p3', societe:'Hull Blyth Congo', port:'Pointe-Noire', statut:'a_faire', date:'', personne:'', relance:'', notes:'Cible prioritaire — agence régionale, demander le Responsable des Opérations Maritimes'},
+  {id:'p4', societe:'MSLI Congo', port:'Pointe-Noire', statut:'a_faire', date:'', personne:'', relance:'', notes:'Cité aux côtés d\u2019AGL, CMA CGM comme agence à démarcher pour la sous-traitance déchets'}
+];
+
+const seedNavires = [
+  {id:'n1', nom:'CMA CGM Maui', pavillon:'France', destination:'Abidjan', statut:'arrivee', eta:'2026-08-27', type:'Porte-conteneurs', notes:'À quai depuis le 27/08 07:52 — source myshiptracking.com (live, gratuit)'},
+  {id:'n2', nom:'Cartier', pavillon:'Libéria', destination:'Abidjan', statut:'arrivee', eta:'2026-08-27', type:'Navire (type non précisé)', notes:'À quai depuis le 27/08 11:57 — source myshiptracking.com (live, gratuit)'},
+  {id:'n3', nom:'Prime Star', pavillon:'Libéria', destination:'Abidjan', statut:'arrivee', eta:'2026-08-27', type:'Vraquier', notes:'À quai depuis le 27/08 09:56 — source myshiptracking.com (live, gratuit)'},
+  {id:'n4', nom:'Nordic Incheon', pavillon:'Libéria', destination:'Abidjan', statut:'transit', eta:'2026-08-27', type:'Cargo', notes:'Arrivée attendue 27/08 18:19 — source myshiptracking.com (live, gratuit)'},
+  {id:'n5', nom:'MSC Coruna', pavillon:'Malte', destination:'Abidjan', statut:'transit', eta:'2026-08-28', type:'Porte-conteneurs', notes:'Arrivée attendue 28/08 17:44 — source myshiptracking.com (live, gratuit)'},
+  {id:'n6', nom:'Captain John', pavillon:'Îles Marshall', destination:'Abidjan', statut:'transit', eta:'2026-08-29', type:'Cargo', notes:'Arrivée attendue 29/08 11:23 — source myshiptracking.com (live, gratuit)'},
+  {id:'n7', nom:'MSC India', pavillon:'Portugal', destination:'Abidjan', statut:'transit', eta:'2026-08-31', type:'Porte-conteneurs', notes:'Arrivée attendue 31/08 05:02 — source myshiptracking.com (live, gratuit)'},
+  {id:'n8', nom:'Astrid Maersk', pavillon:'Danemark', destination:'Pointe-Noire', statut:'arrivee', eta:'2026-08-26', type:'Porte-conteneurs (351 m)', notes:'À quai depuis le 26/08 13:40 — source myshiptracking.com (live, gratuit)'},
+  {id:'n9', nom:'Genco Pyrenees', pavillon:'Îles Marshall', destination:'Pointe-Noire', statut:'arrivee', eta:'2026-08-27', type:'Vraquier', notes:'À quai depuis le 27/08 14:03 — source myshiptracking.com (live, gratuit)'},
+  {id:'n10', nom:'Annis', pavillon:'Vanuatu', destination:'Pointe-Noire', statut:'arrivee', eta:'2026-08-26', type:'Cargo (170 m)', notes:'À quai depuis le 26/08 15:59 — source myshiptracking.com (live, gratuit)'},
+  {id:'n11', nom:'GFS Lysa', pavillon:'Chypre', destination:'Pointe-Noire', statut:'transit', eta:'2026-08-27', type:'P/C Feeder', notes:'Arrivée attendue 27/08 23:09 — source myshiptracking.com (live, gratuit)'},
+  {id:'n12', nom:'MSC Kerry VII', pavillon:'Libéria', destination:'Pointe-Noire', statut:'transit', eta:'2026-08-30', type:'Porte-conteneurs', notes:'Arrivée attendue 30/08 10:00 — source myshiptracking.com (live, gratuit)'},
+  {id:'n13', nom:'CMA CGM Belem', pavillon:'Malte', destination:'Pointe-Noire', statut:'transit', eta:'2026-09-02', type:'Porte-conteneurs', agentId:'c20', notes:'Arrivée attendue 02/09 12:28 — source myshiptracking.com (live, gratuit)'},
+  {id:'n14', nom:'Minerva Joanna', pavillon:'Grèce', destination:'Abidjan', statut:'arrivee', eta:'2026-08-28', type:'Navire (type non précisé)', notes:'À quai — signalé via vérification Visualping (myshiptracking.com), 28/08/2026'},
+  {id:'n15', nom:'Sea Champion', pavillon:'Grèce', destination:'Abidjan', statut:'arrivee', eta:'2026-08-28', type:'Navire (type non précisé)', notes:'À quai — signalé via vérification Visualping (myshiptracking.com), 28/08/2026'},
+  {id:'n16', nom:'Grasmere Maersk', pavillon:'Singapour', destination:'Abidjan', statut:'arrivee', eta:'2026-08-28', type:'Porte-conteneurs', notes:'À quai — signalé via vérification Visualping (myshiptracking.com), 28/08/2026'},
+  {id:'n17', nom:'Anna', pavillon:'Antigua-et-Barbuda', destination:'Abidjan', statut:'arrivee', eta:'2026-08-28', type:'Navire (type non précisé)', notes:'À quai — signalé via vérification Visualping (myshiptracking.com), 28/08/2026'},
+  {id:'n18', nom:'Mookda Naree', pavillon:'Thaïlande', destination:'Abidjan', statut:'arrivee', eta:'2026-08-28', type:'Navire (type non précisé)', notes:'À quai — signalé via vérification Visualping (myshiptracking.com), 28/08/2026'},
+  {id:'n19', nom:'Trio Can Berat', pavillon:'Saint-Kitts-et-Nevis', destination:'Abidjan', statut:'arrivee', eta:'2026-08-28', type:'Navire (type non précisé)', notes:'À quai — signalé via vérification Visualping (myshiptracking.com), 28/08/2026'}
+];
+
+function uid(){ return 'id' + Math.random().toString(36).slice(2,9); }
+
+async function loadData(){
+  try{
+    const nv = localStorage.getItem('navires-list');
+    navires = nv ? JSON.parse(nv) : seedNavires;
+  }catch(e){ navires = seedNavires; }
+  try{
+    const mc = localStorage.getItem('marches-list');
+    marches = mc ? JSON.parse(mc) : [];
+  }catch(e){ marches = []; }
+  try{
+    const pr = localStorage.getItem('prospects-list');
+    prospects = pr ? JSON.parse(pr) : seedProspects;
+  }catch(e){ prospects = seedProspects; }
+  await nettoyerNaviresPartis();
+  renderNavires();
+  renderMarches();
+  renderProspects();
+}
+
+async function saveNavires(){
+  try{ localStorage.setItem('navires-list', JSON.stringify(navires)); }catch(e){}
+}
+async function saveMarches(){
+  try{ localStorage.setItem('marches-list', JSON.stringify(marches)); }catch(e){}
+}
+async function saveProspects(){
+  try{ localStorage.setItem('prospects-list', JSON.stringify(prospects)); }catch(e){}
+}
+
+function statutLabel(s){
+  return {transit:'En transit', mouillage:'Au mouillage', arrivee:'Arrivé'}[s] || s;
+}
+function prospectStatutLabel(s){
+  return {a_faire:'À faire', visite:'Visité', relance:'À relancer', signe:'Signé', perdu:'Perdu / pas intéressé'}[s] || s;
+}
+function etapeLabel(s){
+  return {prospection:'Prospection', negociation:'Négociation', signe:'Signé', perdu:'Perdu'}[s] || s;
+}
+function fmtFCFA(v){
+  if(!v) return '—';
+  return Number(v).toLocaleString('fr-FR') + ' FCFA';
+}
+
+function renderDashboard(){
+  const stats = document.getElementById('dashboard-stats');
+  if(!stats) return;
+  const today = new Date();
+  document.getElementById('dash-date').textContent = today.toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
+  const activeDeals = marches.filter(m=>m.etape==='prospection'||m.etape==='negociation');
+  const signed = marches.filter(m=>m.etape==='signe');
+  stats.innerHTML = `
+    <div class="stat"><div class="num">${navires.length}</div><div class="lbl">Navires suivis</div></div>
+    <div class="stat"><div class="num">${activeDeals.length}</div><div class="lbl">Opportunités actives</div></div>
+    <div class="stat"><div class="num">${signed.length}</div><div class="lbl">Contrats signés</div></div>
+    <div class="stat"><div class="num">${contacts.length}</div><div class="lbl">Contacts réseau</div></div>`;
+  const todayStr9 = new Date().toISOString().slice(0,10);
+  const ordered = navires
+    .filter(n => n.statut !== 'arrivee' && (!n.eta || n.eta >= todayStr9))
+    .sort((a,b)=>(a.eta||'9999').localeCompare(b.eta||'9999'))
+    .slice(0,5);
+  document.getElementById('dash-arrivals').innerHTML = ordered.length ? ordered.map(n=>`
+    <div class="mini-item"><strong>${esc(n.nom)}</strong><span>${esc(n.destination)} · ETA ${n.eta||'à confirmer'} · ${statutLabel(n.statut)}</span></div>`).join('') :
+    '<div class="mini-item"><span>Aucune arrivée à venir enregistrée.</span></div>';
+  document.getElementById('dash-opportunities').innerHTML = activeDeals.length ? activeDeals.slice(0,5).map(m=>`
+    <div class="mini-item"><strong>${esc(m.navire)}</strong><span>${esc(m.port)} · ${etapeLabel(m.etape)} · ${fmtFCFA(m.valeur)}</span></div>`).join('') :
+    '<div class="mini-item"><span>Aucune opportunité en cours.</span></div>';
+  const alerts = [];
+  const todayStr = new Date().toISOString().slice(0,10);
+  navires.filter(n=>n.relance && n.relance <= todayStr).forEach(n=>alerts.push({txt:`${n.nom} : relance en retard (prévue le ${n.relance})`, prio:true}));
+  navires.filter(n=>n.statut==='arrivee'||(n.eta && joursRestants(n.eta)<=2)).forEach(n=>alerts.push({txt:`${n.nom} : arrivée proche ou confirmée`, prio:false}));
+  if(!alerts.length){
+    document.getElementById('dash-alerts').innerHTML = '<div class="mini-item"><span>Aucune alerte critique pour le moment.</span></div>';
+  } else {
+    document.getElementById('dash-alerts').innerHTML = alerts.slice(0,6).map(a=>`<div class="mini-item"><strong style="${a.prio?'color:var(--red);':''}">${esc(a.txt)}</strong><span>Action recommandée : ${a.prio ? 'recontacter le client/agent sans tarder' : 'vérifier les besoins et contacter l\u2019agent'}.</span></div>`).join('');
+  }
+}
+
+function livraisonLabel(l){
+  return {attente:'En attente', sourcing:'Sourcing en cours', camion:'En camion', livre:'Livré'}[l] || '—';
+}
+
+function nomAgent(agentId){
+  const c = contacts.find(x=>x.id===agentId);
+  return c ? c.nom : null;
+}
+
+function renderNavires(){
+  const destF = document.getElementById('filtre-destination').value;
+  const statF = document.getElementById('filtre-statut').value;
+  const livF = document.getElementById('filtre-livraison').value;
+  const q = document.getElementById('recherche-navire').value.trim().toLowerCase();
+  const tbl = document.getElementById('tbl-navires');
+  const list = navires.filter(n => {
+    const matchTexte = !q || [n.nom, n.pavillon, n.type, n.notes, n.responsable].join(' ').toLowerCase().includes(q);
+    return matchTexte && (!destF || n.destination === destF) && (!statF || n.statut === statF) && (!livF || n.livraison === livF);
+  }).sort((a, b) => {
+    // Les navires "en approche" restent groupés en tête ; les "arrivés" descendent en dessous,
+    // quel que soit leur ordre d'ajout — comme un tableau d'affichage d'aéroport (vols à venir
+    // en haut, vols atterris en bas).
+    const aArrive = a.statut === 'arrivee', bArrive = b.statut === 'arrivee';
+    if(aArrive !== bArrive) return aArrive ? 1 : -1;
+    const ta = a.ajouteLe || 0, tb = b.ajouteLe || 0;
+    if(ta !== tb) return tb - ta; // parmi un même groupe, les plus récemment ajoutés d'abord
+    return (a.eta||'9999').localeCompare(b.eta||'9999');
+  });
+  if(list.length === 0){
+    tbl.innerHTML = '<tr><td colspan="8" class="empty">Aucun navire ne correspond aux filtres.</td></tr>';
+  } else {
+    tbl.innerHTML = list.map(n => {
+      const agent = nomAgent(n.agentId);
+      const voyant = agent
+        ? '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--green);margin-right:6px;"></span>'
+        : '<span style="display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--red);margin-right:6px;"></span>';
+      return `
+      <tr>
+        <td><strong>${esc(n.nom)}</strong><br><span style="color:var(--muted);font-size:11px;">${esc(n.pavillon||'')}${n.type ? ' · '+esc(n.type) : ''}${n.tirantEau ? ' · Tirant d\u2019eau '+esc(n.tirantEau)+' m' : ''}${n.imo ? ' · IMO '+esc(n.imo) : ''}${n.mmsi ? ' · MMSI '+esc(n.mmsi) : ''}</span></td>
+        <td>${esc(n.destination)}</td>
+        <td><span class="pill ${n.statut}">${statutLabel(n.statut)}</span></td>
+        <td>${n.eta || '—'}</td>
+        <td>${voyant}${agent ? esc(agent) : '<span style="color:var(--muted);">Non assigné</span>'}</td>
+        <td>${n.livraison ? '<span class="pill '+n.livraison+'">'+livraisonLabel(n.livraison)+'</span>' : '—'}</td>
+        <td>${n.relance || '—'}</td>
+        <td class="actions-cell">
+          <button class="btn secondary" onclick="editNavire('${n.id}')">Modifier</button>
+          <button class="btn secondary" onclick="creerMarcheDepuisNavire('${n.id}')">Négocier</button>
+          <button class="btn secondary" onclick="marquerDepart('${n.id}')" title="Retire le navire du suivi">Départ</button>
+          <button class="btn danger" onclick="suppNavire('${n.id}')">Suppr.</button>
+        </td>
+      </tr>
+    `;}).join('');
+  }
+  const stats = document.getElementById('navires-stats');
+  const abj = navires.filter(n=>n.destination==='Abidjan').length;
+  const brz = navires.filter(n=>n.destination==='Pointe-Noire').length;
+  const arr = navires.filter(n=>n.statut==='arrivee').length;
+  stats.innerHTML = `
+    <div class="stat"><div class="num">${navires.length}</div><div class="lbl">Navires suivis</div></div>
+    <div class="stat"><div class="num">${abj}</div><div class="lbl">Vers Abidjan</div></div>
+    <div class="stat"><div class="num">${brz}</div><div class="lbl">Vers Pointe-Noire</div></div>
+    <div class="stat"><div class="num">${arr}</div><div class="lbl">Arrivés</div></div>
+  `;
+  renderRadar();
+  renderCarteMarkers();
+  renderDashboard();
+}
+
+
+
+function remplirOptionsAgent(selectedId){
+  const sel = document.getElementById('nv-agent');
+  sel.innerHTML = '<option value="">— Non assigné —</option>' +
+    contacts.map(c => `<option value="${c.id}">${esc(c.nom)} (${esc(c.port)})</option>`).join('');
+  sel.value = selectedId || '';
+}
+
+window.editNavire = function(id){
+  const n = navires.find(x=>x.id===id);
+  if(!n) return;
+  document.getElementById('form-navire').classList.add('open');
+  document.getElementById('form-navire-titre').textContent = 'Modifier le navire';
+  document.getElementById('nv-edit-id').value = n.id;
+  document.getElementById('nv-nom').value = n.nom || '';
+  document.getElementById('nv-pavillon').value = n.pavillon || '';
+  document.getElementById('nv-destination').value = n.destination || 'Abidjan';
+  document.getElementById('nv-statut').value = n.statut || 'transit';
+  document.getElementById('nv-eta').value = n.eta || '';
+  document.getElementById('nv-type').value = n.type || '';
+  document.getElementById('nv-tirant-eau').value = n.tirantEau || '';
+  document.getElementById('nv-imo').value = n.imo || '';
+  document.getElementById('nv-mmsi').value = n.mmsi || '';
+  document.getElementById('nv-livraison').value = n.livraison || '';
+  document.getElementById('nv-responsable').value = n.responsable || '';
+  document.getElementById('nv-relance').value = n.relance || '';
+  document.getElementById('nv-depart').value = n.depart || '';
+  document.getElementById('nv-notes').value = n.notes || '';
+  remplirOptionsAgent(n.agentId);
+  document.getElementById('nv-nom').focus();
+};
+
+function exportNaviresCSV(){
+  const headers = ['Navire','Pavillon','Destination','Statut','ETA','Type','Agent consignataire','Statut livraison','Responsable','Relance','Notes'];
+  const rows = navires.map(n => [n.nom, n.pavillon, n.destination, statutLabel(n.statut), n.eta, n.type, nomAgent(n.agentId) || 'Non assigné', livraisonLabel(n.livraison), n.responsable, n.relance, n.notes]);
+  const csv = [headers, ...rows].map(r => r.map(v => `"${String(v ?? '').replaceAll('"','""')}"`).join(',')).join('\n');
+  const blob = new Blob(['\uFEFF' + csv], {type:'text/csv;charset=utf-8;'});
+  const url = URL.createObjectURL(blob);
+  const link = document.createElement('a');
+  link.href = url;
+  link.download = 'navires-eagle-control.csv';
+  link.click();
+  URL.revokeObjectURL(url);
+}
+document.getElementById('btn-export-navires').addEventListener('click', exportNaviresCSV);
+document.getElementById('recherche-navire').addEventListener('input', renderNavires);
+document.getElementById('filtre-livraison').addEventListener('change', renderNavires);
+
+function renderMarches(){
+  const etF = document.getElementById('filtre-etape').value;
+  const tbl = document.getElementById('tbl-marches');
+  const list = marches.filter(m => !etF || m.etape === etF);
+  if(list.length === 0){
+    tbl.innerHTML = '<tr><td colspan="6" class="empty">Aucun dossier pour l\u2019instant. Ajoute un dossier ou négocie depuis un navire suivi.</td></tr>';
+  } else {
+    tbl.innerHTML = list.map(m => `
+      <tr>
+        <td><strong>${esc(m.navire)}</strong>${m.contact ? '<br><span style="color:var(--muted);font-size:11px;">'+esc(m.contact)+'</span>' : ''}</td>
+        <td>${esc(m.port)}</td>
+        <td><span class="pill ${m.etape}">${etapeLabel(m.etape)}</span></td>
+        <td>${fmtFCFA(m.valeur)}</td>
+        <td>${m.date || '—'}</td>
+        <td class="actions-cell">
+          <button class="btn danger" onclick="suppMarche('${m.id}')">Suppr.</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+  const stats = document.getElementById('marches-stats');
+  const enCours = marches.filter(m=>m.etape==='negociation'||m.etape==='prospection').length;
+  const signes = marches.filter(m=>m.etape==='signe').length;
+  const valSignee = marches.filter(m=>m.etape==='signe').reduce((a,m)=>a+(Number(m.valeur)||0),0);
+  stats.innerHTML = `
+    <div class="stat"><div class="num">${marches.length}</div><div class="lbl">Dossiers total</div></div>
+    <div class="stat"><div class="num">${enCours}</div><div class="lbl">En cours</div></div>
+    <div class="stat"><div class="num">${signes}</div><div class="lbl">Signés</div></div>
+    <div class="stat"><div class="num">${fmtFCFA(valSignee)}</div><div class="lbl">Valeur signée</div></div>
+  `;
+  renderDashboard();
+}
+
+function esc(s){
+  const d = document.createElement('div');
+  d.textContent = s || '';
+  return d.innerHTML;
+}
+
+window.creerMarcheDepuisNavire = function(navId){
+  const n = navires.find(x=>x.id===navId);
+  if(!n) return;
+  switchTab('marches');
+  document.getElementById('form-marche').classList.add('open');
+  document.getElementById('mc-navire').value = n.nom;
+  document.getElementById('mc-port').value = n.destination;
+  document.getElementById('mc-details').value = n.notes || '';
+  document.getElementById('mc-navire').focus();
+};
+
+window.suppNavire = async function(id){
+  navires = navires.filter(n=>n.id!==id);
+  await saveNavires();
+  renderNavires();
+};
+window.marquerDepart = async function(id){
+  const n = navires.find(x=>x.id===id);
+  if(!n) return;
+  if(!confirm(`Confirmer le départ de ${n.nom} ? Il sera retiré du suivi des navires.`)) return;
+  navires = navires.filter(x=>x.id!==id);
+  await saveNavires();
+  renderNavires();
+};
+async function nettoyerNaviresPartis(){
+  const aujourdHui = new Date().toISOString().slice(0,10);
+  const avant = navires.length;
+  navires = navires.filter(n => !(n.depart && n.depart <= aujourdHui));
+  if(navires.length !== avant){
+    await saveNavires();
+  }
+}
+window.suppMarche = async function(id){
+  marches = marches.filter(m=>m.id!==id);
+  await saveMarches();
+  renderMarches();
+};
+function prospectPillClass(s){
+  return {a_faire:'prospection', visite:'negociation', relance:'attente', signe:'signe', perdu:'perdu'}[s] || 'prospection';
+}
+function renderProspects(){
+  const stF = document.getElementById('filtre-dechets-statut').value;
+  const tbl = document.getElementById('tbl-prospects');
+  const list = prospects.filter(p => !stF || p.statut === stF);
+  if(list.length === 0){
+    tbl.innerHTML = '<tr><td colspan="6" class="empty">Aucune visite pour l\u2019instant. Ajoute ta première cible de prospection.</td></tr>';
+  } else {
+    tbl.innerHTML = list.map(p => `
+      <tr>
+        <td><strong>${esc(p.societe)}</strong>${p.personne ? '<br><span style="color:var(--muted);font-size:11px;">'+esc(p.personne)+'</span>' : ''}</td>
+        <td>${esc(p.port)}</td>
+        <td><span class="pill ${prospectPillClass(p.statut)}">${prospectStatutLabel(p.statut)}</span></td>
+        <td>${p.date || '—'}</td>
+        <td>${p.relance || '—'}</td>
+        <td class="actions-cell">
+          <button class="btn danger" onclick="suppProspect('${p.id}')">Suppr.</button>
+        </td>
+      </tr>
+    `).join('');
+  }
+  const stats = document.getElementById('dechets-stats');
+  const aFaire = prospects.filter(p=>p.statut==='a_faire').length;
+  const enCours = prospects.filter(p=>p.statut==='visite'||p.statut==='relance').length;
+  const signes = prospects.filter(p=>p.statut==='signe').length;
+  stats.innerHTML = `
+    <div class="stat"><div class="num">${prospects.length}</div><div class="lbl">Cibles total</div></div>
+    <div class="stat"><div class="num">${aFaire}</div><div class="lbl">À faire</div></div>
+    <div class="stat"><div class="num">${enCours}</div><div class="lbl">En cours</div></div>
+    <div class="stat"><div class="num">${signes}</div><div class="lbl">Signés</div></div>
+  `;
+}
+window.suppProspect = async function(id){
+  prospects = prospects.filter(p=>p.id!==id);
+  await saveProspects();
+  renderProspects();
+};
+
+function switchTab(tab){
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.toggle('active', b.dataset.tab===tab));
+  const isSecondary = document.querySelector('.tab-btn[data-tab="'+tab+'"]')?.hasAttribute('data-secondary');
+  document.getElementById('btn-more').classList.toggle('active', !!isSecondary);
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('active'));
+  document.getElementById('panel-'+tab).classList.add('active');
+  if(tab === 'carte'){
+    initCarte();
+    setTimeout(()=>{ carteInstance.invalidateSize(); renderCarteMarkers(); }, 50);
+  }
+}
+
+document.querySelectorAll('.tab-btn').forEach(b=>{
+  b.addEventListener('click', ()=>switchTab(b.dataset.tab));
+});
+
+document.getElementById('btn-more').addEventListener('click', ()=>{
+  document.getElementById('more-menu').classList.add('open');
+});
+document.getElementById('btn-more-close').addEventListener('click', ()=>{
+  document.getElementById('more-menu').classList.remove('open');
+});
+document.getElementById('more-menu-backdrop').addEventListener('click', ()=>{
+  document.getElementById('more-menu').classList.remove('open');
+});
+document.querySelectorAll('.more-menu-item').forEach(b=>{
+  b.addEventListener('click', ()=>{
+    switchTab(b.dataset.tab);
+    document.getElementById('more-menu').classList.remove('open');
+  });
+});
+
+document.getElementById('filtre-destination').addEventListener('change', renderNavires);
+document.getElementById('filtre-statut').addEventListener('change', renderNavires);
+document.getElementById('filtre-etape').addEventListener('change', renderMarches);
+
+document.getElementById('btn-show-config').addEventListener('click', ()=>{
+  document.getElementById('config-api-note').style.display = 'block';
+  document.getElementById('config-api-form').classList.add('open');
+  document.getElementById('config-api-footnote').style.display = 'block';
+});
+
+document.getElementById('cfg-provider').addEventListener('change', ()=>{
+  const provider = document.getElementById('cfg-provider').value;
+  document.getElementById('cfg-url-wrap').style.display = provider === 'autre' ? 'block' : 'none';
+  const apikeyInput = document.getElementById('cfg-apikey');
+  if(provider === 'vesselapi' && !apikeyInput.value){
+    apikeyInput.value = VESSELAPI_KEY;
+  }
+});
+
+function urlBaseParDefaut(provider){
+  return {
+    vesselapi: 'https://api.vesselapi.com/v1',
+    marinetraffic: 'https://services.marinetraffic.com/api',
+    vesselfinder: 'https://api.vesselfinder.com',
+    datalastic: 'https://api.datalastic.com/api/v0'
+  }[provider] || '';
+}
+
+async function fetchNaviresAPI(){
+  const statusEl = document.getElementById('cfg-status');
+  const provider = document.getElementById('cfg-provider').value;
+  const apikey = document.getElementById('cfg-apikey').value.trim();
+  const baseUrl = provider === 'autre'
+    ? document.getElementById('cfg-url').value.trim()
+    : urlBaseParDefaut(provider);
+
+  if(!apikey){
+    statusEl.textContent = 'Renseigne d\u2019abord ta clé API puis enregistre-la.';
+    return;
+  }
+  if(!baseUrl){
+    statusEl.textContent = 'URL de base manquante pour ce fournisseur.';
+    return;
+  }
+
+  statusEl.textContent = 'Connexion à l\u2019API en cours...';
+
+  // VesselAPI utilise un format différent (zone géographique + en-tête Bearer,
+  // pas de code de port ni de clé en paramètre d'URL) : traitement séparé.
+  if(provider === 'vesselapi'){
+    let total = 0, erreurs = 0, dernierMsgErreur = '';
+    for(const [destNom, zone] of Object.entries(VESSELAPI_ZONES)){
+      try{
+        const url = `${baseUrl}/location/vessels/bounding-box?filter.latBottom=${zone.latBottom}&filter.latTop=${zone.latTop}&filter.lonLeft=${zone.lonLeft}&filter.lonRight=${zone.lonRight}`;
+        const resp = await fetchAvecReplisCors(url, { headers: { 'Authorization': `Bearer ${apikey}` } });
+        if(!resp.ok){
+          let detail = '';
+          try{ detail = (await resp.text()).slice(0, 200); }catch(e){}
+          throw new Error('HTTP ' + resp.status + (detail ? ' — ' + detail : ''));
+        }
+        const data = await resp.json();
+        const items = data.vessels || [];
+        items.forEach(item=>{
+          const id = 'api_' + (item.mmsi || item.imo || uid());
+          if(!navires.some(n=>n.id===id)){
+            navires.push({
+              id,
+              nom: item.vessel_name || 'Inconnu',
+              pavillon: '',
+              destination: destNom,
+              statut: 'transit',
+              eta: '',
+              type: '',
+              ajouteLe: Date.now(),
+              notes: `Importé automatiquement le ${new Date().toISOString().slice(0,10)} — ${item.sog != null ? Math.round(item.sog)+' kn, ' : ''}${item.nav_status != null ? item.nav_status : ''}`
+            });
+            total++;
+          }
+        });
+      }catch(err){
+        erreurs++;
+        dernierMsgErreur = err.message;
+        console.error('Erreur VesselAPI pour', destNom, err);
+      }
+    }
+    await saveNavires();
+    renderNavires();
+    if(erreurs === Object.keys(VESSELAPI_ZONES).length){
+      statusEl.textContent = 'Échec de connexion à VesselAPI : ' + dernierMsgErreur;
+    } else {
+      statusEl.textContent = total + ' nouveau(x) navire(s) récupéré(s) via VesselAPI. (2 requêtes utilisées sur ton quota mensuel de 150)';
+    }
+    return;
+  }
+
+  const ports = {Abidjan: 'CIABJ', 'Pointe-Noire': 'CGPNR'};
+  let total = 0;
+  let erreurs = 0;
+
+  for(const [destNom, codePort] of Object.entries(ports)){
+    try{
+      const url = `${baseUrl}/port/${codePort}/arrivals?apikey=${encodeURIComponent(apikey)}`;
+      const resp = await fetch(url);
+      if(!resp.ok) throw new Error('HTTP ' + resp.status);
+      const data = await resp.json();
+      const items = data.vessels || data.data || [];
+      items.forEach(item=>{
+        const id = 'api_' + (item.mmsi || item.imo || uid());
+        if(!navires.some(n=>n.id===id)){
+          navires.push({
+            id,
+            nom: item.name || item.SHIPNAME || 'Inconnu',
+            pavillon: item.flag || item.FLAG || '',
+            destination: destNom,
+            statut: 'transit',
+            eta: (item.eta || '').slice(0,10),
+            type: item.type || item.TYPE_NAME || '',
+            ajouteLe: Date.now(),
+            notes: 'Importé automatiquement le ' + new Date().toISOString().slice(0,10)
+          });
+          total++;
+        }
+      });
+    }catch(err){
+      erreurs++;
+      console.error('Erreur API pour', destNom, err);
+    }
+  }
+
+  await saveNavires();
+  renderNavires();
+
+  if(erreurs === Object.keys(ports).length){
+    statusEl.textContent = 'Échec de connexion à l\u2019API. Vérifie l\u2019URL, la clé, ou dis-moi le nom exact de ton fournisseur pour que j\u2019adapte l\u2019appel à sa documentation réelle.';
+  } else {
+    statusEl.textContent = total + ' nouveau(x) navire(s) récupéré(s) via l\u2019API.' + (erreurs ? ' (une destination a échoué)' : '');
+  }
+}
+
+document.getElementById('btn-fetch-api').addEventListener('click', fetchNaviresAPI);
+
+function resetFormNavire(){
+  document.getElementById('nv-edit-id').value = '';
+  document.getElementById('form-navire-titre').textContent = 'Ajouter un navire';
+  ['nv-nom','nv-pavillon','nv-eta','nv-type','nv-tirant-eau','nv-imo','nv-mmsi','nv-notes','nv-responsable','nv-relance','nv-depart'].forEach(id=>document.getElementById(id).value='');
+  document.getElementById('nv-livraison').value = '';
+  document.getElementById('nv-destination').value = 'Abidjan';
+  document.getElementById('nv-statut').value = 'transit';
+}
+
+document.getElementById('btn-add-navire').addEventListener('click', ()=>{
+  resetFormNavire();
+  remplirOptionsAgent('');
+  document.getElementById('form-navire').classList.add('open');
+});
+
+const RADAR_GITHUB_USER = 'leeharlemy-creator';
+const RADAR_GITHUB_REPO = 'Radar-navires';
+
+function convertirEtaBrut(etaBrut){
+  if(!etaBrut) return '';
+  try{
+    // Nouveau format du radar : "2026-08-30 18:26" (contient déjà l'année)
+    if(/^\d{4}-\d{2}-\d{2}\s+\d{1,2}:\d{2}$/.test(etaBrut)){
+      const essaiDirect = new Date(etaBrut.replace(' ', 'T'));
+      if(!isNaN(essaiDirect.getTime())){
+        const pad = x => String(x).padStart(2,'0');
+        return `${essaiDirect.getFullYear()}-${pad(essaiDirect.getMonth()+1)}-${pad(essaiDirect.getDate())}`;
+      }
+      return '';
+    }
+    // Ancien format de secours (sans année, ex. "Aug 26, 08:00")
+    const anneeActuelle = new Date().getFullYear();
+    const essai = new Date(`${etaBrut} ${anneeActuelle}`);
+    if(isNaN(essai.getTime())) return '';
+    const pad = x => String(x).padStart(2,'0');
+    return `${essai.getFullYear()}-${pad(essai.getMonth()+1)}-${pad(essai.getDate())}`;
+  }catch(e){ return ''; }
+}
+
+async function importerNaviresDepuisGithub(){
+  const url = `https://raw.githubusercontent.com/${RADAR_GITHUB_USER}/${RADAR_GITHUB_REPO}/main/navires_state.json`;
+  const resp = await fetch(url, {cache:'no-store'});
+  if(!resp.ok){
+    throw new Error(resp.status === 404
+      ? 'Fichier introuvable — vérifie que le dépôt GitHub est bien public et que le radar a déjà tourné au moins une fois.'
+      : `Erreur HTTP ${resp.status}`);
+  }
+  const data = await resp.json();
+  let ajoutes = 0, misAJour = 0;
+
+  // Extrait un nom de navire utilisable, que l'entrée soit un texte simple
+  // ("MSC AURORA") ou un objet ({name: "MSC AURORA", ...} / {nom: "..."} / {vessel_name: "..."})
+  function extraireNom(entree){
+    if(typeof entree === 'string') return entree;
+    if(entree && typeof entree === 'object'){
+      return entree.name || entree.nom || entree.vessel_name || entree.vesselName || '';
+    }
+    return '';
+  }
+
+  // Extrait l'heure/date d'arrivée brute renvoyée par le radar, quel que soit le nom du champ utilisé
+  function extraireEtaBrut(entree){
+    if(entree && typeof entree === 'object'){
+      return entree.eta_brut || entree.etaBrut || entree.eta || '';
+    }
+    return '';
+  }
+
+  Object.entries(data).forEach(([port, vessels]) => {
+    // Le fichier peut lister les navires soit comme un objet { mmsi: nom }, soit comme un tableau [{mmsi, name}, ...]
+    const entrees = Array.isArray(vessels)
+      ? vessels.map(v => [v.mmsi || v.MMSI || '', v])
+      : Object.entries(vessels || {});
+
+    entrees.forEach(([mmsi, brut]) => {
+      const nom = extraireNom(brut);
+      const nomNorm = nom.toLowerCase().trim();
+      if(!nomNorm) return;
+      const etaBrut = extraireEtaBrut(brut);
+      const etaConvertie = convertirEtaBrut(etaBrut);
+      const existant = navires.find(n => n.nom.toLowerCase().trim() === nomNorm);
+      if(existant){
+        let changed = false;
+        if(!existant.mmsi){ existant.mmsi = mmsi; changed = true; }
+        if(etaConvertie && !existant.eta){ existant.eta = etaConvertie; changed = true; }
+        if(changed) misAJour++;
+      } else {
+        navires.push({
+          id: uid(),
+          nom: nom,
+          pavillon: '',
+          destination: port,
+          statut: 'arrivee',
+          eta: etaConvertie,
+          type: '',
+          mmsi: mmsi,
+          ajouteLe: Date.now(),
+          notes: 'Importé automatiquement depuis le radar GitHub (myshiptracking.com)' + (etaBrut && !etaConvertie ? ` — heure brute non convertie : ${etaBrut}` : '')
+        });
+        ajoutes++;
+      }
+    });
+  });
+
+  await saveNavires();
+  renderNavires();
+  return { ajoutes, misAJour };
+}
+
+document.getElementById('btn-import-radar').addEventListener('click', async ()=>{
+  const statusEl = document.getElementById('import-radar-status');
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Récupération des navires détectés par le radar...';
+  try{
+    const { ajoutes, misAJour } = await importerNaviresDepuisGithub();
+    statusEl.textContent = `✅ Import terminé : ${ajoutes} navire(s) ajouté(s), ${misAJour} mis à jour (MMSI complété).`;
+  } catch(e){
+    statusEl.textContent = `❌ Échec de l'import : ${e.message}`;
+  }
+});
+
+document.getElementById('btn-cancel-navire').addEventListener('click', ()=>{
+  document.getElementById('form-navire').classList.remove('open');
+  resetFormNavire();
+});
+document.getElementById('btn-save-navire').addEventListener('click', async ()=>{
+  const nom = document.getElementById('nv-nom').value.trim();
+  if(!nom){ alert('Le nom du navire est requis.'); return; }
+  const editId = document.getElementById('nv-edit-id').value;
+  const donnees = {
+    nom,
+    pavillon: document.getElementById('nv-pavillon').value.trim(),
+    destination: document.getElementById('nv-destination').value,
+    statut: document.getElementById('nv-statut').value,
+    eta: document.getElementById('nv-eta').value,
+    type: document.getElementById('nv-type').value.trim(),
+    tirantEau: document.getElementById('nv-tirant-eau').value.trim(),
+    imo: document.getElementById('nv-imo').value.trim(),
+    mmsi: document.getElementById('nv-mmsi').value.trim(),
+    livraison: document.getElementById('nv-livraison').value,
+    responsable: document.getElementById('nv-responsable').value.trim(),
+    relance: document.getElementById('nv-relance').value,
+    depart: document.getElementById('nv-depart').value,
+    agentId: document.getElementById('nv-agent').value,
+    notes: document.getElementById('nv-notes').value.trim()
+  };
+  if(editId){
+    const idx = navires.findIndex(n=>n.id===editId);
+    if(idx !== -1){ navires[idx] = {...navires[idx], ...donnees}; }
+    await saveNavires();
+  } else {
+    const nouveauNavire = {id: uid(), ajouteLe: Date.now(), ...donnees};
+    navires.push(nouveauNavire);
+    await saveNavires();
+    notifierNavire(nouveauNavire);
+  }
+  document.getElementById('form-navire').classList.remove('open');
+  resetFormNavire();
+  renderNavires();
+});
+
+document.getElementById('btn-add-marche').addEventListener('click', ()=>{
+  document.getElementById('form-marche').classList.add('open');
+});
+document.getElementById('btn-cancel-marche').addEventListener('click', ()=>{
+  document.getElementById('form-marche').classList.remove('open');
+});
+document.getElementById('btn-save-marche').addEventListener('click', async ()=>{
+  const navire = document.getElementById('mc-navire').value.trim();
+  if(!navire){ alert('Le nom du navire ou client est requis.'); return; }
+  marches.push({
+    id: uid(),
+    navire,
+    port: document.getElementById('mc-port').value,
+    etape: document.getElementById('mc-etape').value,
+    valeur: document.getElementById('mc-valeur').value,
+    date: document.getElementById('mc-date').value,
+    contact: document.getElementById('mc-contact').value.trim(),
+    details: document.getElementById('mc-details').value.trim()
+  });
+  await saveMarches();
+  document.getElementById('form-marche').classList.remove('open');
+  ['mc-navire','mc-valeur','mc-date','mc-contact','mc-details'].forEach(id=>document.getElementById(id).value='');
+  renderMarches();
+});
+
+document.getElementById('btn-add-prospect').addEventListener('click', ()=>{
+  document.getElementById('form-prospect').classList.add('open');
+});
+document.getElementById('btn-cancel-prospect').addEventListener('click', ()=>{
+  document.getElementById('form-prospect').classList.remove('open');
+});
+document.getElementById('btn-save-prospect').addEventListener('click', async ()=>{
+  const societe = document.getElementById('pr-societe').value.trim();
+  if(!societe){ alert('Le nom de la société est requis.'); return; }
+  prospects.push({
+    id: uid(),
+    societe,
+    port: document.getElementById('pr-port').value,
+    statut: document.getElementById('pr-statut').value,
+    date: document.getElementById('pr-date').value,
+    personne: document.getElementById('pr-personne').value.trim(),
+    relance: document.getElementById('pr-relance').value,
+    notes: document.getElementById('pr-notes').value.trim()
+  });
+  await saveProspects();
+  document.getElementById('form-prospect').classList.remove('open');
+  ['pr-societe','pr-date','pr-personne','pr-relance','pr-notes'].forEach(id=>document.getElementById(id).value='');
+  renderProspects();
+});
+document.getElementById('filtre-dechets-statut').addEventListener('change', renderProspects);
+
+async function loadConfig(){
+  try{
+    const cfg = localStorage.getItem('api-config');
+    if(cfg){
+      const data = JSON.parse(cfg);
+      document.getElementById('cfg-provider').value = data.provider || 'marinetraffic';
+      document.getElementById('cfg-apikey').value = data.apikey || '';
+      updateCfgStatus(!!data.apikey);
+    } else {
+      updateCfgStatus(false);
+    }
+  }catch(e){ updateCfgStatus(false); }
+  try{
+    const radarAuto = localStorage.getItem('radar-auto-configure') === 'true';
+    document.getElementById('radar-auto-check').checked = radarAuto;
+    document.getElementById('radar-auto-statut').textContent = radarAuto ? 'Configuré ✅' : 'Pas encore configuré';
+  }catch(e){}
+}
+
+document.getElementById('radar-auto-check').addEventListener('change', (e)=>{
+  try{ localStorage.setItem('radar-auto-configure', e.target.checked ? 'true' : 'false'); }catch(err){}
+  document.getElementById('radar-auto-statut').textContent = e.target.checked ? 'Configuré ✅' : 'Pas encore configuré';
+});
+
+function updateCfgStatus(active){
+  const el = document.getElementById('cfg-status');
+  el.textContent = active
+    ? 'Clé enregistrée. Le suivi automatique sera activé dans une prochaine mise à jour de l\u2019outil.'
+    : 'Aucune clé enregistrée pour l\u2019instant — l\u2019outil fonctionne en mode manuel.';
+}
+
+document.getElementById('btn-save-config').addEventListener('click', async ()=>{
+  const provider = document.getElementById('cfg-provider').value;
+  const apikey = document.getElementById('cfg-apikey').value.trim();
+  try{
+    localStorage.setItem('api-config', JSON.stringify({provider, apikey}));
+    updateCfgStatus(!!apikey);
+  }catch(e){
+    document.getElementById('cfg-status').textContent = 'Échec de l\u2019enregistrement, réessaie.';
+  }
+});
+
+function notifierNavire(n){
+  const msg = `${n.nom} — destination ${n.destination} (${statutLabel(n.statut)})`;
+  if(typeof Notification !== 'undefined' && Notification.permission === 'granted'){
+    new Notification('Nouveau navire suivi', { body: msg });
+  }
+}
+
+if(typeof Notification !== 'undefined' && Notification.permission === 'default'){
+  Notification.requestPermission();
+}
+
+function hashAngle(str){
+  let h = 0;
+  for(let i=0;i<str.length;i++){ h = (h*31 + str.charCodeAt(i)) % 360; }
+  return h;
+}
+
+function joursRestants(eta){
+  if(!eta) return null;
+  const ms = new Date(eta+'T00:00:00') - new Date(new Date().toDateString());
+  return Math.round(ms / 86400000);
+}
+
+const RADAR_COLORS = {transit:'#a5711f', mouillage:'#a13b3b', arrivee:'#2f6b4f'};
+
+const RADAR_SIZE = 260, RADAR_CX = 130, RADAR_CY = 130, RADAR_MAXR = 105;
+
+function pointsMarkup(list){
+  const cx = RADAR_CX, cy = RADAR_CY, maxR = RADAR_MAXR;
+  return list.map(n => {
+    const j = joursRestants(n.eta);
+    let frac = j === null ? 0.9 : Math.max(0, Math.min(1, j/7));
+    if(n.statut === 'arrivee') frac = 0.05;
+    const r = frac * maxR;
+    const baseAngle = hashAngle(n.id);
+    const drift = Math.sin(Date.now()/2500 + baseAngle) * 6;
+    const ang = ((baseAngle + drift) * Math.PI/180);
+    const x = cx + r*Math.cos(ang);
+    const y = cy + r*Math.sin(ang);
+    const color = RADAR_COLORS[n.statut] || '#b8935a';
+    const label = `${n.nom} — ${statutLabel(n.statut)}${j!==null ? ' — ETA '+n.eta : ''}`;
+    return `<g><circle cx="${x}" cy="${y}" r="6" fill="${color}" stroke="#0a1628" stroke-width="1"><title>${esc(label)}</title></circle><circle class="radar-blip" cx="${x}" cy="${y}" r="6" fill="none" stroke="${color}" stroke-width="2"/></g>`;
+  }).join('');
+}
+
+function renderRadarPort(port, list){
+  const size = RADAR_SIZE, cx = RADAR_CX, cy = RADAR_CY, maxR = RADAR_MAXR;
+  const rings = [1, 0.66, 0.33].map(f => `<circle cx="${cx}" cy="${cy}" r="${maxR*f}" fill="none" stroke="#3a4a5c" stroke-width="1" opacity="0.5"/>`).join('');
+  const sweepId = 'sweep-'+port.replace(/[^a-zA-Z0-9]/g,'');
+  const ptsGroupId = sweepId+'-pts';
+  return `
+    <div style="background:var(--navy);border:1px solid var(--gold);border-radius:8px;padding:16px;">
+      <div style="color:var(--gold-light);font-family:Georgia,serif;font-size:15px;margin-bottom:8px;text-align:center;">${esc(port)}</div>
+      <svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+        <defs>
+          <radialGradient id="${sweepId}-grad" cx="0%" cy="0%" r="100%">
+            <stop offset="0%" stop-color="#3ddc84" stop-opacity="0.55"/>
+            <stop offset="100%" stop-color="#3ddc84" stop-opacity="0"/>
+          </radialGradient>
+          <clipPath id="${sweepId}-clip"><circle cx="${cx}" cy="${cy}" r="${maxR}"/></clipPath>
+        </defs>
+        ${rings}
+        <line x1="${cx}" y1="${cy-maxR}" x2="${cx}" y2="${cy+maxR}" stroke="#3a4a5c" stroke-width="1" opacity="0.4"/>
+        <line x1="${cx-maxR}" y1="${cy}" x2="${cx+maxR}" y2="${cy}" stroke="#3a4a5c" stroke-width="1" opacity="0.4"/>
+        <g clip-path="url(#${sweepId}-clip)">
+          <g class="radar-sweep" style="transform-origin:${cx}px ${cy}px;">
+            <path d="M ${cx} ${cy} L ${cx} ${cy-maxR} A ${maxR} ${maxR} 0 0 1 ${cx+maxR*Math.sin(0.9)} ${cy-maxR*Math.cos(0.9)} Z" fill="url(#${sweepId}-grad)"/>
+          </g>
+        </g>
+        <circle cx="${cx}" cy="${cy}" r="3" fill="var(--gold)"/>
+        <g id="${ptsGroupId}">${pointsMarkup(list)}</g>
+      </svg>
+      <div style="font-size:11px;color:#c9cfd9;text-align:center;margin-top:6px;">Centre = port · bord = 7j et plus</div>
+    </div>
+  `;
+}
+
+function renderRadar(){
+  const wrap = document.getElementById('radar-wrap');
+  const abj = navires.filter(n=>n.destination==='Abidjan');
+  const brz = navires.filter(n=>n.destination==='Pointe-Noire');
+  wrap.innerHTML = renderRadarPort('Abidjan', abj) + renderRadarPort('Pointe-Noire', brz);
+}
+// Ne met à jour que la position des points (navires), sans recréer le SVG ni le faisceau tournant :
+// ça évite de réinitialiser l'animation CSS du radar-sweep toutes les 1,2s.
+function updateRadarPoints(){
+  [['Abidjan', navires.filter(n=>n.destination==='Abidjan')], ['Pointe-Noire', navires.filter(n=>n.destination==='Pointe-Noire')]]
+    .forEach(([port, list]) => {
+      const sweepId = 'sweep-'+port.replace(/[^a-zA-Z0-9]/g,'');
+      const grp = document.getElementById(sweepId+'-pts');
+      if(grp) grp.innerHTML = pointsMarkup(list);
+    });
+}
+setInterval(() => {
+  const radarPanel = document.getElementById('panel-radar');
+  if(radarPanel && radarPanel.classList.contains('active')) updateRadarPoints();
+}, 1200);
+
+// ---------- Vérification manuelle des navires réels via VesselAPI (AIS) ----------
+// Compte gratuit VesselAPI : 150 requêtes/mois. Chaque clic sur le bouton consomme
+// 2 requêtes (une par port). Ne se déclenche jamais tout seul, uniquement au clic.
+const VESSELAPI_KEY = 'ed2a078aa2edd94d2ebc3409a307cb6ad8e4690852c92435d2d0167cf1117eb2';
+
+// Petites boîtes (~40km) autour de chaque port, pour limiter les résultats aux navires proches
+const VESSELAPI_ZONES = {
+  'Abidjan':      { latBottom: 4.90, latTop: 5.65, lonLeft: -4.40, lonRight: -3.65 },
+  'Pointe-Noire': { latBottom: -5.15, latTop: -4.40, lonLeft: 11.45, lonRight: 12.25 }
+};
+// Zone de test séparée (port très fréquenté), pour vérifier que le pipeline VesselAPI
+// fonctionne bien. Volontairement en dehors de VESSELAPI_ZONES pour ne jamais polluer
+// l'import réel de navires (Configuration API boucle sur VESSELAPI_ZONES).
+const ZONE_TEST_SINGAPOUR = { latBottom: 1.10, latTop: 1.45, lonLeft: 103.60, lonRight: 104.05 };
+
+// VesselAPI bloque les appels directs depuis un navigateur (CORS). On tente d'abord en direct,
+// puis on essaie plusieurs proxys CORS gratuits l'un après l'autre (ces services publics
+// gratuits sont parfois temporairement indisponibles, d'où la chaîne de secours).
+// Chaque proxy voit passer la clé API pendant le transit.
+async function fetchAvecReplisCors(url, options){
+  try{
+    return await fetch(url, options);
+  }catch(err){ /* on tente les proxys ci-dessous */ }
+
+  const proxies = [
+    (u) => 'https://corsproxy.io/?url=' + encodeURIComponent(u),
+    (u) => 'https://api.codetabs.com/v1/proxy/?quest=' + encodeURIComponent(u),
+    (u) => 'https://proxy.cors.sh/' + u
+  ];
+
+  let derniereErreur;
+  for(const construireUrl of proxies){
+    try{
+      const res = await fetch(construireUrl(url), options);
+      return res;
+    }catch(err){
+      derniereErreur = err;
+    }
+  }
+  throw derniereErreur;
+}
+
+async function fetchVesselApiZone(port){
+  const z = VESSELAPI_ZONES[port];
+  const url = `https://api.vesselapi.com/v1/location/vessels/bounding-box?filter.latBottom=${z.latBottom}&filter.latTop=${z.latTop}&filter.lonLeft=${z.lonLeft}&filter.lonRight=${z.lonRight}`;
+  const res = await fetchAvecReplisCors(url, { headers: { 'Authorization': `Bearer ${VESSELAPI_KEY}` } });
+  if(!res.ok){
+    let detail = '';
+    try{ detail = (await res.text()).slice(0, 200); }catch(e){}
+    throw new Error(`VesselAPI a répondu ${res.status} pour ${port}` + (detail ? ' — ' + detail : ''));
+  }
+  const data = await res.json();
+  return data.vessels || [];
+}
+
+function renderVesselApiResults(resultsByPort){
+  const wrap = document.getElementById('vesselapi-results');
+  wrap.innerHTML = Object.entries(resultsByPort).map(([port, vessels]) => `
+    <div style="background:var(--navy);border:1px solid var(--gold);border-radius:8px;padding:16px;min-width:240px;">
+      <div style="color:var(--gold-light);font-family:Georgia,serif;font-size:15px;margin-bottom:8px;">${esc(port)} — ${vessels.length} navire(s) réel(s)</div>
+      ${vessels.length === 0
+        ? '<div style="color:#8b96a5;font-size:12px;">Aucun navire détecté dans cette zone pour le moment.</div>'
+        : vessels.slice(0, 15).map(v => `
+            <div style="font-size:12px;color:#e8dcc4;padding:6px 0;border-top:1px solid #2c3948;">
+              <strong>${esc(v.vessel_name || 'Nom inconnu')}</strong><br>
+              ${v.sog != null ? Math.round(v.sog) + ' kn · ' : ''}${v.nav_status != null ? esc(String(v.nav_status)) : ''}
+            </div>
+          `).join('')
+      }
+    </div>
+  `).join('');
+}
+
+document.getElementById('btn-check-vesselapi').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-check-vesselapi');
+  const statusEl = document.getElementById('vesselapi-status');
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Interrogation de VesselAPI en cours...';
+  btn.disabled = true;
+  try{
+    const [abj, png] = await Promise.all([
+      fetchVesselApiZone('Abidjan'),
+      fetchVesselApiZone('Pointe-Noire')
+    ]);
+    renderVesselApiResults({ 'Abidjan': abj, 'Pointe-Noire': png });
+    const total = abj.length + png.length;
+    statusEl.textContent = `Vérifié à l'instant (${new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}) — ${total} navire(s) trouvé(s) (${abj.length} à Abidjan, ${png.length} à Pointe-Noire) — 2 requêtes utilisées sur ton quota mensuel.`;
+  }catch(e){
+    statusEl.textContent = 'Erreur lors de la vérification : ' + e.message + ' (vérifie ta clé API ou ton quota restant sur ton tableau de bord VesselAPI).';
+  }finally{
+    btn.disabled = false;
+  }
+});
+
+async function fetchVesselApiZoneTest(nomZone, zone){
+  const url = `https://api.vesselapi.com/v1/location/vessels/bounding-box?filter.latBottom=${zone.latBottom}&filter.latTop=${zone.latTop}&filter.lonLeft=${zone.lonLeft}&filter.lonRight=${zone.lonRight}`;
+  const res = await fetchAvecReplisCors(url, { headers: { 'Authorization': `Bearer ${VESSELAPI_KEY}` } });
+  if(!res.ok){
+    let detail = '';
+    try{ detail = (await res.text()).slice(0, 200); }catch(e){}
+    throw new Error(`VesselAPI a répondu ${res.status} pour ${nomZone}` + (detail ? ' — ' + detail : ''));
+  }
+  const data = await res.json();
+  return data.vessels || [];
+}
+
+document.getElementById('btn-test-singapour').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-test-singapour');
+  const statusEl = document.getElementById('vesselapi-status');
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Test sur Singapour en cours (ne modifie rien dans tes données)...';
+  btn.disabled = true;
+  try{
+    const vessels = await fetchVesselApiZoneTest('Singapour', ZONE_TEST_SINGAPOUR);
+    statusEl.textContent = `🧪 Test Singapour : ${vessels.length} navire(s) détecté(s). ` +
+      (vessels.length > 0
+        ? 'Le pipeline fonctionne bien — le "0" sur Abidjan/Pointe-Noire est donc un vrai manque de couverture AIS locale, pas un bug.'
+        : 'Étrange, même Singapour renvoie 0 — il pourrait y avoir un souci plus général avec la clé ou le quota.');
+  }catch(e){
+    statusEl.textContent = '🧪 Test Singapour — Erreur : ' + e.message;
+  }finally{
+    btn.disabled = false;
+  }
+});
+
+let contacts = [];
+
+const seedContacts = [
+  {id:'c1', nom:'MAS', port:'Abidjan', tel:'+225 27 21 75 07 27', web:'mas-ci.com', adresse:'Marcory, Bd. du Gabon, rue Brou Fulgence, 2e étage, Imm. Massarana', notes:'Consignation maritime'},
+  {id:'c2', nom:'Oracle Shipping', port:'Abidjan', tel:'+225 27 21 24 51 92', web:'oracle-shipping.com', adresse:'Treichville, Bd VGE, Centre commercial Kobeissi', notes:'Consignation maritime'},
+  {id:'c3', nom:'Supermaritime', port:'Abidjan', tel:'+225 27 21 75 46 66', web:'supermaritime.com', adresse:'Treichville Zone 2, anciens locaux BRACODI', notes:'Consignation maritime'},
+  {id:'c4', nom:'OMA Group', port:'Abidjan', tel:'+225 27 21 25 02 92', web:'omagroup.com', adresse:'Treichville Zone 3, rue des Brasseurs', notes:'Consignation maritime'},
+  {id:'c5', nom:'CMA CGM Côte d\u2019Ivoire', port:'Abidjan', tel:'+225 27 21 23 59 00', web:'cma-cgm.com', adresse:'Port-Bouet Vridi, Bd du Port, face bureau des Douanes, Imm. DELMAS', notes:'Compagnie et agent consignataire'},
+  {id:'c6', nom:'GEMS CI (General Maritime Service Côte d\u2019Ivoire)', port:'Abidjan', tel:'', web:'', adresse:'Rue des Pétroliers, Vridi Canal, Zone industrielle Vridi Port-Bouet', notes:'Spécialisée maritime et offshore'},
+  {id:'c7', nom:'FEDERMAR (fédération, dont UCACI)', port:'Abidjan', tel:'', web:'federmar.com', adresse:'', notes:'Fédération des syndicats maritimes de CI, point d\u2019entrée pour se faire connaître de plusieurs agents'},
+  {id:'c14', nom:'DIAMOND Shipping Service', port:'Abidjan', tel:'', web:'', adresse:'Port-Bouet, Abidjan', notes:'Consignataire des navires COSCO à Abidjan, service hebdomadaire porte-conteneurs 7000-7500 EVP'},
+  {id:'c15', nom:'Bolloré Ports Congo (agent COSCO)', port:'Pointe-Noire', tel:'', web:'bollore-ports.com', adresse:'Pointe-Noire', notes:'Agent officiel de COSCO Shipping à Pointe-Noire, service hebdomadaire depuis l\u2019Asie'},
+  {id:'c16', nom:'Global Maritime Solutions for Africa (GMSA)', port:'Pointe-Noire', tel:'+242 05 361 05 76', web:'global-maritime-solutions.africa', adresse:'20 rue Ambroise Bouyou, Mvou-Mvou, Pointe-Noire, BP 143', notes:'SARLU congolaise créée en 2013 (PDG Jacob Houeto). Location de vedettes de servitude (taxi-boat) et travaux subaquatiques — utile pour opérations en rade'},
+  {id:'c17', nom:'Congo Marine Corporation (CMC)', port:'Pointe-Noire', tel:'', web:'congomarinecorporation.com', adresse:'Avenue de Bordeaux, face chantier naval GNCAC, Zone A domaine portuaire, BP 4808, Pointe-Noire', notes:'Agence maritime congolaise : consignation, shipping, logistique, douane, dessert aussi RDC (Matadi/Kinshasa) et Cabinda (Angola)'},
+  {id:'c18', nom:'SAGA Congo (agent MSC)', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Agent consignataire local de MSC — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c19', nom:'Maersk Congo', port:'Pointe-Noire', tel:'', web:'maersk.com', adresse:'Pointe-Noire', notes:'Agence directe Maersk — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c20', nom:'CMA-CGM ex-Delmas', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Nom d\u2019agence locale de CMA CGM — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c21', nom:'Niledutch Congo SA', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Agent consignataire — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c22', nom:'Aqua Marine Congo', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Agent consignataire (navires rouliers RORO) — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c23', nom:'TLC Congo', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Agent consignataire (tankers) — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c24', nom:'R-Logistic', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Agent consignataire (tankers) — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c25', nom:'TMC', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Agent consignataire (tankers offshore) — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c26', nom:'Akita Shipping Congo Limited', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Agent consignataire (general cargo, liaisons Singapour) — identifié via la programmation officielle des navires du PAPN'},
+  {id:'c8', nom:'AGL / Bolloré Transport & Logistics Congo', port:'Pointe-Noire', tel:'+242 05 775 0701', web:'aglgroup.com', adresse:'Avenue de Loango, BP 616, Pointe-Noire', notes:'Gère le port de Pointe-Noire via concession, co-actionnaire majoritaire (51%) de Congo Terminal'},
+  {id:'c9', nom:'Maersk / APM Terminals (via Congo Terminal)', port:'Pointe-Noire', tel:'', web:'maerskline.com', adresse:'Rue Simon Zéphirin, Zone Portuaire, Pointe-Noire', notes:'Co-actionnaire de Congo Terminal aux côtés de Bolloré (AGL) et Socotrans'},
+  {id:'c10', nom:'CMA CGM Congo', port:'Pointe-Noire', tel:'+242 05 802 00 02 / +242 05 755 09 99', web:'pni.cpandzou@cma-cgm.com', adresse:'Immeuble LILIA, Rond-point Mairie centrale, BP 884, Pointe-Noire', notes:'Hub de transbordement pour l\u2019Afrique centrale, partenariat avec AD Ports pour nouveau terminal (2025)'},
+  {id:'c11', nom:'Socotrans', port:'Pointe-Noire', tel:'+242 06 636 00 00 / +242 06 820 98 44', web:'info@socotranscongo.com', adresse:'Rue Massabi, BP 617, Pointe-Noire', notes:'Agence maritime, +25 ans d\u2019expérience, co-actionnaire de Congo Terminal, gère escales armateurs/affréteurs'},
+  {id:'c12', nom:'Getma Congo (ex-Necotrans)', port:'Pointe-Noire', tel:'+242 22 294 23 45', web:'getma.fr', adresse:'BP 1032, Zone Portuaire, Pointe-Noire', notes:'Transit, consignation, transport maritime. Numéro à confirmer (source annuaire non officielle)'},
+  {id:'c13', nom:'S.A.T. Congo', port:'Pointe-Noire', tel:'', web:'sat-congo.com', adresse:'Avenue du Havre, BP 4293, Pointe-Noire', notes:'Représentant DHL Global Forwarding au Congo'},
+  {id:'c27', nom:'Supermaritime Congo', port:'Pointe-Noire', tel:'', web:'supermaritime.com', adresse:'Zone portuaire, à proximité des bureaux de la Direction du PAPN, Pointe-Noire', notes:'Cible de prospection prioritaire (garbage/déchets) — gère beaucoup de navires industriels et cargaisons en vrac (bois, minerais). Ouverte aux sous-traitants'},
+  {id:'c28', nom:'OMA Logistics Congo', port:'Pointe-Noire', tel:'', web:'', adresse:'Centre-ville / Zone industrielle du Port, Pointe-Noire', notes:'Cible de prospection prioritaire (garbage/déchets) — agence régionale Afrique de l\u2019Ouest, demander le Responsable des Opérations Maritimes'},
+  {id:'c29', nom:'Hull Blyth Congo', port:'Pointe-Noire', tel:'', web:'', adresse:'Centre-ville / Zone industrielle du Port, Pointe-Noire', notes:'Cible de prospection prioritaire (garbage/déchets) — agence régionale Afrique de l\u2019Ouest, demander le Responsable des Opérations Maritimes'},
+  {id:'c30', nom:'MSLI Congo', port:'Pointe-Noire', tel:'', web:'', adresse:'Pointe-Noire', notes:'Cible de prospection prioritaire (garbage/déchets), citée aux côtés d\u2019AGL, CMA CGM comme agence à démarcher pour les contrats de sous-traitance déchets'}
+];
+
+async function loadContacts(){
+  try{
+    const c = localStorage.getItem('contacts-list');
+    contacts = c ? JSON.parse(c) : seedContacts;
+  }catch(e){ contacts = seedContacts; }
+  renderContacts();
+  renderDashboard();
+}
+async function saveContacts(){
+  try{ localStorage.setItem('contacts-list', JSON.stringify(contacts)); }catch(e){}
+}
+
+function liensRapides(c){
+  const liens = [];
+  if(c.tel){
+    const telClean = c.tel.split('/')[0].trim().replace(/[^\d+]/g,'');
+    if(telClean){
+      liens.push(`<a href="tel:${telClean}" style="text-decoration:none;">📞</a>`);
+      liens.push(`<a href="https://wa.me/${telClean.replace('+','')}" target="_blank" rel="noopener" style="text-decoration:none;">💬</a>`);
+    }
+  }
+  if(c.web && c.web.includes('@')){
+    liens.push(`<a href="mailto:${esc(c.web)}" style="text-decoration:none;">✉️</a>`);
+  }
+  return liens.length ? liens.join(' ') : '—';
+}
+
+function renderContacts(){
+  const portF = document.getElementById('filtre-reseau-port').value;
+  const tbl = document.getElementById('tbl-contacts');
+  const list = contacts.filter(c => !portF || c.port === portF);
+  if(list.length === 0){
+    tbl.innerHTML = '<tr><td colspan="7" class="empty">Aucun contact pour ce filtre.</td></tr>';
+    return;
+  }
+  tbl.innerHTML = list.map(c => `
+    <tr>
+      <td><strong>${esc(c.nom)}</strong>${c.notes ? '<br><span style="color:var(--muted);font-size:11px;">'+esc(c.notes)+'</span>' : ''}</td>
+      <td>${esc(c.port)}</td>
+      <td>${esc(c.tel||'—')}</td>
+      <td>${esc(c.web||'—')}</td>
+      <td>${esc(c.adresse||'—')}</td>
+      <td style="font-size:16px;">${liensRapides(c)}</td>
+      <td class="actions-cell"><button class="btn danger" onclick="suppContact('${c.id}')">Suppr.</button></td>
+    </tr>
+  `).join('');
+}
+
+window.suppContact = async function(id){
+  contacts = contacts.filter(c=>c.id!==id);
+  await saveContacts();
+  renderContacts();
+  renderDashboard();
+};
+
+document.getElementById('filtre-reseau-port').addEventListener('change', renderContacts);
+document.getElementById('btn-add-contact').addEventListener('click', ()=>{
+  document.getElementById('form-contact').classList.add('open');
+});
+document.getElementById('btn-cancel-contact').addEventListener('click', ()=>{
+  document.getElementById('form-contact').classList.remove('open');
+});
+document.getElementById('btn-save-contact').addEventListener('click', async ()=>{
+  const nom = document.getElementById('ct-nom').value.trim();
+  if(!nom){ alert('Le nom de la société est requis.'); return; }
+  contacts.push({
+    id: uid(),
+    nom,
+    port: document.getElementById('ct-port').value,
+    tel: document.getElementById('ct-tel').value.trim(),
+    web: document.getElementById('ct-web').value.trim(),
+    adresse: document.getElementById('ct-adresse').value.trim(),
+    notes: document.getElementById('ct-notes').value.trim()
+  });
+  await saveContacts();
+  document.getElementById('form-contact').classList.remove('open');
+  ['ct-nom','ct-tel','ct-web','ct-adresse','ct-notes'].forEach(id=>document.getElementById(id).value='');
+  renderContacts();
+});
+
+function appliquerTheme(theme){
+  document.documentElement.setAttribute('data-theme', theme);
+  document.getElementById('btn-theme').textContent = theme === 'dark' ? 'Mode clair' : 'Mode sombre';
+  try{ localStorage.setItem('theme', theme); }catch(e){}
+}
+(function initTheme(){
+  let saved = 'light';
+  try{ saved = localStorage.getItem('theme') || 'light'; }catch(e){}
+  appliquerTheme(saved);
+})();
+document.getElementById('btn-theme').addEventListener('click', ()=>{
+  const current = document.documentElement.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
+  appliquerTheme(current === 'dark' ? 'light' : 'dark');
+});
+
+
+const PORT_COORDS = {
+  'Abidjan': [5.2833, -4.0167],
+  'Pointe-Noire': [-4.7833, 11.8500]
+};
+
+let carteInstance = null;
+let carteMarkers = [];
+
+// Token Mapbox (compte gratuit avec CB enregistrée, jusqu'à 50 000 chargements/mois).
+const MAPBOX_TOKEN = 'pk.eyJ1IjoibmV0emFjaCIsImEiOiJjbXRobDk0MWQxd3Y1MnpyNmQzOXVuOGltIn0.q84_YgHD-WtTCCeaP8hcgQ';
+
+// Pour tester Stadia Maps : va sur https://client.stadiamaps.com/signup/ (gratuit, sans CB),
+// crée une clé API, puis colle-la ci-dessous entre les guillemets. Laisse vide pour rester sur OpenStreetMap.
+const STADIA_API_KEY = '';
+
+let carteCoucheActuelle = 'dark';
+let carteCoucheDark, carteCoucheSat;
+
+function initCarte(){
+  if(carteInstance) return;
+  carteInstance = L.map('map', {zoomControl:false}).setView([0.25, 3.9], 4);
+  L.control.zoom({position:'bottomright'}).addTo(carteInstance);
+
+  if(MAPBOX_TOKEN){
+    // Style sombre élégant, assorti au thème navy/or d'Eagle Control.
+    carteCoucheDark = L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token=${MAPBOX_TOKEN}`, {
+      attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; OpenStreetMap contributors',
+      tileSize: 512,
+      zoomOffset: -1,
+      maxZoom: 20
+    }).addTo(carteInstance);
+    carteCoucheSat = L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/satellite-streets-v12/tiles/{z}/{x}/{y}?access_token=${MAPBOX_TOKEN}`, {
+      attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; OpenStreetMap contributors',
+      tileSize: 512,
+      zoomOffset: -1,
+      maxZoom: 20
+    });
+
+    const toggleCtrl = L.control({position:'topright'});
+    toggleCtrl.onAdd = function(){
+      const div = L.DomUtil.create('div');
+      div.innerHTML = `
+        <button id="btn-carte-style" style="
+          background:var(--navy);color:var(--gold-light);border:1px solid var(--gold);
+          border-radius:6px;padding:8px 12px;font-size:12px;font-weight:600;
+          cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,0.3);">
+          🛰️ Vue satellite
+        </button>`;
+      L.DomEvent.disableClickPropagation(div);
+      div.querySelector('button').addEventListener('click', basculerCoucheCarte);
+      return div;
+    };
+    toggleCtrl.addTo(carteInstance);
+  } else if(STADIA_API_KEY){
+    L.tileLayer(`https://tiles.stadiamaps.com/tiles/alidade_smooth/{z}/{x}/{y}{r}.png?api_key=${STADIA_API_KEY}`, {
+      attribution: '&copy; Stadia Maps &copy; OpenMapTiles &copy; OpenStreetMap contributors',
+      maxZoom: 20
+    }).addTo(carteInstance);
+  } else {
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; OpenStreetMap contributors',
+      maxZoom: 18
+    }).addTo(carteInstance);
+  }
+
+  Object.entries(PORT_COORDS).forEach(([nom, coords])=>{
+    L.marker(coords, {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="background:#0a1628;border:2px solid #b8935a;border-radius:50%;width:14px;height:14px;"></div>',
+        iconSize:[14,14]
+      })
+    }).addTo(carteInstance).bindPopup(`<strong>Port de ${nom}</strong>`);
+  });
+}
+
+function basculerCoucheCarte(){
+  if(!carteCoucheDark || !carteCoucheSat) return;
+  const btn = document.getElementById('btn-carte-style');
+  if(carteCoucheActuelle === 'dark'){
+    carteInstance.removeLayer(carteCoucheDark);
+    carteCoucheSat.addTo(carteInstance);
+    carteCoucheActuelle = 'sat';
+    if(btn) btn.innerHTML = '🗺️ Vue plan';
+  } else {
+    carteInstance.removeLayer(carteCoucheSat);
+    carteCoucheDark.addTo(carteInstance);
+    carteCoucheActuelle = 'dark';
+    if(btn) btn.innerHTML = '🛰️ Vue satellite';
+  }
+}
+
+function renderCarteMarkers(){
+  if(!carteInstance) return;
+  carteMarkers.forEach(m=>carteInstance.removeLayer(m));
+  carteMarkers = [];
+
+  navires.forEach(n=>{
+    const base = PORT_COORDS[n.destination];
+    if(!base) return;
+    // léger décalage aléatoire (mais stable) autour du port pour distinguer les navires
+    const off = hashAngle(n.id);
+    const dx = Math.cos(off*Math.PI/180) * 0.35;
+    const dy = Math.sin(off*Math.PI/180) * 0.35;
+    const color = RADAR_COLORS[n.statut] || '#b8935a';
+    const marker = L.marker([base[0]+dy, base[1]+dx], {
+      icon: L.divIcon({
+        className:'',
+        html:`<div style="background:${color};border:2px solid #0a1628;border-radius:50%;width:12px;height:12px;"></div>`,
+        iconSize:[12,12]
+      })
+    }).addTo(carteInstance);
+    marker.bindPopup(`<strong>${esc(n.nom)}</strong><br>${esc(n.destination)} — ${statutLabel(n.statut)}${n.eta ? '<br>ETA '+n.eta : ''}`);
+    carteMarkers.push(marker);
+  });
+}
+
+// --- Navires réels (AIS via VesselAPI) placés sur la carte avec leur vraie position GPS ---
+let aisCarteMarkers = [];
+
+function dessinerNaviresAisSurCarte(resultsByPort){
+  if(!carteInstance) return;
+  aisCarteMarkers.forEach(m => carteInstance.removeLayer(m));
+  aisCarteMarkers = [];
+
+  Object.values(resultsByPort).flat().forEach(v => {
+    if(v.latitude == null || v.longitude == null) return;
+    const marker = L.marker([v.latitude, v.longitude], {
+      icon: L.divIcon({
+        className: '',
+        html: '<div style="width:12px;height:12px;background:#e0563e;border:2px solid #0a1628;border-radius:50%;box-shadow:0 0 6px #e0563e;"></div>',
+        iconSize: [12,12]
+      })
+    }).addTo(carteInstance);
+    marker.bindPopup(`<strong>${esc(v.vessel_name || 'Navire inconnu')}</strong> 🛰️ AIS réel<br>${v.sog != null ? Math.round(v.sog)+' kn — ' : ''}${v.nav_status != null ? esc(String(v.nav_status)) : ''}`);
+    aisCarteMarkers.push(marker);
+  });
+}
+
+document.getElementById('btn-refresh-carte-github').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-refresh-carte-github');
+  const statusEl = document.getElementById('carte-ais-status');
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Récupération des navires détectés par le radar GitHub...';
+  btn.disabled = true;
+  try{
+    const { ajoutes, misAJour } = await importerNaviresDepuisGithub();
+    renderCarteMarkers();
+    statusEl.textContent = `✅ ${ajoutes} navire(s) ajouté(s), ${misAJour} mis à jour depuis le radar GitHub — affichés sur la carte.`;
+  }catch(e){
+    statusEl.textContent = `❌ Échec de l'import : ${e.message}`;
+  }finally{
+    btn.disabled = false;
+  }
+});
+
+document.getElementById('btn-refresh-carte-ais').addEventListener('click', async () => {
+  const btn = document.getElementById('btn-refresh-carte-ais');
+  const statusEl = document.getElementById('carte-ais-status');
+  statusEl.style.display = 'block';
+  statusEl.textContent = 'Interrogation de VesselAPI en cours...';
+  btn.disabled = true;
+  try{
+    const [abj, png] = await Promise.all([
+      fetchVesselApiZone('Abidjan'),
+      fetchVesselApiZone('Pointe-Noire')
+    ]);
+    dessinerNaviresAisSurCarte({ 'Abidjan': abj, 'Pointe-Noire': png });
+    const total = abj.length + png.length;
+    statusEl.textContent = `Carte actualisée à l'instant (${new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'})}) — ${total} navire(s) réel(s) placé(s) sur la carte (${abj.length} à Abidjan, ${png.length} à Pointe-Noire) — 2 requêtes utilisées sur ton quota mensuel.`;
+  }catch(e){
+    statusEl.textContent = 'Erreur lors de l\u2019actualisation : ' + e.message + ' (vérifie ta clé API ou ton quota restant sur ton tableau de bord VesselAPI).';
+  }finally{
+    btn.disabled = false;
+  }
+});
+
+const TRAFIC_DEFAUT = {abjArr:'27', abjAtt:'45', abjPort:'78', pngArr:'', pngAtt:'', pngPort:'', date:'26/08/2026 (Abidjan via VesselFinder, agrégé — noms de navires non disponibles sans abonnement ; Pointe-Noire non disponible, PAPN sans agrégat fiable)'};
+
+function loadTrafic(){
+  let t = TRAFIC_DEFAUT;
+  try{
+    const saved = localStorage.getItem('trafic-portuaire');
+    if(saved) t = JSON.parse(saved);
+  }catch(e){}
+  renderTrafic(t);
+}
+
+function renderTrafic(t){
+  document.getElementById('trafic-abj-arr').textContent = t.abjArr ?? '—';
+  document.getElementById('trafic-abj-att').textContent = t.abjAtt ?? '—';
+  document.getElementById('trafic-abj-port').textContent = t.abjPort ?? '—';
+  document.getElementById('trafic-png-arr').textContent = t.pngArr ?? '—';
+  document.getElementById('trafic-png-att').textContent = t.pngAtt ?? '—';
+  document.getElementById('trafic-png-port').textContent = t.pngPort ?? '—';
+  document.getElementById('trafic-date').textContent = t.date || 'jamais';
+}
+
+document.getElementById('btn-edit-trafic').addEventListener('click', ()=>{
+  const form = document.getElementById('form-trafic');
+  form.classList.toggle('open');
+  if(form.classList.contains('open')){
+    document.getElementById('tf-abj-arr').value = document.getElementById('trafic-abj-arr').textContent.replace('—','');
+    document.getElementById('tf-abj-att').value = document.getElementById('trafic-abj-att').textContent.replace('—','');
+    document.getElementById('tf-abj-port').value = document.getElementById('trafic-abj-port').textContent.replace('—','');
+    document.getElementById('tf-png-arr').value = document.getElementById('trafic-png-arr').textContent.replace('—','');
+    document.getElementById('tf-png-att').value = document.getElementById('trafic-png-att').textContent.replace('—','');
+    document.getElementById('tf-png-port').value = document.getElementById('trafic-png-port').textContent.replace('—','');
+  }
+});
+document.getElementById('btn-cancel-trafic').addEventListener('click', ()=>{
+  document.getElementById('form-trafic').classList.remove('open');
+});
+document.getElementById('btn-save-trafic').addEventListener('click', ()=>{
+  const t = {
+    abjArr: document.getElementById('tf-abj-arr').value || '—',
+    abjAtt: document.getElementById('tf-abj-att').value || '—',
+    abjPort: document.getElementById('tf-abj-port').value || '—',
+    pngArr: document.getElementById('tf-png-arr').value || '—',
+    pngAtt: document.getElementById('tf-png-att').value || '—',
+    pngPort: document.getElementById('tf-png-port').value || '—',
+    date: new Date().toLocaleString('fr-FR',{day:'2-digit',month:'2-digit',year:'numeric',hour:'2-digit',minute:'2-digit'})
+  };
+  try{ localStorage.setItem('trafic-portuaire', JSON.stringify(t)); }catch(e){}
+  renderTrafic(t);
+  document.getElementById('form-trafic').classList.remove('open');
+});
+
+loadData();
+loadContacts();
+loadConfig();
+loadTrafic();
+
+// ---------- Synchronisation automatique du radar GitHub ----------
+// Le script radar-navires (GitHub Actions) tourne toutes les 3h. On vérifie ici
+// automatiquement, en arrière-plan, sans que l'utilisateur ait besoin de cliquer.
+let derniereSyncAutoTexte = '';
+
+function afficherNotifSyncAuto(texte){
+  derniereSyncAutoTexte = texte;
+  const bandeau = document.getElementById('sync-auto-bandeau');
+  if(bandeau){
+    bandeau.textContent = texte;
+    bandeau.style.display = 'block';
+  }
+}
+
+async function syncAutoRadarGithub(silencieux){
+  try{
+    const { ajoutes, misAJour } = await importerNaviresDepuisGithub();
+    renderNavires();
+    renderDashboard();
+    if(carteInstance) renderCarteMarkers();
+    const heure = new Date().toLocaleTimeString('fr-FR',{hour:'2-digit',minute:'2-digit'});
+    if(ajoutes > 0){
+      afficherNotifSyncAuto(`🔔 Synchro auto (${heure}) : ${ajoutes} nouveau(x) navire(s) détecté(s) automatiquement depuis le radar GitHub.`);
+    } else if(!silencieux){
+      afficherNotifSyncAuto(`Synchro auto (${heure}) : aucun nouveau navire depuis la dernière vérification.`);
+    }
+  }catch(e){
+    const surMobile = /iPhone|iPad|Android/i.test(navigator.userAgent);
+    const raison = surMobile
+      ? 'la synchro automatique en arrière-plan n\u2019est pas disponible sur mobile (restriction du système) — utilise le bouton "Importer depuis le radar" sur PC avec Edge ou Chrome.'
+      : `échec de connexion au radar GitHub (${e.message}).`;
+    afficherNotifSyncAuto('⚠️ Synchro auto : ' + raison);
+    console.error('Erreur synchro auto radar GitHub', e);
+  }
+}
+
+// Première vérification 5s après l'ouverture (le temps que tout se charge), silencieuse si rien de neuf,
+// puis toutes les 15 minutes en arrière-plan (le fichier GitHub ne change que toutes les 3h, mais
+// vérifier plus souvent permet de détecter la mise à jour peu de temps après qu'elle arrive).
+setTimeout(() => syncAutoRadarGithub(true), 5000);
+setInterval(() => syncAutoRadarGithub(true), 15 * 60 * 1000);
+
+// ---------- Météo marine (Open-Meteo, données réelles, gratuit, sans clé) ----------
+const WMO_LABELS = {
+  0: ["Ciel dégagé", "☀️"], 1: ["Plutôt dégagé", "🌤️"], 2: ["Partiellement nuageux", "⛅"], 3: ["Couvert", "☁️"],
+  45: ["Brume", "🌫️"], 48: ["Brouillard givrant", "🌫️"],
+  51: ["Bruine légère", "🌦️"], 53: ["Bruine", "🌦️"], 55: ["Bruine dense", "🌧️"],
+  61: ["Pluie légère", "🌧️"], 63: ["Pluie", "🌧️"], 65: ["Forte pluie", "🌧️"],
+  80: ["Averses légères", "🌦️"], 81: ["Averses", "🌧️"], 82: ["Fortes averses", "⛈️"],
+  95: ["Orage", "⛈️"]
+};
+
+const VILLES_METEO = {
+  'Abidjan':      { lat: 5.30,  lon: -4.02, tz: 'Africa%2FAbidjan' },
+  'PointeNoire':  { lat: -4.78, lon: 11.86, tz: 'Africa%2FBrazzaville' }
+};
+
+async function fetchWeatherPour(idSuffixe, lat, lon, tz) {
+  try {
+    const [wRes, mRes] = await Promise.all([
+      fetch(`https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,relative_humidity_2m,wind_speed_10m,weather_code&timezone=${tz}`),
+      fetch(`https://marine-api.open-meteo.com/v1/marine?latitude=${lat}&longitude=${lon}&current=wave_height&timezone=${tz}`)
+    ]);
+    const wData = await wRes.json();
+    let waveVal = "—";
+    try { const mData = await mRes.json(); if (mData && mData.current && mData.current.wave_height != null) waveVal = mData.current.wave_height.toFixed(1) + " m"; } catch(e) {}
+
+    const cur = wData.current;
+    const label = WMO_LABELS[cur.weather_code] || ["—", "🌊"];
+    document.getElementById("w-temp-" + idSuffixe).textContent = Math.round(cur.temperature_2m) + "°C";
+    document.getElementById("w-cond-" + idSuffixe).textContent = label[0];
+    document.getElementById("w-ico-" + idSuffixe).textContent = label[1];
+    document.getElementById("w-wind-" + idSuffixe).textContent = Math.round(cur.wind_speed_10m) + " km/h";
+    document.getElementById("w-waves-" + idSuffixe).textContent = waveVal;
+    document.getElementById("w-hum-" + idSuffixe).textContent = Math.round(cur.relative_humidity_2m) + "%";
+    document.getElementById("w-updated-" + idSuffixe).textContent = new Date().toLocaleTimeString("fr-FR", { hour: "2-digit", minute: "2-digit" });
+  } catch (e) {
+    document.getElementById("w-cond-" + idSuffixe).textContent = "Indisponible (hors ligne ?)";
+  }
+}
+
+function fetchWeather(){
+  Object.entries(VILLES_METEO).forEach(([id, v]) => fetchWeatherPour(id, v.lat, v.lon, v.tz));
+}
+
+Object.keys(VILLES_METEO).forEach(id => {
+  const btn = document.getElementById("w-refresh-" + id);
+  if(btn) btn.addEventListener("click", (e) => {
+    e.preventDefault();
+    fetchWeatherPour(id, VILLES_METEO[id].lat, VILLES_METEO[id].lon, VILLES_METEO[id].tz);
+  });
+});
+fetchWeather();
+</script>
+
+</body>
+</html>
