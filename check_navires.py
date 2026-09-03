@@ -1,8 +1,9 @@
 """
-Radar navires - Saye Armand
-Verifie les navires actuellement a quai a Pointe-Noire et Abidjan
-(source : myshiptracking.com, gratuit) et envoie une alerte Telegram
-des qu'un nouveau navire apparait, avec heure locale si disponible.
+Radar navires - Royal Eagle Control
+Verifie les navires actuellement a quai ET attendus a Pointe-Noire et
+Abidjan (source : myshiptracking.com, gratuit) et envoie une alerte
+Telegram des qu'un nouveau navire apparait, avec heure locale et la
+vraie section (IN PORT = a quai / EXPECTED = attendu, pas encore arrive).
 """
 
 import json
@@ -39,9 +40,31 @@ ETA_NEAR_RE = re.compile(
     r'(\d{4}-\d{2}-\d{2})\s*<b>(\d{1,2}:\d{2})</b>'
 )
 
+# myshiptracking separe la page en sections via des ancres/titres.
+# On repere le titre de section le plus proche AVANT chaque navire pour
+# savoir s'il est reellement a quai (IN PORT) ou juste attendu (EXPECTED).
+SECTION_MARKERS = [
+    (re.compile(r'IN\s*PORT', re.IGNORECASE), "in_port"),
+    (re.compile(r'EXPECTED', re.IGNORECASE), "expected"),
+]
+
 
 def slug_to_name(slug):
     return " ".join(word.capitalize() for word in slug.split("-"))
+
+
+def section_pour_position(html, position):
+    """Cherche, en remontant dans le HTML avant `position`, le dernier
+    marqueur de section rencontre (IN PORT ou EXPECTED)."""
+    avant = html[:position]
+    derniere_section = None
+    derniere_position = -1
+    for pattern, label in SECTION_MARKERS:
+        for m in pattern.finditer(avant):
+            if m.start() > derniere_position:
+                derniere_position = m.start()
+                derniere_section = label
+    return derniere_section or "expected"  # par prudence si rien trouve
 
 
 def fetch_vessels_in_port(url, port_name):
@@ -54,6 +77,7 @@ def fetch_vessels_in_port(url, port_name):
     resp.raise_for_status()
 
     vessels = {}
+    compte_sections = {"in_port": 0, "expected": 0}
     for match in VESSEL_LINK_RE.finditer(html):
         slug, mmsi = match.group(1), match.group(2)
         nom = slug_to_name(slug)
@@ -62,8 +86,14 @@ def fetch_vessels_in_port(url, port_name):
         eta_match = ETA_NEAR_RE.search(fenetre)
         eta_brut = f"{eta_match.group(1)} {eta_match.group(2)}" if eta_match else ""
 
+        section = section_pour_position(html, match.start())
+        compte_sections[section] = compte_sections.get(section, 0) + 1
+
         if mmsi not in vessels:
-            vessels[mmsi] = {"nom": nom, "eta_brut": eta_brut}
+            vessels[mmsi] = {"nom": nom, "eta_brut": eta_brut, "section": section}
+
+    print(f"  Repartition : {compte_sections.get('in_port', 0)} a quai (IN PORT), "
+          f"{compte_sections.get('expected', 0)} attendus (EXPECTED)")
 
     return vessels
 
@@ -107,8 +137,6 @@ def main():
         try:
             vessels = fetch_vessels_in_port(url, port)
             print(f"  {len(vessels)} navire(s) trouve(s) a {port}")
-            avec_heure = sum(1 for v in vessels.values() if v['eta_brut'])
-            print(f"  {avec_heure} navire(s) avec heure detectee")
         except Exception as e:
             print(f"  Erreur en recuperant {port} : {e}")
             new_state[port] = state.get(port, {})
@@ -128,7 +156,7 @@ def main():
             alerts.append(f"Nouveau(x) navire(s) a {port} : {noms}")
 
     if alerts:
-        send_telegram("Radar navires Saye Armand :\n" + "\n".join(alerts))
+        send_telegram("Radar navires Royal Eagle Control :\n" + "\n".join(alerts))
         print("Alerte envoyee :", alerts)
     else:
         print("Aucun nouveau navire detecte.")
