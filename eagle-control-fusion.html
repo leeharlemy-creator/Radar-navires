@@ -3,12 +3,12 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>Eagle Control — Gestion maritime</title>
+<title>Royal Eagle Control — Gestion maritime</title>
 <meta name="theme-color" content="#0a1628">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="Eagle Control">
+<meta name="apple-mobile-web-app-title" content="Royal Eagle Control">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
 <style>
@@ -453,7 +453,7 @@
   <div class="brand">
     <div class="mark">EC</div>
     <div>
-      <h1>Eagle Control</h1>
+      <h1>Royal Eagle Control</h1>
       <p>Suivi &amp; gestion maritime</p>
     </div>
   </div>
@@ -501,7 +501,7 @@
     <div class="hero">
       <div>
         <div class="eyebrow">CENTRE DE PILOTAGE</div>
-        <h2>EAGLE CONTROL<br><span>Maritime Operations</span></h2>
+        <h2>ROYAL EAGLE CONTROL<br><span>Maritime Operations</span></h2>
         <p>Suivez vos navires, opportunités commerciales et opérations d\u2019avitaillement depuis un seul espace.</p>
       </div>
       <div class="hero-badge">
@@ -1085,8 +1085,8 @@ const ICON_512_M = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAA
   document.head.appendChild(linkIcon);
 
   const manifestObj = {
-    name: "Eagle Control — Gestion maritime",
-    short_name: "Eagle Control",
+    name: "Royal Eagle Control — Gestion maritime",
+    short_name: "Royal Eagle Control",
     description: "Suivi des navires, radar maritime, carte, dossiers d'avitaillement et réseau de consignataires.",
     start_url: ".",
     scope: ".",
@@ -1111,7 +1111,7 @@ const ICON_512_M = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAgAAAAIACAIAAA
 
 if('serviceWorker' in navigator){
   const swCode = [
-    "const CACHE_NAME = 'eagle-control-v3';",
+    "const CACHE_NAME = 'royal-eagle-control-v3';",
     "self.addEventListener('install', (event) => { self.skipWaiting(); });",
     "self.addEventListener('activate', (event) => { self.clients.claim(); });",
     "self.addEventListener('fetch', (event) => {",
@@ -1356,7 +1356,7 @@ function exportNaviresCSV(){
   const url = URL.createObjectURL(blob);
   const link = document.createElement('a');
   link.href = url;
-  link.download = 'navires-eagle-control.csv';
+  link.download = 'navires-royal-eagle-control.csv';
   link.click();
   URL.revokeObjectURL(url);
 }
@@ -2285,7 +2285,7 @@ function initCarte(){
   L.control.zoom({position:'bottomright'}).addTo(carteInstance);
 
   if(MAPBOX_TOKEN){
-    // Style sombre élégant, assorti au thème navy/or d'Eagle Control.
+    // Style sombre élégant, assorti au thème navy/or de Royal Eagle Control.
     carteCoucheDark = L.tileLayer(`https://api.mapbox.com/styles/v1/mapbox/dark-v11/tiles/{z}/{x}/{y}?access_token=${MAPBOX_TOKEN}`, {
       attribution: '&copy; <a href="https://www.mapbox.com/about/maps/">Mapbox</a> &copy; OpenStreetMap contributors',
       tileSize: 512,
