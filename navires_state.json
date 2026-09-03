@@ -16,21 +16,13 @@
       "nom": "Apl Mexico City",
       "eta_brut": "2026-09-03 01:36"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-03 10:59"
-    },
     "311000463": {
       "nom": "Fugro Venturer",
-      "eta_brut": "2026-09-03 19:57"
+      "eta_brut": "2026-09-04 00:56"
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-04 16:11"
-    },
-    "256521000": {
-      "nom": "Endo Ponente",
-      "eta_brut": "2026-09-05 01:36"
+      "eta_brut": "2026-09-04 21:43"
     },
     "538009604": {
       "nom": "Boston",
@@ -40,25 +32,33 @@
       "nom": "Cma Cgm Kribi",
       "eta_brut": "2026-09-05 05:33"
     },
+    "256521000": {
+      "nom": "Endo Ponente",
+      "eta_brut": "2026-09-05 07:55"
+    },
     "255805868": {
       "nom": "Msc Desiree",
       "eta_brut": "2026-09-05 08:10"
     },
+    "636024601": {
+      "nom": "Msc Kerry Vii",
+      "eta_brut": "2026-09-05 10:11"
+    },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 11:52"
+      "eta_brut": "2026-09-07 13:43"
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 21:34"
+      "eta_brut": "2026-09-11 01:37"
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-03 08:27"
     },
     "375455000": {
       "nom": "Starling",
       "eta_brut": "2026-09-03 08:23"
-    },
-    "677044800": {
-      "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-03 07:56"
     },
     "636093066": {
       "nom": "Cabinda Express",
@@ -79,10 +79,6 @@
     "210639000": {
       "nom": "Gfs Rhea",
       "eta_brut": "2026-09-03 06:40"
-    },
-    "636021129": {
-      "nom": "Msc Yang R",
-      "eta_brut": ""
     }
   },
   "Abidjan": {
@@ -106,6 +102,10 @@
       "nom": "Jorix",
       "eta_brut": "2026-08-30 15:53"
     },
+    "209846000": {
+      "nom": "Leon",
+      "eta_brut": "2026-09-03 11:37"
+    },
     "538010656": {
       "nom": "Musky",
       "eta_brut": "2026-08-28 21:36"
@@ -122,33 +122,25 @@
       "nom": "Star Prima",
       "eta_brut": "2026-09-02 22:25"
     },
-    "356249000": {
-      "nom": "Msc Samantha Vi",
-      "eta_brut": "2026-09-03 06:04"
-    },
-    "209846000": {
-      "nom": "Leon",
-      "eta_brut": "2026-09-03 10:30"
-    },
-    "636021428": {
-      "nom": "Nordic Incheon",
-      "eta_brut": "2026-09-03 11:36"
-    },
     "241267000": {
       "nom": "Corinna",
       "eta_brut": "2026-09-03 13:13"
+    },
+    "636021428": {
+      "nom": "Nordic Incheon",
+      "eta_brut": "2026-09-03 13:24"
     },
     "563202500": {
       "nom": "Ea Centaurus",
       "eta_brut": "2026-09-03 14:30"
     },
-    "229550000": {
-      "nom": "Seadream",
-      "eta_brut": "2026-09-03 14:33"
-    },
     "309841000": {
       "nom": "Baltic Pearl",
-      "eta_brut": "2026-09-03 19:50"
+      "eta_brut": "2026-09-03 19:19"
+    },
+    "229550000": {
+      "nom": "Seadream",
+      "eta_brut": "2026-09-03 23:19"
     },
     "352006169": {
       "nom": "Fn Ocean",
@@ -160,11 +152,15 @@
     },
     "636022782": {
       "nom": "Xin Zhi Sea",
-      "eta_brut": "2026-09-05 13:42"
+      "eta_brut": "2026-09-05 07:58"
     },
     "305560000": {
       "nom": "Ual Brazil",
-      "eta_brut": "2026-09-06 03:40"
+      "eta_brut": "2026-09-06 02:41"
+    },
+    "352898752": {
+      "nom": "Ab Paloma",
+      "eta_brut": "2026-09-03 09:01"
     },
     "636024624": {
       "nom": "Star Candy",
@@ -177,6 +173,10 @@
     "212667000": {
       "nom": "Esl Europa",
       "eta_brut": "2026-09-03 06:04"
+    },
+    "356249000": {
+      "nom": "Msc Samantha Vi",
+      "eta_brut": "2026-09-03 04:09"
     },
     "229282000": {
       "nom": "Cma Cgm Savannah",
@@ -192,14 +192,6 @@
     },
     "314516000": {
       "nom": "Halit Bey",
-      "eta_brut": "2026-09-03 00:18"
-    },
-    "376166000": {
-      "nom": "Vb Impala",
-      "eta_brut": "2026-09-02 23:25"
-    },
-    "563160400": {
-      "nom": "Maersk Valparaiso",
       "eta_brut": ""
     }
   }
