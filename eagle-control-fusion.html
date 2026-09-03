@@ -83,6 +83,14 @@
     70% { box-shadow:0 0 0 10px rgba(63,211,198,0); }
     100% { box-shadow:0 0 0 0 rgba(63,211,198,0); }
   }
+  @keyframes ais-glow-pulse{
+    0% { box-shadow:0 0 6px 2px rgba(224,86,62,0.7), 0 0 0 0 rgba(224,86,62,0.5); }
+    70% { box-shadow:0 0 14px 6px rgba(224,86,62,0.9), 0 0 0 12px rgba(224,86,62,0); }
+    100% { box-shadow:0 0 6px 2px rgba(224,86,62,0.7), 0 0 0 0 rgba(224,86,62,0); }
+  }
+  .ais-marker-glow{
+    animation: ais-glow-pulse 2.2s ease-in-out infinite;
+  }
   header.app{
     background:var(--navy);
     color:var(--gold-light);
@@ -344,6 +352,10 @@
     font-size:13px;
   }
   .actions-cell{white-space:nowrap;}
+  #table-navires td:nth-child(4), #table-navires th:nth-child(4){
+    white-space:nowrap;
+    min-width:150px;
+  }
   .actions-cell button{
     font-size:11px;
     padding:4px 8px;
@@ -700,7 +712,7 @@
         <option value="">Tous statuts</option>
         <option value="transit">En transit</option>
         <option value="mouillage">Au mouillage</option>
-        <option value="arrivee">Arrivé</option>
+        <option value="arrivee">À quai</option>
       </select>
       <select id="filtre-livraison">
         <option value="">Toutes livraisons</option>
@@ -731,7 +743,7 @@
           <select id="nv-statut">
             <option value="transit">En transit</option>
             <option value="mouillage">Au mouillage</option>
-            <option value="arrivee">Arrivé</option>
+            <option value="arrivee">À quai</option>
           </select>
         </div>
         <div><label>ETA (date et heure)</label><input id="nv-eta" type="datetime-local"></div>
@@ -781,7 +793,7 @@
       </div>
     </div>
 
-    <table>
+    <table id="table-navires">
       <thead>
         <tr>
           <th>Navire</th><th>Destination</th><th>Statut</th><th>ETA</th><th>Agent consignataire</th><th>Livraison</th><th>Relance</th><th></th>
@@ -802,6 +814,9 @@
       <span style="font-size:11px;color:var(--muted);">Place les vrais navires détectés (position GPS réelle) sur la carte — consomme 2 requêtes sur ton quota mensuel.</span>
     </div>
     <div class="note" id="carte-ais-status" style="display:none;"></div>
+    <div class="note" id="carte-fallback-avertissement" style="display:none;margin-bottom:8px;">
+      ⚠️ La carte Mapbox n'a pas pu charger (clé restreinte ou quota atteint) — basculé automatiquement sur OpenStreetMap pour que la carte reste utilisable.
+    </div>
     <div id="map" style="width:100%;height:480px;border-radius:8px;border:1px solid var(--border);"></div>
   </section>
 
@@ -1200,7 +1215,7 @@ async function saveProspects(){
 }
 
 function statutLabel(s){
-  return {transit:'En transit', mouillage:'Au mouillage', arrivee:'Arrivé'}[s] || s;
+  return {transit:'En transit', mouillage:'Au mouillage', arrivee:'À quai'}[s] || s;
 }
 function prospectStatutLabel(s){
   return {a_faire:'À faire', visite:'Visité', relance:'À relancer', signe:'Signé', perdu:'Perdu / pas intéressé'}[s] || s;
@@ -1311,7 +1326,7 @@ function renderNavires(){
     <div class="stat"><div class="num">${navires.length}</div><div class="lbl">Navires suivis</div></div>
     <div class="stat"><div class="num">${abj}</div><div class="lbl">Vers Abidjan</div></div>
     <div class="stat"><div class="num">${brz}</div><div class="lbl">Vers Pointe-Noire</div></div>
-    <div class="stat"><div class="num">${arr}</div><div class="lbl">Arrivés</div></div>
+    <div class="stat"><div class="num">${arr}</div><div class="lbl">À quai</div></div>
   `;
   renderRadar();
   renderCarteMarkers();
@@ -1578,6 +1593,16 @@ async function fetchNaviresAPI(){
     return;
   }
 
+// Traduit le statut de navigation AIS officiel (code standard 0-15) vers nos 3 statuts internes.
+// Référence : 0/8 = en route, 1 = à l'ancre (mouillage), 5 = amarré (à quai).
+function mapperNavStatusVersStatut(navStatus){
+  const code = typeof navStatus === 'number' ? navStatus : parseInt(navStatus, 10);
+  if(code === 1) return 'mouillage';
+  if(code === 5) return 'arrivee';
+  if(code === 0 || code === 8) return 'transit';
+  return null; // statut AIS non reconnu ou absent : on ne force rien
+}
+
   statusEl.textContent = 'Connexion à l\u2019API en cours...';
 
   // VesselAPI utilise un format différent (zone géographique + en-tête Bearer,
@@ -1597,19 +1622,24 @@ async function fetchNaviresAPI(){
         const items = data.vessels || [];
         items.forEach(item=>{
           const id = 'api_' + (item.mmsi || item.imo || uid());
+          const statutReel = mapperNavStatusVersStatut(item.nav_status);
           if(!navires.some(n=>n.id===id)){
             navires.push({
               id,
               nom: item.vessel_name || 'Inconnu',
               pavillon: '',
               destination: destNom,
-              statut: 'transit',
+              statut: statutReel || 'transit',
               eta: '',
               type: '',
               ajouteLe: Date.now(),
-              notes: `Importé automatiquement le ${new Date().toISOString().slice(0,10)} — ${item.sog != null ? Math.round(item.sog)+' kn, ' : ''}${item.nav_status != null ? item.nav_status : ''}`
+              notes: `Importé automatiquement le ${new Date().toISOString().slice(0,10)} — ${item.sog != null ? Math.round(item.sog)+' kn, ' : ''}${item.nav_status != null ? item.nav_status : ''}${statutReel ? ' — statut AIS réel appliqué' : ''}`
             });
             total++;
+          } else if(statutReel){
+            // Navire déjà connu : on met à jour son statut réel si l'AIS en donne un fiable
+            const existant = navires.find(n=>n.id===id);
+            if(existant) existant.statut = statutReel;
           }
         });
       }catch(err){
@@ -2328,6 +2358,24 @@ function initCarte(){
       maxZoom: 20
     });
 
+    // Filet de sécurité : si Mapbox échoue (clé invalide, restriction de domaine, quota),
+    // on bascule automatiquement sur OpenStreetMap pour ne jamais laisser la carte vide.
+    let mapboxEchecs = 0;
+    let bascule = false;
+    carteCoucheDark.on('tileerror', () => {
+      mapboxEchecs++;
+      if(mapboxEchecs > 4 && !bascule){
+        bascule = true;
+        carteInstance.removeLayer(carteCoucheDark);
+        L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+          attribution: '&copy; OpenStreetMap contributors',
+          maxZoom: 18
+        }).addTo(carteInstance);
+        const avertissement = document.getElementById('carte-fallback-avertissement');
+        if(avertissement) avertissement.style.display = 'block';
+      }
+    });
+
     const toggleCtrl = L.control({position:'topright'});
     toggleCtrl.onAdd = function(){
       const div = L.DomUtil.create('div');
@@ -2417,14 +2465,16 @@ function dessinerNaviresAisSurCarte(resultsByPort){
 
   Object.values(resultsByPort).flat().forEach(v => {
     if(v.latitude == null || v.longitude == null) return;
+    const statutReel = mapperNavStatusVersStatut(v.nav_status);
+    const couleur = RADAR_COLORS[statutReel] || '#e0563e';
     const marker = L.marker([v.latitude, v.longitude], {
       icon: L.divIcon({
         className: '',
-        html: '<div style="width:12px;height:12px;background:#e0563e;border:2px solid #0a1628;border-radius:50%;box-shadow:0 0 6px #e0563e;"></div>',
+        html: `<div class="ais-marker-glow" style="width:12px;height:12px;background:${couleur};border:2px solid #0a1628;border-radius:50%;"></div>`,
         iconSize: [12,12]
       })
     }).addTo(carteInstance);
-    marker.bindPopup(`<strong>${esc(v.vessel_name || 'Navire inconnu')}</strong> 🛰️ AIS réel<br>${v.sog != null ? Math.round(v.sog)+' kn — ' : ''}${v.nav_status != null ? esc(String(v.nav_status)) : ''}`);
+    marker.bindPopup(`<strong>${esc(v.vessel_name || 'Navire inconnu')}</strong> 🛰️ AIS réel${statutReel ? ' — '+esc(statutLabel(statutReel)) : ''}<br>${v.sog != null ? Math.round(v.sog)+' kn — ' : ''}${v.nav_status != null ? esc(String(v.nav_status)) : ''}`);
     aisCarteMarkers.push(marker);
   });
 }
@@ -2620,8 +2670,3 @@ fetchWeather();
 
 </body>
 </html>
-
-
-
-
-
