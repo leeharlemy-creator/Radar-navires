@@ -734,7 +734,7 @@
             <option value="arrivee">Arrivé</option>
           </select>
         </div>
-        <div><label>ETA (date)</label><input id="nv-eta" type="date"></div>
+        <div><label>ETA (date et heure)</label><input id="nv-eta" type="datetime-local"></div>
         <div><label>Type de navire</label>
           <select id="nv-type">
             <option value="">— Sélectionner —</option>
@@ -1183,6 +1183,7 @@ async function loadData(){
     prospects = pr ? JSON.parse(pr) : seedProspects;
   }catch(e){ prospects = seedProspects; }
   await nettoyerNaviresPartis();
+  await marquerNaviresEnRetardCommeArrives();
   renderNavires();
   renderMarches();
   renderProspects();
@@ -1265,13 +1266,15 @@ function renderNavires(){
     const matchTexte = !q || [n.nom, n.pavillon, n.type, n.notes, n.responsable].join(' ').toLowerCase().includes(q);
     return matchTexte && (!destF || n.destination === destF) && (!statF || n.statut === statF) && (!livF || n.livraison === livF);
   }).sort((a, b) => {
-    // Les navires "en approche" restent groupés en tête ; les "arrivés" descendent en dessous,
-    // quel que soit leur ordre d'ajout — comme un tableau d'affichage d'aéroport (vols à venir
-    // en haut, vols atterris en bas).
+    // Les navires arrivés récemment en tête, puis les navires attendus
+    // classés du plus proche au plus lointain (proximité avec aujourd'hui).
     const aArrive = a.statut === 'arrivee', bArrive = b.statut === 'arrivee';
-    if(aArrive !== bArrive) return aArrive ? 1 : -1;
-    const ta = a.ajouteLe || 0, tb = b.ajouteLe || 0;
-    if(ta !== tb) return tb - ta; // parmi un même groupe, les plus récemment ajoutés d'abord
+    if(aArrive !== bArrive) return aArrive ? -1 : 1;
+    if(aArrive){
+      // Parmi les arrivés : le plus récemment arrivé en premier
+      return (b.eta||'0000').localeCompare(a.eta||'0000');
+    }
+    // Parmi les attendus : le plus proche (ETA la plus proche) en premier
     return (a.eta||'9999').localeCompare(b.eta||'9999');
   });
   if(list.length === 0){
@@ -1287,7 +1290,7 @@ function renderNavires(){
         <td><strong>${esc(n.nom)}</strong><br><span style="color:var(--muted);font-size:11px;">${esc(n.pavillon||'')}${n.type ? ' · '+esc(n.type) : ''}${n.tirantEau ? ' · Tirant d\u2019eau '+esc(n.tirantEau)+' m' : ''}${n.imo ? ' · IMO '+esc(n.imo) : ''}${n.mmsi ? ' · MMSI '+esc(n.mmsi) : ''}</span></td>
         <td>${esc(n.destination)}</td>
         <td><span class="pill ${n.statut}">${statutLabel(n.statut)}</span></td>
-        <td>${n.eta || '—'}</td>
+        <td>${formatEta(n.eta)}</td>
         <td>${voyant}${agent ? esc(agent) : '<span style="color:var(--muted);">Non assigné</span>'}</td>
         <td>${n.livraison ? '<span class="pill '+n.livraison+'">'+livraisonLabel(n.livraison)+'</span>' : '—'}</td>
         <td>${n.relance || '—'}</td>
@@ -1432,6 +1435,24 @@ async function nettoyerNaviresPartis(){
   const avant = navires.length;
   navires = navires.filter(n => !(n.depart && n.depart <= aujourdHui));
   if(navires.length !== avant){
+    await saveNavires();
+  }
+}
+
+async function marquerNaviresEnRetardCommeArrives(){
+  const seuil = new Date();
+  seuil.setDate(seuil.getDate() - 2); // ETA dépassée de plus de 2 jours
+  let changed = false;
+  navires.forEach(n => {
+    if(n.statut === 'arrivee' || !n.eta) return;
+    const etaComplet = n.eta.includes('T') ? n.eta : n.eta+'T00:00:00';
+    const etaDate = new Date(etaComplet);
+    if(!isNaN(etaDate.getTime()) && etaDate < seuil){
+      n.statut = 'arrivee';
+      changed = true;
+    }
+  });
+  if(changed){
     await saveNavires();
   }
 }
@@ -1671,15 +1692,22 @@ document.getElementById('btn-add-navire').addEventListener('click', ()=>{
 const RADAR_GITHUB_USER = 'leeharlemy-creator';
 const RADAR_GITHUB_REPO = 'Radar-navires';
 
+function formatEta(eta){
+  if(!eta) return '—';
+  if(!eta.includes('T')) return eta;
+  const [datePart, heurePart] = eta.split('T');
+  return `${datePart} à ${heurePart}`;
+}
+
 function convertirEtaBrut(etaBrut){
   if(!etaBrut) return '';
   try{
-    // Nouveau format du radar : "2026-08-30 18:26" (contient déjà l'année)
+    // Nouveau format du radar : "2026-08-30 18:26" (contient déjà l'année et l'heure)
     if(/^\d{4}-\d{2}-\d{2}\s+\d{1,2}:\d{2}$/.test(etaBrut)){
       const essaiDirect = new Date(etaBrut.replace(' ', 'T'));
       if(!isNaN(essaiDirect.getTime())){
         const pad = x => String(x).padStart(2,'0');
-        return `${essaiDirect.getFullYear()}-${pad(essaiDirect.getMonth()+1)}-${pad(essaiDirect.getDate())}`;
+        return `${essaiDirect.getFullYear()}-${pad(essaiDirect.getMonth()+1)}-${pad(essaiDirect.getDate())}T${pad(essaiDirect.getHours())}:${pad(essaiDirect.getMinutes())}`;
       }
       return '';
     }
@@ -1688,7 +1716,7 @@ function convertirEtaBrut(etaBrut){
     const essai = new Date(`${etaBrut} ${anneeActuelle}`);
     if(isNaN(essai.getTime())) return '';
     const pad = x => String(x).padStart(2,'0');
-    return `${essai.getFullYear()}-${pad(essai.getMonth()+1)}-${pad(essai.getDate())}`;
+    return `${essai.getFullYear()}-${pad(essai.getMonth()+1)}-${pad(essai.getDate())}T${pad(essai.getHours())}:${pad(essai.getMinutes())}`;
   }catch(e){ return ''; }
 }
 
@@ -1926,7 +1954,8 @@ function hashAngle(str){
 
 function joursRestants(eta){
   if(!eta) return null;
-  const ms = new Date(eta+'T00:00:00') - new Date(new Date().toDateString());
+  const etaComplet = eta.includes('T') ? eta : eta+'T00:00:00';
+  const ms = new Date(etaComplet) - new Date(new Date().toDateString());
   return Math.round(ms / 86400000);
 }
 
@@ -2591,3 +2620,8 @@ fetchWeather();
 
 </body>
 </html>
+
+
+
+
+
