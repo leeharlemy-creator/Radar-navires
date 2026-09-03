@@ -18,15 +18,19 @@
     },
     "310760000": {
       "nom": "Quebec Express",
-      "eta_brut": "2026-09-03 03:39"
+      "eta_brut": "2026-09-03 03:59"
+    },
+    "311000463": {
+      "nom": "Fugro Venturer",
+      "eta_brut": "2026-09-03 10:39"
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-03 19:39"
+      "eta_brut": "2026-09-03 23:50"
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-04 04:09"
+      "eta_brut": "2026-09-04 08:01"
     },
     "538009604": {
       "nom": "Boston",
@@ -34,7 +38,7 @@
     },
     "215922000": {
       "nom": "Cma Cgm Kribi",
-      "eta_brut": "2026-09-05 04:37"
+      "eta_brut": "2026-09-05 04:49"
     },
     "255805868": {
       "nom": "Msc Desiree",
@@ -44,37 +48,33 @@
       "nom": "Msc Oak F",
       "eta_brut": "2026-09-07 15:45"
     },
-    "636015447": {
-      "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 14:45"
-    },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-11 07:07"
+      "eta_brut": "2026-09-10 21:36"
     },
-    "314001086": {
-      "nom": "Iskandar",
-      "eta_brut": "2026-09-12 07:09"
+    "636015447": {
+      "nom": "Eastern Gardenia",
+      "eta_brut": "2026-09-11 04:04"
     },
     "615404000": {
       "nom": "Leketi",
-      "eta_brut": "2026-09-02 22:27"
+      "eta_brut": "2026-09-03 00:55"
     },
-    "511101258": {
-      "nom": "Asg Portofino",
-      "eta_brut": "2026-09-02 21:11"
+    "376316000": {
+      "nom": "Oubangui",
+      "eta_brut": "2026-09-03 00:51"
     },
-    "375418000": {
-      "nom": "Sd Wonder",
-      "eta_brut": "2026-09-02 21:11"
+    "412525000": {
+      "nom": "Jun Hai 2",
+      "eta_brut": "2026-09-03 00:51"
+    },
+    "563167500": {
+      "nom": "Api Bhum",
+      "eta_brut": "2026-09-03 00:39"
     },
     "376108000": {
       "nom": "Lahama",
-      "eta_brut": "2026-09-02 20:32"
-    },
-    "376912000": {
-      "nom": "Men Goe",
-      "eta_brut": "2026-09-02 20:23"
+      "eta_brut": "2026-09-02 23:27"
     }
   },
   "Abidjan": {
@@ -106,10 +106,6 @@
       "nom": "Jorix",
       "eta_brut": "2026-08-30 15:53"
     },
-    "314516000": {
-      "nom": "Halit Bey",
-      "eta_brut": "2026-08-28 08:44"
-    },
     "567097000": {
       "nom": "Mookda Naree",
       "eta_brut": "2026-08-24 23:00"
@@ -118,17 +114,13 @@
       "nom": "Musky",
       "eta_brut": "2026-08-28 21:36"
     },
-    "311000958": {
-      "nom": "Star Prima",
-      "eta_brut": "2026-09-02 22:09"
-    },
-    "477717700": {
-      "nom": "Tj Vanda",
-      "eta_brut": "2026-09-02 22:48"
+    "538011388": {
+      "nom": "Ssi Formidable Ii",
+      "eta_brut": "2026-08-30 15:08"
     },
     "538010426": {
       "nom": "Yasa Lotus",
-      "eta_brut": "2026-09-03 01:06"
+      "eta_brut": "2026-09-03 01:39"
     },
     "228459700": {
       "nom": "Cma Cgm Laguna",
@@ -136,11 +128,11 @@
     },
     "563202500": {
       "nom": "Ea Centaurus",
-      "eta_brut": "2026-09-03 14:01"
+      "eta_brut": "2026-09-03 14:30"
     },
     "309841000": {
       "nom": "Baltic Pearl",
-      "eta_brut": "2026-09-03 20:11"
+      "eta_brut": "2026-09-03 20:16"
     },
     "636022782": {
       "nom": "Xin Zhi Sea",
@@ -150,13 +142,37 @@
       "nom": "Fn Ocean",
       "eta_brut": "2026-09-05 02:00"
     },
-    "636020177": {
-      "nom": "Star Monica",
-      "eta_brut": "2026-09-05 05:31"
-    },
     "636017239": {
       "nom": "Msc Spring Iii",
       "eta_brut": "2026-09-05 07:40"
+    },
+    "636020177": {
+      "nom": "Star Monica",
+      "eta_brut": "2026-09-05 10:02"
+    },
+    "305560000": {
+      "nom": "Ual Brazil",
+      "eta_brut": "2026-09-06 01:39"
+    },
+    "212366000": {
+      "nom": "Handy Stranger",
+      "eta_brut": "2026-09-06 05:20"
+    },
+    "314516000": {
+      "nom": "Halit Bey",
+      "eta_brut": "2026-09-03 00:18"
+    },
+    "376166000": {
+      "nom": "Vb Impala",
+      "eta_brut": "2026-09-02 23:25"
+    },
+    "563160400": {
+      "nom": "Maersk Valparaiso",
+      "eta_brut": "2026-09-02 22:25"
+    },
+    "311000958": {
+      "nom": "Star Prima",
+      "eta_brut": "2026-09-02 21:16"
     },
     "636018869": {
       "nom": "Green K Max 4",
@@ -180,19 +196,7 @@
     },
     "375617000": {
       "nom": "Vb Superenzo 10",
-      "eta_brut": "2026-09-02 07:16"
-    },
-    "311001635": {
-      "nom": "Orange Stream",
-      "eta_brut": "2026-09-02 06:13"
-    },
-    "311001593": {
-      "nom": "Frio Marathon",
-      "eta_brut": "2026-09-02 05:07"
-    },
-    "375188000": {
-      "nom": "Svitzer Pacuare",
-      "eta_brut": "2026-09-02 04:43"
+      "eta_brut": ""
     }
   }
 }
