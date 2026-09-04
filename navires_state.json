@@ -25,11 +25,6 @@
       "eta_brut": "2026-09-04 21:43",
       "section": "expected"
     },
-    "538009604": {
-      "nom": "Boston",
-      "eta_brut": "2026-09-05 04:03",
-      "section": "expected"
-    },
     "215922000": {
       "nom": "Cma Cgm Kribi",
       "eta_brut": "2026-09-05 05:33",
@@ -40,34 +35,44 @@
       "eta_brut": "2026-09-05 08:10",
       "section": "expected"
     },
-    "636024601": {
-      "nom": "Msc Kerry Vii",
-      "eta_brut": "2026-09-05 22:42",
-      "section": "expected"
-    },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-06 08:05",
+      "eta_brut": "2026-09-06 10:44",
+      "section": "expected"
+    },
+    "636024601": {
+      "nom": "Msc Kerry Vii",
+      "eta_brut": "2026-09-06 13:47",
       "section": "expected"
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 20:46",
+      "eta_brut": "2026-09-07 19:06",
       "section": "expected"
     },
-    "314001086": {
-      "nom": "Iskandar",
-      "eta_brut": "2026-09-11 19:07",
+    "538009604": {
+      "nom": "Boston",
+      "eta_brut": "2026-09-08 19:25",
       "section": "expected"
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 23:23",
+      "eta_brut": "2026-09-11 14:49",
       "section": "expected"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-12 02:22",
+      "eta_brut": "2026-09-11 18:01",
+      "section": "expected"
+    },
+    "314001086": {
+      "nom": "Iskandar",
+      "eta_brut": "2026-09-11 20:38",
+      "section": "expected"
+    },
+    "376108000": {
+      "nom": "Lahama",
+      "eta_brut": "2026-09-04 00:23",
       "section": "expected"
     },
     "376316000": {
@@ -80,19 +85,9 @@
       "eta_brut": "2026-09-03 23:39",
       "section": "expected"
     },
-    "376108000": {
-      "nom": "Lahama",
-      "eta_brut": "2026-09-03 21:03",
-      "section": "expected"
-    },
     "677044800": {
       "nom": "Volgo Balt 242",
       "eta_brut": "2026-09-03 19:11",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -147,11 +142,6 @@
       "eta_brut": "2026-09-03 21:25",
       "section": "in_port"
     },
-    "215965000": {
-      "nom": "Cma Cgm C Colomb",
-      "eta_brut": "2026-09-04 00:56",
-      "section": "expected"
-    },
     "352006169": {
       "nom": "Fn Ocean",
       "eta_brut": "2026-09-05 02:00",
@@ -164,7 +154,7 @@
     },
     "246704000": {
       "nom": "Ual Bodewes",
-      "eta_brut": "2026-09-05 12:21",
+      "eta_brut": "2026-09-05 10:28",
       "section": "expected"
     },
     "636022782": {
@@ -174,27 +164,37 @@
     },
     "305560000": {
       "nom": "Ual Brazil",
-      "eta_brut": "2026-09-05 22:38",
+      "eta_brut": "2026-09-05 22:03",
       "section": "expected"
     },
     "212366000": {
       "nom": "Handy Stranger",
-      "eta_brut": "2026-09-06 07:53",
+      "eta_brut": "2026-09-06 05:36",
       "section": "expected"
     },
     "563107400": {
       "nom": "Kn Fortune",
-      "eta_brut": "2026-09-06 19:25",
+      "eta_brut": "2026-09-06 18:36",
       "section": "expected"
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-06 21:43",
+      "eta_brut": "2026-09-06 21:47",
       "section": "expected"
     },
     "311000873": {
       "nom": "Rt Champion",
       "eta_brut": "2026-09-06 23:30",
+      "section": "expected"
+    },
+    "636020177": {
+      "nom": "Star Monica",
+      "eta_brut": "2026-09-07 08:08",
+      "section": "expected"
+    },
+    "538009351": {
+      "nom": "Ssi Resolute",
+      "eta_brut": "2026-09-04 00:05",
       "section": "expected"
     },
     "314001133": {
@@ -229,11 +229,6 @@
     },
     "636024624": {
       "nom": "Star Candy",
-      "eta_brut": "2026-09-03 07:53",
-      "section": "expected"
-    },
-    "567097000": {
-      "nom": "Mookda Naree",
       "eta_brut": "",
       "section": "expected"
     }
