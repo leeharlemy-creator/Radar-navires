@@ -37,17 +37,17 @@
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-07 03:00",
+      "eta_brut": "2026-09-07 04:57",
       "section": "expected"
     },
     "636024601": {
       "nom": "Msc Kerry Vii",
-      "eta_brut": "2026-09-07 04:22",
+      "eta_brut": "2026-09-07 15:17",
       "section": "expected"
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 18:30",
+      "eta_brut": "2026-09-07 18:09",
       "section": "expected"
     },
     "538009604": {
@@ -57,17 +57,22 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 05:05",
+      "eta_brut": "2026-09-10 16:35",
       "section": "expected"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 17:49",
+      "eta_brut": "2026-09-11 14:05",
       "section": "expected"
     },
-    "636093151": {
-      "nom": "Hanover Express",
-      "eta_brut": "2026-09-11 22:29",
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-04 12:23",
+      "section": "expected"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-04 10:47",
       "section": "expected"
     },
     "636093066": {
@@ -75,24 +80,9 @@
       "eta_brut": "2026-09-04 09:19",
       "section": "expected"
     },
-    "677044800": {
-      "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-04 08:56",
-      "section": "expected"
-    },
     "376108000": {
       "nom": "Lahama",
       "eta_brut": "2026-09-04 07:51",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-04 07:47",
-      "section": "expected"
-    },
-    "375455000": {
-      "nom": "Starling",
-      "eta_brut": "2026-09-04 06:52",
       "section": "expected"
     }
   },
@@ -132,6 +122,11 @@
       "eta_brut": "2026-09-02 10:24",
       "section": "in_port"
     },
+    "247451600": {
+      "nom": "Great Lagos",
+      "eta_brut": "2026-09-04 11:04",
+      "section": "in_port"
+    },
     "356249000": {
       "nom": "Msc Samantha Vi",
       "eta_brut": "2026-09-03 06:04",
@@ -142,19 +137,14 @@
       "eta_brut": "2026-09-04 07:05",
       "section": "in_port"
     },
-    "314001053": {
-      "nom": "Bafix",
-      "eta_brut": "2026-09-03 21:25",
-      "section": "in_port"
-    },
-    "255806005": {
-      "nom": "Msc India",
-      "eta_brut": "2026-09-04 10:35",
+    "352001918": {
+      "nom": "Moudros",
+      "eta_brut": "2026-09-04 12:39",
       "section": "expected"
     },
-    "370090000": {
-      "nom": "Navios Victory",
-      "eta_brut": "2026-09-04 11:42",
+    "229550000": {
+      "nom": "Seadream",
+      "eta_brut": "2026-09-04 19:08",
       "section": "expected"
     },
     "636017239": {
@@ -164,7 +154,7 @@
     },
     "246704000": {
       "nom": "Ual Bodewes",
-      "eta_brut": "2026-09-05 08:40",
+      "eta_brut": "2026-09-05 08:20",
       "section": "expected"
     },
     "636022782": {
@@ -174,27 +164,42 @@
     },
     "305560000": {
       "nom": "Ual Brazil",
-      "eta_brut": "2026-09-05 22:03",
+      "eta_brut": "2026-09-05 21:41",
       "section": "expected"
     },
     "212366000": {
       "nom": "Handy Stranger",
-      "eta_brut": "2026-09-06 04:30",
+      "eta_brut": "2026-09-06 06:04",
       "section": "expected"
     },
     "563107400": {
       "nom": "Kn Fortune",
-      "eta_brut": "2026-09-06 17:47",
+      "eta_brut": "2026-09-06 14:18",
       "section": "expected"
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-06 19:17",
+      "eta_brut": "2026-09-06 18:45",
       "section": "expected"
     },
     "311000873": {
       "nom": "Rt Champion",
       "eta_brut": "2026-09-06 23:30",
+      "section": "expected"
+    },
+    "255806005": {
+      "nom": "Msc India",
+      "eta_brut": "2026-09-04 11:04",
+      "section": "expected"
+    },
+    "354738000": {
+      "nom": "Tan Binh 257",
+      "eta_brut": "2026-09-04 10:05",
+      "section": "expected"
+    },
+    "247233800": {
+      "nom": "Grande Angola",
+      "eta_brut": "2026-09-04 08:33",
       "section": "expected"
     },
     "371965000": {
@@ -219,21 +224,6 @@
     },
     "352005985": {
       "nom": "Harengus",
-      "eta_brut": "2026-09-03 21:25",
-      "section": "expected"
-    },
-    "210903000": {
-      "nom": "Frio Aegean",
-      "eta_brut": "2026-09-03 19:57",
-      "section": "expected"
-    },
-    "311000958": {
-      "nom": "Star Prima",
-      "eta_brut": "2026-09-03 13:40",
-      "section": "expected"
-    },
-    "538005193": {
-      "nom": "Bryant",
       "eta_brut": "",
       "section": "expected"
     }
