@@ -1,5 +1,10 @@
 {
   "Pointe-Noire": {
+    "352004477": {
+      "nom": "Yc Fortitude",
+      "eta_brut": "2026-09-04 06:52",
+      "section": "in_port"
+    },
     "352006046": {
       "nom": "Ab Bonita",
       "eta_brut": "2026-09-03 17:36",
@@ -17,7 +22,7 @@
     },
     "357036000": {
       "nom": "Surfer 19014",
-      "eta_brut": "2026-09-04 06:14",
+      "eta_brut": "2026-09-04 07:50",
       "section": "expected"
     },
     "538005069": {
@@ -42,12 +47,12 @@
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-06 15:01",
+      "eta_brut": "2026-09-06 17:50",
       "section": "expected"
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 18:26",
+      "eta_brut": "2026-09-07 18:21",
       "section": "expected"
     },
     "538009604": {
@@ -57,12 +62,12 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 08:06",
+      "eta_brut": "2026-09-11 07:05",
       "section": "expected"
     },
-    "636093151": {
-      "nom": "Hanover Express",
-      "eta_brut": "2026-09-11 17:52",
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-04 06:08",
       "section": "expected"
     },
     "377319000": {
@@ -87,7 +92,7 @@
     },
     "247275400": {
       "nom": "Grande Benin",
-      "eta_brut": "2026-09-03 23:39",
+      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -184,7 +189,7 @@
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-06 21:47",
+      "eta_brut": "2026-09-06 20:05",
       "section": "expected"
     },
     "311000873": {
