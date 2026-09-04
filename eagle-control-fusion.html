@@ -711,7 +711,7 @@
       <select id="filtre-statut">
         <option value="">Tous statuts</option>
         <option value="transit">En transit</option>
-        <option value="mouillage">Au mouillage</option>
+        <option value="mouillage">En rade</option>
         <option value="arrivee">À quai</option>
       </select>
       <select id="filtre-livraison">
@@ -742,7 +742,7 @@
         <div><label>Statut</label>
           <select id="nv-statut">
             <option value="transit">En transit</option>
-            <option value="mouillage">Au mouillage</option>
+            <option value="mouillage">En rade</option>
             <option value="arrivee">À quai</option>
           </select>
         </div>
@@ -1215,7 +1215,7 @@ async function saveProspects(){
 }
 
 function statutLabel(s){
-  return {transit:'En transit', mouillage:'Au mouillage', arrivee:'À quai'}[s] || s;
+  return {transit:'En transit', mouillage:'En rade', arrivee:'À quai'}[s] || s;
 }
 function prospectStatutLabel(s){
   return {a_faire:'À faire', visite:'Visité', relance:'À relancer', signe:'Signé', perdu:'Perdu / pas intéressé'}[s] || s;
