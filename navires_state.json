@@ -15,6 +15,11 @@
       "eta_brut": "2026-09-03 01:36",
       "section": "in_port"
     },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-04 06:14",
+      "section": "expected"
+    },
     "538005069": {
       "nom": "Rig Andromeda",
       "eta_brut": "2026-09-04 21:43",
@@ -42,7 +47,7 @@
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 18:28",
+      "eta_brut": "2026-09-07 18:26",
       "section": "expected"
     },
     "538009604": {
@@ -52,22 +57,12 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 08:18",
+      "eta_brut": "2026-09-11 08:06",
       "section": "expected"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-11 17:59",
-      "section": "expected"
-    },
-    "314001086": {
-      "nom": "Iskandar",
-      "eta_brut": "2026-09-11 21:03",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-04 05:07",
+      "eta_brut": "2026-09-11 17:52",
       "section": "expected"
     },
     "377319000": {
@@ -184,7 +179,7 @@
     },
     "563107400": {
       "nom": "Kn Fortune",
-      "eta_brut": "2026-09-06 18:36",
+      "eta_brut": "2026-09-06 17:47",
       "section": "expected"
     },
     "370271000": {
