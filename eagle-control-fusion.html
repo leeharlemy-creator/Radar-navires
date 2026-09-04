@@ -1796,6 +1796,15 @@ async function importerNaviresDepuisGithub(){
         let changed = false;
         if(!existant.mmsi){ existant.mmsi = mmsi; changed = true; }
         if(etaConvertie && !existant.eta){ existant.eta = etaConvertie; changed = true; }
+        // Rafraîchit le statut selon la vraie section radar (IN PORT / EXPECTED),
+        // sauf si le navire a été marqué "Départ" manuellement (on ne le réanime pas).
+        if(!existant.depart){
+          const statutRadar = mapperSectionRadarVersStatut(brut);
+          if(statutRadar && existant.statut !== statutRadar){
+            existant.statut = statutRadar;
+            changed = true;
+          }
+        }
         if(changed) misAJour++;
       } else {
         navires.push({
@@ -1803,7 +1812,7 @@ async function importerNaviresDepuisGithub(){
           nom: nom,
           pavillon: '',
           destination: port,
-          statut: 'arrivee',
+          statut: mapperSectionRadarVersStatut(brut),
           eta: etaConvertie,
           type: '',
           mmsi: mmsi,
@@ -1818,6 +1827,19 @@ async function importerNaviresDepuisGithub(){
   await saveNavires();
   renderNavires();
   return { ajoutes, misAJour };
+}
+
+// Traduit la section myshiptracking.com (IN PORT / EXPECTED) transmise par le script
+// GitHub en statut réel de l'app. Si le script n'a pas encore été mis à jour pour
+// transmettre cette info, on retombe sur "mouillage" par prudence — plus honnête
+// que de forcer "à quai" pour un navire dont on ne connaît pas vraiment la position.
+function mapperSectionRadarVersStatut(brut){
+  if(brut && typeof brut === 'object'){
+    const section = (brut.section || brut.statut || '').toLowerCase();
+    if(section.includes('port') || section.includes('quai')) return 'arrivee';
+    if(section.includes('expected') || section.includes('attendu')) return 'mouillage';
+  }
+  return 'mouillage';
 }
 
 document.getElementById('btn-import-radar').addEventListener('click', async ()=>{
@@ -2609,11 +2631,8 @@ async function syncAutoRadarGithub(silencieux){
   }
 }
 
-// Première vérification 5s après l'ouverture (le temps que tout se charge), silencieuse si rien de neuf,
-// puis toutes les 15 minutes en arrière-plan (le fichier GitHub ne change que toutes les 3h, mais
-// vérifier plus souvent permet de détecter la mise à jour peu de temps après qu'elle arrive).
-setTimeout(() => syncAutoRadarGithub(true), 5000);
-setInterval(() => syncAutoRadarGithub(true), 15 * 60 * 1000);
+// Synchro automatique désactivée à la demande d'Armand (le message d'erreur récurrent
+// sur mobile n'apportait rien) — utilise le bouton manuel "Importer depuis le radar".
 
 // ---------- Météo marine (Open-Meteo, données réelles, gratuit, sans clé) ----------
 const WMO_LABELS = {
