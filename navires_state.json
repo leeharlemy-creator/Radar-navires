@@ -20,11 +20,6 @@
       "eta_brut": "2026-09-03 01:36",
       "section": "in_port"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-04 07:50",
-      "section": "expected"
-    },
     "538005069": {
       "nom": "Rig Andromeda",
       "eta_brut": "2026-09-04 21:43",
@@ -52,7 +47,7 @@
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 18:21",
+      "eta_brut": "2026-09-07 18:41",
       "section": "expected"
     },
     "538009604": {
@@ -62,7 +57,32 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 07:05",
+      "eta_brut": "2026-09-11 06:30",
+      "section": "expected"
+    },
+    "636093151": {
+      "nom": "Hanover Express",
+      "eta_brut": "2026-09-11 20:07",
+      "section": "expected"
+    },
+    "314001086": {
+      "nom": "Iskandar",
+      "eta_brut": "2026-09-11 21:03",
+      "section": "expected"
+    },
+    "376108000": {
+      "nom": "Lahama",
+      "eta_brut": "2026-09-04 07:51",
+      "section": "expected"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-04 07:47",
+      "section": "expected"
+    },
+    "375455000": {
+      "nom": "Starling",
+      "eta_brut": "2026-09-04 06:52",
       "section": "expected"
     },
     "677044800": {
@@ -78,21 +98,6 @@
     "311001644": {
       "nom": "Prince Of Seas",
       "eta_brut": "2026-09-04 04:00",
-      "section": "expected"
-    },
-    "376108000": {
-      "nom": "Lahama",
-      "eta_brut": "2026-09-04 00:23",
-      "section": "expected"
-    },
-    "376316000": {
-      "nom": "Oubangui",
-      "eta_brut": "2026-09-04 00:19",
-      "section": "expected"
-    },
-    "247275400": {
-      "nom": "Grande Benin",
-      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -137,14 +142,14 @@
       "eta_brut": "2026-09-03 06:04",
       "section": "in_port"
     },
+    "228027900": {
+      "nom": "Mn Calao",
+      "eta_brut": "2026-09-04 07:05",
+      "section": "in_port"
+    },
     "314001053": {
       "nom": "Bafix",
       "eta_brut": "2026-09-03 21:25",
-      "section": "in_port"
-    },
-    "311001635": {
-      "nom": "Orange Stream",
-      "eta_brut": "2026-09-02 07:16",
       "section": "in_port"
     },
     "370090000": {
@@ -179,7 +184,7 @@
     },
     "212366000": {
       "nom": "Handy Stranger",
-      "eta_brut": "2026-09-06 05:26",
+      "eta_brut": "2026-09-06 04:30",
       "section": "expected"
     },
     "563107400": {
@@ -189,7 +194,7 @@
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-06 20:05",
+      "eta_brut": "2026-09-06 19:51",
       "section": "expected"
     },
     "311000873": {
@@ -229,11 +234,6 @@
     },
     "352898752": {
       "nom": "Ab Paloma",
-      "eta_brut": "2026-09-03 09:01",
-      "section": "expected"
-    },
-    "636024624": {
-      "nom": "Star Candy",
       "eta_brut": "",
       "section": "expected"
     }
