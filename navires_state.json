@@ -22,17 +22,17 @@
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-05 23:49",
+      "eta_brut": "2026-09-05 23:57",
       "section": "expected"
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 15:05",
+      "eta_brut": "2026-09-07 15:07",
       "section": "expected"
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-08 02:54",
+      "eta_brut": "2026-09-08 12:37",
       "section": "expected"
     },
     "538009604": {
@@ -42,12 +42,12 @@
     },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 09:13",
+      "eta_brut": "2026-09-10 09:02",
       "section": "expected"
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 21:41",
+      "eta_brut": "2026-09-11 02:06",
       "section": "expected"
     },
     "314001086": {
@@ -142,9 +142,9 @@
       "eta_brut": "2026-09-04 21:37",
       "section": "in_port"
     },
-    "241267000": {
-      "nom": "Corinna",
-      "eta_brut": "2026-09-05 00:19",
+    "246704000": {
+      "nom": "Ual Bodewes",
+      "eta_brut": "2026-09-05 11:29",
       "section": "expected"
     },
     "305560000": {
@@ -154,7 +154,7 @@
     },
     "212366000": {
       "nom": "Handy Stranger",
-      "eta_brut": "2026-09-06 04:39",
+      "eta_brut": "2026-09-06 05:13",
       "section": "expected"
     },
     "563107400": {
@@ -179,17 +179,17 @@
     },
     "636018240": {
       "nom": "Msc Denmark Vi",
-      "eta_brut": "2026-09-07 09:12",
+      "eta_brut": "2026-09-07 08:48",
+      "section": "expected"
+    },
+    "636017239": {
+      "nom": "Msc Spring Iii",
+      "eta_brut": "2026-09-07 08:57",
       "section": "expected"
     },
     "247091500": {
       "nom": "Grande San Paolo",
-      "eta_brut": "2026-09-07 19:24",
-      "section": "expected"
-    },
-    "352006169": {
-      "nom": "Fn Ocean",
-      "eta_brut": "2026-09-07 21:58",
+      "eta_brut": "2026-09-07 17:14",
       "section": "expected"
     },
     "309841000": {
