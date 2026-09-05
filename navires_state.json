@@ -1,10 +1,5 @@
 {
   "Pointe-Noire": {
-    "352004477": {
-      "nom": "Yc Fortitude",
-      "eta_brut": "2026-09-04 06:52",
-      "section": "in_port"
-    },
     "352006046": {
       "nom": "Ab Bonita",
       "eta_brut": "2026-09-03 17:36",
@@ -27,17 +22,17 @@
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-06 00:23",
+      "eta_brut": "2026-09-05 23:49",
       "section": "expected"
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 15:38",
+      "eta_brut": "2026-09-07 15:05",
       "section": "expected"
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-07 22:54",
+      "eta_brut": "2026-09-08 02:54",
       "section": "expected"
     },
     "538009604": {
@@ -47,17 +42,32 @@
     },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 09:02",
+      "eta_brut": "2026-09-10 09:13",
       "section": "expected"
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 13:39",
+      "eta_brut": "2026-09-10 21:41",
       "section": "expected"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 09:40",
+      "eta_brut": "2026-09-11 13:18",
+      "section": "expected"
+    },
+    "376316000": {
+      "nom": "Oubangui",
+      "eta_brut": "2026-09-05 01:11",
+      "section": "expected"
+    },
+    "577018000": {
+      "nom": "Annis",
+      "eta_brut": "2026-09-05 00:28",
+      "section": "expected"
+    },
+    "352004477": {
+      "nom": "Yc Fortitude",
+      "eta_brut": "2026-09-05 00:27",
       "section": "expected"
     },
     "615404000": {
@@ -75,23 +85,8 @@
       "eta_brut": "2026-09-04 19:20",
       "section": "expected"
     },
-    "376316000": {
-      "nom": "Oubangui",
-      "eta_brut": "2026-09-04 19:15",
-      "section": "expected"
-    },
     "412525000": {
       "nom": "Jun Hai 2",
-      "eta_brut": "2026-09-04 18:59",
-      "section": "expected"
-    },
-    "375455000": {
-      "nom": "Starling",
-      "eta_brut": "2026-09-04 18:49",
-      "section": "expected"
-    },
-    "566961000": {
-      "nom": "Apl Mexico City",
       "eta_brut": "",
       "section": "expected"
     }
@@ -142,49 +137,34 @@
       "eta_brut": "2026-09-04 11:04",
       "section": "in_port"
     },
-    "311001635": {
-      "nom": "Orange Stream",
-      "eta_brut": "2026-09-02 07:16",
+    "563229800": {
+      "nom": "Cameroun Express",
+      "eta_brut": "2026-09-04 21:37",
       "section": "in_port"
-    },
-    "228459700": {
-      "nom": "Cma Cgm Laguna",
-      "eta_brut": "2026-09-04 20:56",
-      "section": "expected"
-    },
-    "215965000": {
-      "nom": "Cma Cgm C Colomb",
-      "eta_brut": "2026-09-04 22:53",
-      "section": "expected"
     },
     "241267000": {
       "nom": "Corinna",
       "eta_brut": "2026-09-05 00:19",
       "section": "expected"
     },
-    "246704000": {
-      "nom": "Ual Bodewes",
-      "eta_brut": "2026-09-05 07:21",
-      "section": "expected"
-    },
     "305560000": {
       "nom": "Ual Brazil",
-      "eta_brut": "2026-09-05 20:40",
+      "eta_brut": "2026-09-05 19:59",
       "section": "expected"
     },
     "212366000": {
       "nom": "Handy Stranger",
-      "eta_brut": "2026-09-06 05:06",
+      "eta_brut": "2026-09-06 04:39",
       "section": "expected"
     },
     "563107400": {
       "nom": "Kn Fortune",
-      "eta_brut": "2026-09-06 13:59",
+      "eta_brut": "2026-09-06 14:12",
       "section": "expected"
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-06 19:38",
+      "eta_brut": "2026-09-06 19:01",
       "section": "expected"
     },
     "636022782": {
@@ -195,6 +175,21 @@
     "311000873": {
       "nom": "Rt Champion",
       "eta_brut": "2026-09-06 23:30",
+      "section": "expected"
+    },
+    "636018240": {
+      "nom": "Msc Denmark Vi",
+      "eta_brut": "2026-09-07 09:12",
+      "section": "expected"
+    },
+    "247091500": {
+      "nom": "Grande San Paolo",
+      "eta_brut": "2026-09-07 19:24",
+      "section": "expected"
+    },
+    "352006169": {
+      "nom": "Fn Ocean",
+      "eta_brut": "2026-09-07 21:58",
       "section": "expected"
     },
     "309841000": {
@@ -230,11 +225,6 @@
     "255806005": {
       "nom": "Msc India",
       "eta_brut": "2026-09-04 11:04",
-      "section": "expected"
-    },
-    "354738000": {
-      "nom": "Tan Binh 257",
-      "eta_brut": "",
       "section": "expected"
     }
   }
