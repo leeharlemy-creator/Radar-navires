@@ -15,34 +15,44 @@
       "eta_brut": "2026-09-05 11:48",
       "section": "in_port"
     },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-06 05:39",
+      "section": "expected"
+    },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 15:25",
+      "eta_brut": "2026-09-07 15:23",
       "section": "expected"
     },
     "255805868": {
       "nom": "Msc Desiree",
-      "eta_brut": "2026-09-08 13:33",
+      "eta_brut": "2026-09-08 15:56",
+      "section": "expected"
+    },
+    "636024601": {
+      "nom": "Msc Kerry Vii",
+      "eta_brut": "2026-09-08 22:19",
       "section": "expected"
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-09 06:33",
+      "eta_brut": "2026-09-09 10:04",
       "section": "expected"
     },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 00:37",
+      "eta_brut": "2026-09-10 00:47",
       "section": "expected"
     },
     "538009604": {
       "nom": "Boston",
-      "eta_brut": "2026-09-10 05:08",
+      "eta_brut": "2026-09-10 05:01",
       "section": "expected"
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 00:27",
+      "eta_brut": "2026-09-11 00:16",
       "section": "expected"
     },
     "314001086": {
@@ -52,27 +62,42 @@
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-12 09:02",
+      "eta_brut": "2026-09-11 18:29",
       "section": "expected"
     },
-    "677044800": {
-      "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-05 14:43",
+    "377319000": {
+      "nom": "M Y Unica",
+      "eta_brut": "2026-09-05 18:28",
       "section": "expected"
     },
-    "352005649": {
-      "nom": "Oban",
-      "eta_brut": "2026-09-05 10:04",
+    "229556000": {
+      "nom": "Megalopolis",
+      "eta_brut": "2026-09-05 18:15",
       "section": "expected"
     },
-    "311001569": {
-      "nom": "Rt Darwin",
-      "eta_brut": "2026-09-05 09:44",
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-05 18:04",
+      "section": "expected"
+    },
+    "209118000": {
+      "nom": "Goteborg",
+      "eta_brut": "2026-09-05 18:03",
+      "section": "expected"
+    },
+    "210639000": {
+      "nom": "Gfs Rhea",
+      "eta_brut": "2026-09-05 17:23",
       "section": "expected"
     },
     "376108000": {
       "nom": "Lahama",
-      "eta_brut": "2026-09-05 09:44",
+      "eta_brut": "2026-09-05 17:04",
+      "section": "expected"
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -127,29 +152,29 @@
       "eta_brut": "2026-09-04 21:37",
       "section": "in_port"
     },
-    "219117000": {
-      "nom": "Maersk Brownsville",
-      "eta_brut": "2026-09-05 15:27",
+    "246704000": {
+      "nom": "Ual Bodewes",
+      "eta_brut": "2026-09-05 18:20",
       "section": "expected"
     },
-    "228459700": {
-      "nom": "Cma Cgm Laguna",
-      "eta_brut": "2026-09-05 16:04",
-      "section": "expected"
-    },
-    "229550000": {
-      "nom": "Seadream",
-      "eta_brut": "2026-09-05 17:51",
+    "636021428": {
+      "nom": "Nordic Incheon",
+      "eta_brut": "2026-09-05 18:32",
       "section": "expected"
     },
     "305560000": {
       "nom": "Ual Brazil",
-      "eta_brut": "2026-09-05 18:43",
+      "eta_brut": "2026-09-05 19:20",
+      "section": "expected"
+    },
+    "228459700": {
+      "nom": "Cma Cgm Laguna",
+      "eta_brut": "2026-09-05 20:13",
       "section": "expected"
     },
     "212366000": {
       "nom": "Handy Stranger",
-      "eta_brut": "2026-09-06 04:12",
+      "eta_brut": "2026-09-06 03:55",
       "section": "expected"
     },
     "563107400": {
@@ -159,7 +184,7 @@
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-06 18:15",
+      "eta_brut": "2026-09-06 18:03",
       "section": "expected"
     },
     "636022782": {
@@ -175,6 +200,21 @@
     "538009521": {
       "nom": "Aegean Spirit",
       "eta_brut": "2026-09-07 08:53",
+      "section": "expected"
+    },
+    "636021302": {
+      "nom": "Msc Georgia Ii",
+      "eta_brut": "2026-09-05 15:37",
+      "section": "expected"
+    },
+    "229282000": {
+      "nom": "Cma Cgm Savannah",
+      "eta_brut": "2026-09-05 15:21",
+      "section": "expected"
+    },
+    "255806005": {
+      "nom": "Msc India",
+      "eta_brut": "2026-09-05 13:01",
       "section": "expected"
     },
     "636024905": {
@@ -200,21 +240,6 @@
     "376322000": {
       "nom": "Albireo",
       "eta_brut": "2026-09-04 21:37",
-      "section": "expected"
-    },
-    "309841000": {
-      "nom": "Baltic Pearl",
-      "eta_brut": "2026-09-04 17:57",
-      "section": "expected"
-    },
-    "228027900": {
-      "nom": "Mn Calao",
-      "eta_brut": "2026-09-04 16:01",
-      "section": "expected"
-    },
-    "563266100": {
-      "nom": "Navig8 Universe",
-      "eta_brut": "",
       "section": "expected"
     }
   }
