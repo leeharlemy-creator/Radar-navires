@@ -10,14 +10,9 @@
       "eta_brut": "2026-09-04 19:35",
       "section": "in_port"
     },
-    "563266900": {
-      "nom": "Joseph",
-      "eta_brut": "2026-09-05 11:48",
-      "section": "in_port"
-    },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 18:48",
+      "eta_brut": "2026-09-07 19:35",
       "section": "expected"
     },
     "255805868": {
@@ -25,14 +20,14 @@
       "eta_brut": "2026-09-08 15:56",
       "section": "expected"
     },
-    "256521000": {
-      "nom": "Endo Ponente",
-      "eta_brut": "2026-09-09 11:06",
-      "section": "expected"
-    },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 01:26",
+      "eta_brut": "2026-09-10 01:12",
+      "section": "expected"
+    },
+    "256521000": {
+      "nom": "Endo Ponente",
+      "eta_brut": "2026-09-10 04:35",
       "section": "expected"
     },
     "538009604": {
@@ -42,17 +37,27 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 01:16",
+      "eta_brut": "2026-09-11 03:48",
       "section": "expected"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 10:07",
+      "eta_brut": "2026-09-11 11:04",
       "section": "expected"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-12 01:15",
+      "eta_brut": "2026-09-11 23:31",
+      "section": "expected"
+    },
+    "563266900": {
+      "nom": "Joseph",
+      "eta_brut": "2026-09-06 13:31",
+      "section": "expected"
+    },
+    "376108000": {
+      "nom": "Lahama",
+      "eta_brut": "2026-09-06 12:40",
       "section": "expected"
     },
     "311001558": {
@@ -65,11 +70,6 @@
       "eta_brut": "2026-09-06 09:27",
       "section": "expected"
     },
-    "376108000": {
-      "nom": "Lahama",
-      "eta_brut": "2026-09-06 08:31",
-      "section": "expected"
-    },
     "375418000": {
       "nom": "Sd Wonder",
       "eta_brut": "2026-09-06 07:28",
@@ -77,7 +77,7 @@
     },
     "377319000": {
       "nom": "M Y Unica",
-      "eta_brut": "2026-09-06 06:55",
+      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -132,29 +132,29 @@
       "eta_brut": "2026-09-03 22:25",
       "section": "in_port"
     },
-    "563107400": {
-      "nom": "Kn Fortune",
-      "eta_brut": "2026-09-06 12:50",
-      "section": "expected"
-    },
     "636021428": {
       "nom": "Nordic Incheon",
       "eta_brut": "2026-09-06 15:11",
       "section": "expected"
     },
-    "414199000": {
-      "nom": "Sheng Ji Hai",
-      "eta_brut": "2026-09-06 17:49",
+    "370271000": {
+      "nom": "Msc Soraya",
+      "eta_brut": "2026-09-06 19:15",
       "section": "expected"
     },
     "229550000": {
       "nom": "Seadream",
-      "eta_brut": "2026-09-07 00:31",
+      "eta_brut": "2026-09-06 21:02",
+      "section": "expected"
+    },
+    "414199000": {
+      "nom": "Sheng Ji Hai",
+      "eta_brut": "2026-09-06 22:36",
       "section": "expected"
     },
     "538009521": {
       "nom": "Aegean Spirit",
-      "eta_brut": "2026-09-07 19:35",
+      "eta_brut": "2026-09-07 20:57",
       "section": "expected"
     },
     "247091500": {
@@ -167,19 +167,24 @@
       "eta_brut": "2026-09-07 21:58",
       "section": "expected"
     },
-    "636022782": {
-      "nom": "Xin Zhi Sea",
-      "eta_brut": "2026-09-08 04:24",
-      "section": "expected"
-    },
     "636013073": {
       "nom": "Costa Rican Star",
-      "eta_brut": "2026-09-08 13:17",
+      "eta_brut": "2026-09-08 13:21",
+      "section": "expected"
+    },
+    "636022782": {
+      "nom": "Xin Zhi Sea",
+      "eta_brut": "2026-09-08 13:27",
       "section": "expected"
     },
     "352004718": {
       "nom": "Super Tomiyasu",
-      "eta_brut": "2026-09-10 08:07",
+      "eta_brut": "2026-09-10 08:54",
+      "section": "expected"
+    },
+    "636024905": {
+      "nom": "Msc Esha Iii",
+      "eta_brut": "2026-09-06 11:41",
       "section": "expected"
     },
     "209846000": {
@@ -214,11 +219,6 @@
     },
     "229282000": {
       "nom": "Cma Cgm Savannah",
-      "eta_brut": "2026-09-05 15:21",
-      "section": "expected"
-    },
-    "255806005": {
-      "nom": "Msc India",
       "eta_brut": "",
       "section": "expected"
     }
