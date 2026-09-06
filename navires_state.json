@@ -17,7 +17,7 @@
     },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 17:50",
+      "eta_brut": "2026-09-07 16:23",
       "section": "expected"
     },
     "255805868": {
@@ -27,7 +27,7 @@
     },
     "636024601": {
       "nom": "Msc Kerry Vii",
-      "eta_brut": "2026-09-09 03:09",
+      "eta_brut": "2026-09-09 09:25",
       "section": "expected"
     },
     "256521000": {
@@ -35,34 +35,44 @@
       "eta_brut": "2026-09-09 11:06",
       "section": "expected"
     },
+    "538009604": {
+      "nom": "Boston",
+      "eta_brut": "2026-09-10 01:08",
+      "section": "expected"
+    },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 01:45",
+      "eta_brut": "2026-09-10 01:24",
       "section": "expected"
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 05:01",
+      "eta_brut": "2026-09-11 08:12",
       "section": "expected"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 06:30",
+      "eta_brut": "2026-09-11 08:38",
       "section": "expected"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-11 16:17",
+      "eta_brut": "2026-09-11 17:45",
       "section": "expected"
     },
     "311001569": {
       "nom": "Rt Darwin",
-      "eta_brut": "2026-09-05 20:19",
+      "eta_brut": "2026-09-06 03:32",
+      "section": "expected"
+    },
+    "311000872": {
+      "nom": "Rt Tasman",
+      "eta_brut": "2026-09-06 03:16",
       "section": "expected"
     },
     "377319000": {
       "nom": "M Y Unica",
-      "eta_brut": "2026-09-05 19:35",
+      "eta_brut": "2026-09-06 00:47",
       "section": "expected"
     },
     "229556000": {
@@ -77,21 +87,11 @@
     },
     "209118000": {
       "nom": "Goteborg",
-      "eta_brut": "2026-09-05 18:03",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-05 17:40",
+      "eta_brut": "",
       "section": "expected"
     }
   },
   "Abidjan": {
-    "564538000": {
-      "nom": "Viyada Naree",
-      "eta_brut": "2026-08-30 18:48",
-      "section": "in_port"
-    },
     "255806502": {
       "nom": "Msc Siya B",
       "eta_brut": "2026-09-05 11:49",
@@ -137,6 +137,11 @@
       "eta_brut": "2026-09-04 11:04",
       "section": "in_port"
     },
+    "563229800": {
+      "nom": "Cameroun Express",
+      "eta_brut": "2026-09-04 21:37",
+      "section": "in_port"
+    },
     "212366000": {
       "nom": "Handy Stranger",
       "eta_brut": "2026-09-06 03:55",
@@ -149,7 +154,7 @@
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-06 17:40",
+      "eta_brut": "2026-09-06 17:39",
       "section": "expected"
     },
     "636022782": {
@@ -184,7 +189,7 @@
     },
     "352004718": {
       "nom": "Super Tomiyasu",
-      "eta_brut": "2026-09-10 10:35",
+      "eta_brut": "2026-09-10 10:55",
       "section": "expected"
     },
     "352898752": {
