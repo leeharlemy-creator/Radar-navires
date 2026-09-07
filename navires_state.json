@@ -20,21 +20,6 @@
       "eta_brut": "2026-09-03 17:36",
       "section": "in_port"
     },
-    "636016702": {
-      "nom": "Msc Oak F",
-      "eta_brut": "2026-09-07 19:48",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-08 01:16",
-      "section": "expected"
-    },
-    "538005069": {
-      "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-08 08:56",
-      "section": "expected"
-    },
     "538009604": {
       "nom": "Boston",
       "eta_brut": "2026-09-10 09:28",
@@ -42,7 +27,7 @@
     },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 13:33",
+      "eta_brut": "2026-09-10 12:21",
       "section": "expected"
     },
     "256521000": {
@@ -52,27 +37,37 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 22:41",
+      "eta_brut": "2026-09-10 23:04",
       "section": "expected"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 17:33",
+      "eta_brut": "2026-09-11 17:18",
       "section": "expected"
     },
     "636020499": {
       "nom": "Msc Vancouver",
-      "eta_brut": "2026-09-12 23:10",
+      "eta_brut": "2026-09-12 18:58",
       "section": "expected"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-12 23:39",
+      "eta_brut": "2026-09-12 21:12",
+      "section": "expected"
+    },
+    "375772000": {
+      "nom": "Sili Melen",
+      "eta_brut": "2026-09-07 18:40",
       "section": "expected"
     },
     "377319000": {
       "nom": "M Y Unica",
       "eta_brut": "2026-09-07 18:04",
+      "section": "expected"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-07 17:56",
       "section": "expected"
     },
     "311001558": {
@@ -88,11 +83,6 @@
     "311000872": {
       "nom": "Rt Tasman",
       "eta_brut": "2026-09-07 17:24",
-      "section": "expected"
-    },
-    "375772000": {
-      "nom": "Sili Melen",
-      "eta_brut": "2026-09-07 16:59",
       "section": "expected"
     }
   },
@@ -147,54 +137,64 @@
       "eta_brut": "2026-09-07 00:53",
       "section": "in_port"
     },
-    "229550000": {
-      "nom": "Seadream",
-      "eta_brut": "2026-09-07 18:18",
-      "section": "expected"
-    },
-    "538009521": {
-      "nom": "Aegean Spirit",
-      "eta_brut": "2026-09-07 19:33",
-      "section": "expected"
-    },
-    "228459700": {
-      "nom": "Cma Cgm Laguna",
-      "eta_brut": "2026-09-07 20:33",
-      "section": "expected"
-    },
     "352006169": {
       "nom": "Fn Ocean",
       "eta_brut": "2026-09-07 21:58",
       "section": "expected"
     },
-    "247091500": {
-      "nom": "Grande San Paolo",
-      "eta_brut": "2026-09-08 05:30",
-      "section": "expected"
-    },
     "636013073": {
       "nom": "Costa Rican Star",
-      "eta_brut": "2026-09-08 11:36",
+      "eta_brut": "2026-09-08 10:56",
+      "section": "expected"
+    },
+    "247091500": {
+      "nom": "Grande San Paolo",
+      "eta_brut": "2026-09-08 12:11",
       "section": "expected"
     },
     "636017239": {
       "nom": "Msc Spring Iii",
-      "eta_brut": "2026-09-08 19:20",
+      "eta_brut": "2026-09-08 20:07",
       "section": "expected"
     },
     "636014241": {
       "nom": "Cote D Ivoirian Star",
-      "eta_brut": "2026-09-09 03:31",
+      "eta_brut": "2026-09-09 03:19",
       "section": "expected"
     },
     "352004718": {
       "nom": "Super Tomiyasu",
-      "eta_brut": "2026-09-10 08:11",
+      "eta_brut": "2026-09-10 08:25",
+      "section": "expected"
+    },
+    "352005433": {
+      "nom": "Summer Queen",
+      "eta_brut": "2026-09-11 08:19",
       "section": "expected"
     },
     "311000873": {
       "nom": "Rt Champion",
       "eta_brut": "2026-09-11 13:45",
+      "section": "expected"
+    },
+    "636023747": {
+      "nom": "Condor",
+      "eta_brut": "2026-09-12 21:56",
+      "section": "expected"
+    },
+    "636019639": {
+      "nom": "Bao Express",
+      "eta_brut": "2026-09-13 19:15",
+      "section": "expected"
+    },
+    "370271000": {
+      "nom": "Msc Soraya",
+      "eta_brut": "2026-09-07 20:05",
+      "section": "expected"
+    },
+    "255806502": {
+      "nom": "Msc Siya B",
+      "eta_brut": "2026-09-07 16:53",
       "section": "expected"
     },
     "247304200": {
@@ -220,11 +220,6 @@
     "636019606": {
       "nom": "Vivaldi",
       "eta_brut": "2026-09-07 08:44",
-      "section": "expected"
-    },
-    "305560000": {
-      "nom": "Ual Brazil",
-      "eta_brut": "2026-09-07 06:01",
       "section": "expected"
     }
   }
