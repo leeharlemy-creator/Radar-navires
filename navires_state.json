@@ -27,7 +27,7 @@
     },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 12:03",
+      "eta_brut": "2026-09-10 12:08",
       "section": "expected"
     },
     "256521000": {
@@ -37,22 +37,22 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-10 22:28",
+      "eta_brut": "2026-09-10 23:19",
       "section": "expected"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 17:16",
+      "eta_brut": "2026-09-11 16:19",
       "section": "expected"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-12 19:23",
+      "eta_brut": "2026-09-12 21:37",
       "section": "expected"
     },
     "636020499": {
       "nom": "Msc Vancouver",
-      "eta_brut": "2026-09-12 21:29",
+      "eta_brut": "2026-09-13 02:51",
       "section": "expected"
     },
     "615404000": {
@@ -144,32 +144,32 @@
     },
     "636013073": {
       "nom": "Costa Rican Star",
-      "eta_brut": "2026-09-08 11:12",
+      "eta_brut": "2026-09-08 10:54",
       "section": "expected"
     },
     "247091500": {
       "nom": "Grande San Paolo",
-      "eta_brut": "2026-09-08 11:44",
+      "eta_brut": "2026-09-08 11:41",
       "section": "expected"
     },
     "636017239": {
       "nom": "Msc Spring Iii",
-      "eta_brut": "2026-09-08 22:38",
+      "eta_brut": "2026-09-08 23:21",
       "section": "expected"
     },
     "636014241": {
       "nom": "Cote D Ivoirian Star",
-      "eta_brut": "2026-09-09 04:23",
+      "eta_brut": "2026-09-09 04:35",
       "section": "expected"
     },
     "352004718": {
       "nom": "Super Tomiyasu",
-      "eta_brut": "2026-09-10 08:34",
+      "eta_brut": "2026-09-10 08:07",
       "section": "expected"
     },
     "352005433": {
       "nom": "Summer Queen",
-      "eta_brut": "2026-09-11 11:54",
+      "eta_brut": "2026-09-11 10:18",
       "section": "expected"
     },
     "311000873": {
@@ -179,17 +179,17 @@
     },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-12 17:45",
-      "section": "expected"
-    },
-    "636023747": {
-      "nom": "Condor",
-      "eta_brut": "2026-09-12 21:12",
+      "eta_brut": "2026-09-12 13:20",
       "section": "expected"
     },
     "636019639": {
       "nom": "Bao Express",
-      "eta_brut": "2026-09-13 19:15",
+      "eta_brut": "2026-09-13 15:13",
+      "section": "expected"
+    },
+    "314033000": {
+      "nom": "Metsovo",
+      "eta_brut": "2026-09-14 23:31",
       "section": "expected"
     },
     "370271000": {
