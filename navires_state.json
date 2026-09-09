@@ -15,11 +15,6 @@
       "eta_brut": "2026-09-09 15:20",
       "section": "in_port"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-09 19:33",
-      "section": "expected"
-    },
     "311000463": {
       "nom": "Fugro Venturer",
       "eta_brut": "2026-09-10 05:05",
@@ -27,7 +22,7 @@
     },
     "352335000": {
       "nom": "Msc Marianna",
-      "eta_brut": "2026-09-10 11:00",
+      "eta_brut": "2026-09-10 10:51",
       "section": "expected"
     },
     "256521000": {
@@ -37,32 +32,47 @@
     },
     "636015447": {
       "nom": "Eastern Gardenia",
-      "eta_brut": "2026-09-11 00:01",
+      "eta_brut": "2026-09-10 23:38",
       "section": "expected"
     },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 16:04",
+      "eta_brut": "2026-09-11 15:54",
+      "section": "expected"
+    },
+    "210639000": {
+      "nom": "Gfs Rhea",
+      "eta_brut": "2026-09-12 00:32",
       "section": "expected"
     },
     "538009604": {
       "nom": "Boston",
-      "eta_brut": "2026-09-11 21:37",
+      "eta_brut": "2026-09-12 05:53",
       "section": "expected"
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-13 01:42",
+      "eta_brut": "2026-09-13 01:58",
       "section": "expected"
     },
     "636020499": {
       "nom": "Msc Vancouver",
-      "eta_brut": "2026-09-13 13:08",
+      "eta_brut": "2026-09-13 10:58",
       "section": "expected"
     },
     "563325900": {
       "nom": "Maersk Frio",
-      "eta_brut": "2026-09-13 21:12",
+      "eta_brut": "2026-09-13 22:30",
+      "section": "expected"
+    },
+    "375772000": {
+      "nom": "Sili Melen",
+      "eta_brut": "2026-09-09 19:52",
+      "section": "expected"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-09 19:36",
       "section": "expected"
     },
     "376108000": {
@@ -82,7 +92,7 @@
     },
     "355970000": {
       "nom": "Surfer19006",
-      "eta_brut": "2026-09-09 17:00",
+      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -132,29 +142,29 @@
       "eta_brut": "2026-09-07 00:53",
       "section": "in_port"
     },
-    "352005985": {
-      "nom": "Harengus",
-      "eta_brut": "2026-09-03 22:25",
+    "309841000": {
+      "nom": "Baltic Pearl",
+      "eta_brut": "2026-09-04 18:09",
       "section": "in_port"
     },
     "229550000": {
       "nom": "Seadream",
-      "eta_brut": "2026-09-09 23:36",
+      "eta_brut": "2026-09-10 01:33",
       "section": "expected"
     },
     "352004718": {
       "nom": "Super Tomiyasu",
-      "eta_brut": "2026-09-10 10:15",
+      "eta_brut": "2026-09-10 10:58",
       "section": "expected"
     },
     "352005433": {
       "nom": "Summer Queen",
-      "eta_brut": "2026-09-11 06:53",
+      "eta_brut": "2026-09-11 07:01",
       "section": "expected"
     },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-12 10:30",
+      "eta_brut": "2026-09-12 12:11",
       "section": "expected"
     },
     "311000873": {
@@ -167,24 +177,34 @@
       "eta_brut": "2026-09-13 11:56",
       "section": "expected"
     },
-    "249383000": {
-      "nom": "Bc Zoe",
-      "eta_brut": "2026-09-13 21:19",
-      "section": "expected"
-    },
     "314033000": {
       "nom": "Metsovo",
-      "eta_brut": "2026-09-14 14:07",
+      "eta_brut": "2026-09-14 11:48",
       "section": "expected"
     },
     "563202300": {
       "nom": "Ea Chara",
-      "eta_brut": "2026-09-15 06:45",
+      "eta_brut": "2026-09-15 07:19",
       "section": "expected"
     },
     "341816001": {
       "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 09:38",
+      "eta_brut": "2026-09-15 08:51",
+      "section": "expected"
+    },
+    "255917344": {
+      "nom": "Stella Theresa",
+      "eta_brut": "2026-09-15 13:30",
+      "section": "expected"
+    },
+    "352005985": {
+      "nom": "Harengus",
+      "eta_brut": "2026-09-09 19:45",
+      "section": "expected"
+    },
+    "636013073": {
+      "nom": "Costa Rican Star",
+      "eta_brut": "2026-09-09 18:17",
       "section": "expected"
     },
     "256214000": {
@@ -214,21 +234,6 @@
     },
     "376166000": {
       "nom": "Vb Impala",
-      "eta_brut": "2026-09-09 00:53",
-      "section": "expected"
-    },
-    "373042000": {
-      "nom": "Lady Ayse",
-      "eta_brut": "2026-09-08 23:56",
-      "section": "expected"
-    },
-    "636024624": {
-      "nom": "Star Candy",
-      "eta_brut": "2026-09-08 22:13",
-      "section": "expected"
-    },
-    "311001635": {
-      "nom": "Orange Stream",
       "eta_brut": "",
       "section": "expected"
     }
