@@ -15,19 +15,14 @@
       "eta_brut": "2026-09-10 23:06",
       "section": "in_port"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-11 19:49",
-      "section": "expected"
-    },
     "209118000": {
       "nom": "Goteborg",
-      "eta_brut": "2026-09-12 01:54",
+      "eta_brut": "2026-09-12 02:54",
       "section": "expected"
     },
-    "311000463": {
-      "nom": "Fugro Venturer",
-      "eta_brut": "2026-09-12 03:59",
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-12 04:31",
       "section": "expected"
     },
     "210639000": {
@@ -37,12 +32,12 @@
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-13 05:34",
+      "eta_brut": "2026-09-13 05:32",
       "section": "expected"
     },
     "636020499": {
       "nom": "Msc Vancouver",
-      "eta_brut": "2026-09-13 10:28",
+      "eta_brut": "2026-09-13 10:55",
       "section": "expected"
     },
     "563325900": {
@@ -52,12 +47,12 @@
     },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 03:52",
+      "eta_brut": "2026-09-18 02:19",
       "section": "expected"
     },
     "563076300": {
       "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-18 22:11",
+      "eta_brut": "2026-09-18 16:13",
       "section": "expected"
     },
     "375455000": {
@@ -95,11 +90,6 @@
     "636017173": {
       "nom": "Msc Catherine Vi",
       "eta_brut": "2026-09-10 18:09",
-      "section": "in_port"
-    },
-    "636021428": {
-      "nom": "Nordic Incheon",
-      "eta_brut": "2026-09-07 07:53",
       "section": "in_port"
     },
     "636015758": {
@@ -144,42 +134,52 @@
     },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-12 13:11",
+      "eta_brut": "2026-09-12 13:04",
       "section": "expected"
     },
     "636019639": {
       "nom": "Bao Express",
-      "eta_brut": "2026-09-13 09:17",
+      "eta_brut": "2026-09-13 09:10",
       "section": "expected"
     },
     "636022782": {
       "nom": "Xin Zhi Sea",
-      "eta_brut": "2026-09-14 07:58",
+      "eta_brut": "2026-09-14 09:37",
       "section": "expected"
     },
     "314033000": {
       "nom": "Metsovo",
-      "eta_brut": "2026-09-14 15:10",
+      "eta_brut": "2026-09-14 14:29",
       "section": "expected"
     },
     "354092000": {
       "nom": "Msc Laura",
-      "eta_brut": "2026-09-15 01:17",
-      "section": "expected"
-    },
-    "341816001": {
-      "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 07:42",
+      "eta_brut": "2026-09-14 23:05",
       "section": "expected"
     },
     "563202300": {
       "nom": "Ea Chara",
-      "eta_brut": "2026-09-15 07:50",
+      "eta_brut": "2026-09-15 08:02",
+      "section": "expected"
+    },
+    "341816001": {
+      "nom": "Captain Rabie",
+      "eta_brut": "2026-09-15 11:20",
       "section": "expected"
     },
     "636013068": {
       "nom": "Caribbean Star",
-      "eta_brut": "2026-09-15 13:52",
+      "eta_brut": "2026-09-15 17:21",
+      "section": "expected"
+    },
+    "636021428": {
+      "nom": "Nordic Incheon",
+      "eta_brut": "2026-09-11 18:25",
+      "section": "expected"
+    },
+    "219608000": {
+      "nom": "Astrid Maersk",
+      "eta_brut": "2026-09-11 17:57",
       "section": "expected"
     },
     "376322000": {
@@ -215,16 +215,6 @@
     "352001918": {
       "nom": "Moudros",
       "eta_brut": "2026-09-11 07:45",
-      "section": "expected"
-    },
-    "636014241": {
-      "nom": "Cote D Ivoirian Star",
-      "eta_brut": "2026-09-11 01:45",
-      "section": "expected"
-    },
-    "538009604": {
-      "nom": "Boston",
-      "eta_brut": "",
       "section": "expected"
     }
   }
