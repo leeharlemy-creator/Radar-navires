@@ -5,9 +5,9 @@
       "eta_brut": "2026-09-09 16:52",
       "section": "in_port"
     },
-    "215922000": {
-      "nom": "Cma Cgm Kribi",
-      "eta_brut": "2026-09-09 15:20",
+    "310760000": {
+      "nom": "Quebec Express",
+      "eta_brut": "2026-09-11 05:44",
       "section": "in_port"
     },
     "636092986": {
@@ -15,9 +15,14 @@
       "eta_brut": "2026-09-10 23:06",
       "section": "in_port"
     },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-11 07:42",
+      "section": "expected"
+    },
     "314001086": {
       "nom": "Iskandar",
-      "eta_brut": "2026-09-11 16:45",
+      "eta_brut": "2026-09-11 17:30",
       "section": "expected"
     },
     "210639000": {
@@ -27,7 +32,7 @@
     },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-13 04:59",
+      "eta_brut": "2026-09-13 04:27",
       "section": "expected"
     },
     "563325900": {
@@ -37,46 +42,36 @@
     },
     "563076300": {
       "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-18 23:02",
+      "eta_brut": "2026-09-18 20:01",
       "section": "expected"
     },
     "310849000": {
       "nom": "Gaslog Italy",
-      "eta_brut": "2026-09-19 16:28",
+      "eta_brut": "2026-09-18 20:16",
       "section": "expected"
     },
-    "615404000": {
-      "nom": "Leketi",
-      "eta_brut": "2026-09-10 23:06",
+    "375772000": {
+      "nom": "Sili Melen",
+      "eta_brut": "2026-09-11 06:43",
+      "section": "expected"
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-11 06:08",
       "section": "expected"
     },
     "376316000": {
       "nom": "Oubangui",
-      "eta_brut": "2026-09-10 22:20",
-      "section": "expected"
-    },
-    "255805855": {
-      "nom": "Msc Chloe",
-      "eta_brut": "2026-09-10 22:16",
-      "section": "expected"
-    },
-    "563379000": {
-      "nom": "X Press Meghna",
-      "eta_brut": "2026-09-10 20:52",
+      "eta_brut": "2026-09-11 05:36",
       "section": "expected"
     },
     "375455000": {
       "nom": "Starling",
-      "eta_brut": "2026-09-10 19:12",
+      "eta_brut": "2026-09-11 04:59",
       "section": "expected"
     },
-    "311000967": {
-      "nom": "Rt Force",
-      "eta_brut": "2026-09-10 19:04",
-      "section": "expected"
-    },
-    "636093108": {
-      "nom": "Douala Express",
+    "215922000": {
+      "nom": "Cma Cgm Kribi",
       "eta_brut": "",
       "section": "expected"
     }
@@ -132,54 +127,54 @@
       "eta_brut": "2026-09-08 16:45",
       "section": "in_port"
     },
-    "352005433": {
-      "nom": "Summer Queen",
-      "eta_brut": "2026-09-11 05:31",
-      "section": "expected"
-    },
     "538009430": {
       "nom": "Team Tombi",
-      "eta_brut": "2026-09-11 23:41",
+      "eta_brut": "2026-09-11 23:35",
       "section": "expected"
     },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-12 12:51",
+      "eta_brut": "2026-09-12 12:28",
       "section": "expected"
     },
     "636019639": {
       "nom": "Bao Express",
-      "eta_brut": "2026-09-13 11:20",
+      "eta_brut": "2026-09-13 13:36",
       "section": "expected"
     },
     "314033000": {
       "nom": "Metsovo",
-      "eta_brut": "2026-09-14 11:37",
+      "eta_brut": "2026-09-14 11:57",
+      "section": "expected"
+    },
+    "352006169": {
+      "nom": "Fn Ocean",
+      "eta_brut": "2026-09-14 18:46",
       "section": "expected"
     },
     "354092000": {
       "nom": "Msc Laura",
-      "eta_brut": "2026-09-14 22:43",
+      "eta_brut": "2026-09-14 20:49",
       "section": "expected"
     },
     "563202300": {
       "nom": "Ea Chara",
-      "eta_brut": "2026-09-15 06:23",
+      "eta_brut": "2026-09-15 06:50",
       "section": "expected"
     },
     "341816001": {
       "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 10:57",
+      "eta_brut": "2026-09-15 11:47",
+      "section": "expected"
+    },
+    "636013068": {
+      "nom": "Caribbean Star",
+      "eta_brut": "2026-09-15 13:04",
       "section": "expected"
     },
     "255917344": {
       "nom": "Stella Theresa",
       "eta_brut": "2026-09-15 15:00",
-      "section": "expected"
-    },
-    "636013068": {
-      "nom": "Caribbean Star",
-      "eta_brut": "2026-09-15 18:01",
       "section": "expected"
     },
     "636014241": {
