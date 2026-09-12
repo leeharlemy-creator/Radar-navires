@@ -15,14 +15,9 @@
       "eta_brut": "2026-09-12 03:51",
       "section": "in_port"
     },
-    "538005069": {
-      "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-13 03:58",
-      "section": "expected"
-    },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-13 04:26",
+      "eta_brut": "2026-09-13 04:30",
       "section": "expected"
     },
     "563325900": {
@@ -42,12 +37,12 @@
     },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 09:07",
+      "eta_brut": "2026-09-18 06:31",
       "section": "expected"
     },
     "563076300": {
       "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-18 23:29",
+      "eta_brut": "2026-09-18 23:09",
       "section": "expected"
     },
     "477273600": {
@@ -55,38 +50,43 @@
       "eta_brut": "2026-09-19 09:11",
       "section": "expected"
     },
-    "563103400": {
-      "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-21 11:00",
+    "310849000": {
+      "nom": "Gaslog Italy",
+      "eta_brut": "2026-09-19 10:59",
       "section": "expected"
     },
-    "249744000": {
-      "nom": "Pantherlight",
-      "eta_brut": "2026-09-12 11:51",
+    "563103400": {
+      "nom": "Maersk Amazon",
+      "eta_brut": "2026-09-21 04:46",
+      "section": "expected"
+    },
+    "376108000": {
+      "nom": "Lahama",
+      "eta_brut": "2026-09-12 15:43",
       "section": "expected"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-12 11:27",
+      "eta_brut": "2026-09-12 15:23",
       "section": "expected"
     },
-    "615404000": {
-      "nom": "Leketi",
-      "eta_brut": "2026-09-12 11:23",
+    "412525000": {
+      "nom": "Jun Hai 2",
+      "eta_brut": "2026-09-12 15:04",
       "section": "expected"
     },
-    "376316000": {
-      "nom": "Oubangui",
-      "eta_brut": "2026-09-12 11:19",
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-12 13:47",
       "section": "expected"
     },
-    "636092986": {
-      "nom": "Luanda Express",
-      "eta_brut": "2026-09-12 10:35",
+    "377762000": {
+      "nom": "Baltic Star",
+      "eta_brut": "2026-09-12 13:15",
       "section": "expected"
     },
-    "375772000": {
-      "nom": "Sili Melen",
+    "249744000": {
+      "nom": "Pantherlight",
       "eta_brut": "",
       "section": "expected"
     }
@@ -137,11 +137,6 @@
       "eta_brut": "2026-09-12 02:01",
       "section": "in_port"
     },
-    "563308200": {
-      "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-12 13:18",
-      "section": "expected"
-    },
     "229550000": {
       "nom": "Seadream",
       "eta_brut": "2026-09-12 20:41",
@@ -154,7 +149,7 @@
     },
     "314033000": {
       "nom": "Metsovo",
-      "eta_brut": "2026-09-14 13:03",
+      "eta_brut": "2026-09-14 13:17",
       "section": "expected"
     },
     "354092000": {
@@ -165,11 +160,6 @@
     "563202300": {
       "nom": "Ea Chara",
       "eta_brut": "2026-09-15 02:04",
-      "section": "expected"
-    },
-    "215930000": {
-      "nom": "Cma Cgm Laperouse",
-      "eta_brut": "2026-09-15 08:26",
       "section": "expected"
     },
     "341816001": {
@@ -187,6 +177,31 @@
       "eta_brut": "2026-09-15 18:05",
       "section": "expected"
     },
+    "636013068": {
+      "nom": "Caribbean Star",
+      "eta_brut": "2026-09-15 19:47",
+      "section": "expected"
+    },
+    "311000873": {
+      "nom": "Rt Champion",
+      "eta_brut": "2026-09-16 08:02",
+      "section": "expected"
+    },
+    "352001918": {
+      "nom": "Moudros",
+      "eta_brut": "2026-09-12 13:37",
+      "section": "expected"
+    },
+    "538005193": {
+      "nom": "Bryant",
+      "eta_brut": "2026-09-12 12:41",
+      "section": "expected"
+    },
+    "375617000": {
+      "nom": "Vb Superenzo 10",
+      "eta_brut": "2026-09-12 12:12",
+      "section": "expected"
+    },
     "312235000": {
       "nom": "Icm Nautical Jr 5",
       "eta_brut": "2026-09-12 11:17",
@@ -200,16 +215,6 @@
     "636024012": {
       "nom": "Oris Trinity",
       "eta_brut": "2026-09-12 07:15",
-      "section": "expected"
-    },
-    "371965000": {
-      "nom": "Msxt Artemis",
-      "eta_brut": "2026-09-12 02:01",
-      "section": "expected"
-    },
-    "255806145": {
-      "nom": "Bocs Vision",
-      "eta_brut": "",
       "section": "expected"
     }
   }
