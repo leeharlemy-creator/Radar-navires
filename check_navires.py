@@ -112,18 +112,27 @@ def save_state(state):
 
 
 def send_telegram(message):
+    """Envoie l'alerte Telegram. En cas d'echec (panne reseau, timeout,
+    Telegram indisponible, etc.), on affiche l'erreur mais on NE PLANTE
+    PAS le script : les donnees des navires doivent etre sauvegardees
+    quoi qu'il arrive, pour ne pas re-signaler les memes navires au
+    prochain passage."""
     if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
         print("Telegram non configure - message qui aurait ete envoye :")
         print(message)
         return
-    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
-    r = requests.post(
-        url, data={"chat_id": TELEGRAM_CHAT_ID, "text": message}, timeout=20
-    )
-    if r.status_code != 200:
-        print(f"Erreur envoi Telegram ({r.status_code}) : {r.text}")
-    else:
-        print("Message Telegram envoye avec succes.")
+    try:
+        url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/sendMessage"
+        r = requests.post(
+            url, data={"chat_id": TELEGRAM_CHAT_ID, "text": message}, timeout=25
+        )
+        if r.status_code != 200:
+            print(f"Erreur envoi Telegram ({r.status_code}) : {r.text}")
+        else:
+            print("Message Telegram envoye avec succes.")
+    except requests.exceptions.RequestException as e:
+        print(f"Echec de connexion a Telegram (panne reseau ponctuelle) : {e}")
+        print("Les donnees des navires seront quand meme sauvegardees normalement.")
 
 
 def main():
@@ -157,10 +166,11 @@ def main():
 
     if alerts:
         send_telegram("Radar navires Royal Eagle Control :\n" + "\n".join(alerts))
-        print("Alerte envoyee :", alerts)
+        print("Alerte(s) detectee(s) :", alerts)
     else:
         print("Aucun nouveau navire detecte.")
 
+    # Sauvegarde TOUJOURS effectuee, meme si l'envoi Telegram a echoue.
     save_state(new_state)
 
 
