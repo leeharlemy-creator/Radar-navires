@@ -20,24 +20,24 @@
       "eta_brut": "2026-09-13 20:15",
       "section": "expected"
     },
-    "538009604": {
-      "nom": "Boston",
-      "eta_brut": "2026-09-16 03:41",
-      "section": "expected"
-    },
     "477107100": {
       "nom": "Greentec",
       "eta_brut": "2026-09-16 21:03",
       "section": "expected"
     },
-    "563076300": {
-      "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-19 00:02",
-      "section": "expected"
-    },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-19 03:42",
+      "eta_brut": "2026-09-18 20:21",
+      "section": "expected"
+    },
+    "563076300": {
+      "nom": "Maersk Gironde",
+      "eta_brut": "2026-09-18 23:56",
+      "section": "expected"
+    },
+    "310849000": {
+      "nom": "Gaslog Italy",
+      "eta_brut": "2026-09-19 06:41",
       "section": "expected"
     },
     "477273600": {
@@ -47,37 +47,27 @@
     },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-21 04:54",
+      "eta_brut": "2026-09-21 09:53",
       "section": "expected"
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-21 13:03",
-      "section": "expected"
-    },
-    "412525000": {
-      "nom": "Jun Hai 2",
-      "eta_brut": "2026-09-13 12:36",
+      "eta_brut": "2026-09-21 16:08",
       "section": "expected"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-13 12:03",
+      "eta_brut": "2026-09-13 15:07",
+      "section": "expected"
+    },
+    "412525000": {
+      "nom": "Jun Hai 2",
+      "eta_brut": "2026-09-13 14:44",
       "section": "expected"
     },
     "538005560": {
       "nom": "Desert Oak",
       "eta_brut": "2026-09-13 10:00",
-      "section": "expected"
-    },
-    "376108000": {
-      "nom": "Lahama",
-      "eta_brut": "2026-09-13 08:08",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-13 08:03",
       "section": "expected"
     }
   },
@@ -85,6 +75,11 @@
     "567097000": {
       "nom": "Mookda Naree",
       "eta_brut": "2026-09-08 20:33",
+      "section": "in_port"
+    },
+    "636025427": {
+      "nom": "Aquarama",
+      "eta_brut": "2026-09-13 15:09",
       "section": "in_port"
     },
     "636018603": {
@@ -127,16 +122,6 @@
       "eta_brut": "2026-09-11 07:45",
       "section": "in_port"
     },
-    "352004718": {
-      "nom": "Super Tomiyasu",
-      "eta_brut": "2026-09-13 07:53",
-      "section": "in_port"
-    },
-    "312235000": {
-      "nom": "Icm Nautical Jr 5",
-      "eta_brut": "2026-09-13 15:02",
-      "section": "expected"
-    },
     "229550000": {
       "nom": "Seadream",
       "eta_brut": "2026-09-13 20:07",
@@ -144,42 +129,57 @@
     },
     "314033000": {
       "nom": "Metsovo",
-      "eta_brut": "2026-09-14 10:05",
-      "section": "expected"
-    },
-    "314001039": {
-      "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-14 17:21",
+      "eta_brut": "2026-09-14 11:11",
       "section": "expected"
     },
     "352004607": {
       "nom": "Surville",
-      "eta_brut": "2026-09-14 21:09",
+      "eta_brut": "2026-09-14 19:39",
       "section": "expected"
     },
-    "354092000": {
-      "nom": "Msc Laura",
-      "eta_brut": "2026-09-14 23:43",
+    "314001039": {
+      "nom": "Dsm Ferro",
+      "eta_brut": "2026-09-14 20:47",
       "section": "expected"
     },
     "341816001": {
       "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 07:53",
+      "eta_brut": "2026-09-15 07:52",
       "section": "expected"
     },
     "563202300": {
       "nom": "Ea Chara",
-      "eta_brut": "2026-09-15 08:13",
+      "eta_brut": "2026-09-15 08:09",
       "section": "expected"
     },
     "636013068": {
       "nom": "Caribbean Star",
-      "eta_brut": "2026-09-15 16:45",
+      "eta_brut": "2026-09-15 14:50",
       "section": "expected"
     },
     "255917344": {
       "nom": "Stella Theresa",
       "eta_brut": "2026-09-15 18:05",
+      "section": "expected"
+    },
+    "311000873": {
+      "nom": "Rt Champion",
+      "eta_brut": "2026-09-16 08:02",
+      "section": "expected"
+    },
+    "257308000": {
+      "nom": "Silver Crystal",
+      "eta_brut": "2026-09-17 03:17",
+      "section": "expected"
+    },
+    "312235000": {
+      "nom": "Icm Nautical Jr 5",
+      "eta_brut": "2026-09-13 10:53",
+      "section": "expected"
+    },
+    "352004718": {
+      "nom": "Super Tomiyasu",
+      "eta_brut": "2026-09-13 04:09",
       "section": "expected"
     },
     "373042000": {
@@ -194,11 +194,6 @@
     },
     "636015758": {
       "nom": "Oceanmaster",
-      "eta_brut": "2026-09-12 16:37",
-      "section": "expected"
-    },
-    "538009604": {
-      "nom": "Boston",
       "eta_brut": "",
       "section": "expected"
     }
