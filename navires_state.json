@@ -15,14 +15,9 @@
       "eta_brut": "2026-09-12 03:51",
       "section": "in_port"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-13 04:35",
-      "section": "expected"
-    },
     "636093151": {
       "nom": "Hanover Express",
-      "eta_brut": "2026-09-13 05:08",
+      "eta_brut": "2026-09-13 05:35",
       "section": "expected"
     },
     "563325900": {
@@ -30,19 +25,14 @@
       "eta_brut": "2026-09-13 20:15",
       "section": "expected"
     },
-    "210639000": {
-      "nom": "Gfs Rhea",
-      "eta_brut": "2026-09-14 13:12",
-      "section": "expected"
-    },
     "477107100": {
       "nom": "Greentec",
-      "eta_brut": "2026-09-16 21:48",
+      "eta_brut": "2026-09-16 21:38",
       "section": "expected"
     },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 15:28",
+      "eta_brut": "2026-09-18 18:15",
       "section": "expected"
     },
     "563076300": {
@@ -57,7 +47,7 @@
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-21 15:49",
+      "eta_brut": "2026-09-21 09:24",
       "section": "expected"
     },
     "249250000": {
@@ -88,6 +78,11 @@
     "677044800": {
       "nom": "Volgo Balt 242",
       "eta_brut": "2026-09-12 17:56",
+      "section": "expected"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-12 17:51",
       "section": "expected"
     },
     "376108000": {
@@ -152,14 +147,19 @@
       "eta_brut": "2026-09-13 09:28",
       "section": "expected"
     },
-    "636017239": {
-      "nom": "Msc Spring Iii",
-      "eta_brut": "2026-09-14 01:47",
-      "section": "expected"
-    },
     "314033000": {
       "nom": "Metsovo",
-      "eta_brut": "2026-09-14 11:02",
+      "eta_brut": "2026-09-14 11:23",
+      "section": "expected"
+    },
+    "309841000": {
+      "nom": "Baltic Pearl",
+      "eta_brut": "2026-09-14 16:08",
+      "section": "expected"
+    },
+    "314001039": {
+      "nom": "Dsm Ferro",
+      "eta_brut": "2026-09-14 18:47",
       "section": "expected"
     },
     "354092000": {
@@ -169,7 +169,7 @@
     },
     "563202300": {
       "nom": "Ea Chara",
-      "eta_brut": "2026-09-15 07:41",
+      "eta_brut": "2026-09-15 08:13",
       "section": "expected"
     },
     "341816001": {
@@ -185,11 +185,6 @@
     "255917344": {
       "nom": "Stella Theresa",
       "eta_brut": "2026-09-15 18:05",
-      "section": "expected"
-    },
-    "636022782": {
-      "nom": "Xin Zhi Sea",
-      "eta_brut": "2026-09-16 07:22",
       "section": "expected"
     },
     "311000873": {
