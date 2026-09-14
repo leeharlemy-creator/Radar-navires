@@ -12,27 +12,22 @@
     },
     "357036000": {
       "nom": "Surfer 19014",
-      "eta_brut": "2026-09-14 19:51",
+      "eta_brut": "2026-09-15 04:31",
       "section": "expected"
     },
     "477107100": {
       "nom": "Greentec",
-      "eta_brut": "2026-09-16 14:33",
-      "section": "expected"
-    },
-    "563076300": {
-      "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-18 13:47",
+      "eta_brut": "2026-09-16 15:09",
       "section": "expected"
     },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 15:28",
+      "eta_brut": "2026-09-18 14:09",
       "section": "expected"
     },
-    "477273600": {
-      "nom": "Glory Tom",
-      "eta_brut": "2026-09-19 09:11",
+    "563076300": {
+      "nom": "Maersk Gironde",
+      "eta_brut": "2026-09-18 14:32",
       "section": "expected"
     },
     "636025445": {
@@ -42,7 +37,27 @@
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-21 22:43",
+      "eta_brut": "2026-09-21 17:06",
+      "section": "expected"
+    },
+    "210715000": {
+      "nom": "Gfs Lysa",
+      "eta_brut": "2026-09-14 21:43",
+      "section": "expected"
+    },
+    "376316000": {
+      "nom": "Oubangui",
+      "eta_brut": "2026-09-14 21:36",
+      "section": "expected"
+    },
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-14 21:03",
+      "section": "expected"
+    },
+    "249197000": {
+      "nom": "Gfs Sapphire",
+      "eta_brut": "2026-09-14 20:59",
       "section": "expected"
     },
     "377319000": {
@@ -57,22 +72,7 @@
     },
     "412525000": {
       "nom": "Jun Hai 2",
-      "eta_brut": "2026-09-14 17:44",
-      "section": "expected"
-    },
-    "538005560": {
-      "nom": "Desert Oak",
-      "eta_brut": "2026-09-14 17:44",
-      "section": "expected"
-    },
-    "376108000": {
-      "nom": "Lahama",
-      "eta_brut": "2026-09-14 17:43",
-      "section": "expected"
-    },
-    "375772000": {
-      "nom": "Sili Melen",
-      "eta_brut": "2026-09-14 17:08",
+      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -127,24 +127,24 @@
       "eta_brut": "2026-09-13 07:53",
       "section": "in_port"
     },
-    "352004607": {
-      "nom": "Surville",
-      "eta_brut": "2026-09-14 18:48",
-      "section": "expected"
-    },
-    "229550000": {
-      "nom": "Seadream",
-      "eta_brut": "2026-09-14 19:37",
+    "538007197": {
+      "nom": "Joyce",
+      "eta_brut": "2026-09-15 04:16",
       "section": "expected"
     },
     "341816001": {
       "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 05:59",
+      "eta_brut": "2026-09-15 06:14",
+      "section": "expected"
+    },
+    "314001039": {
+      "nom": "Dsm Ferro",
+      "eta_brut": "2026-09-15 07:28",
       "section": "expected"
     },
     "636013068": {
       "nom": "Caribbean Star",
-      "eta_brut": "2026-09-15 14:40",
+      "eta_brut": "2026-09-15 14:56",
       "section": "expected"
     },
     "255917344": {
@@ -152,14 +152,9 @@
       "eta_brut": "2026-09-15 18:05",
       "section": "expected"
     },
-    "563202500": {
-      "nom": "Ea Centaurus",
-      "eta_brut": "2026-09-15 18:14",
-      "section": "expected"
-    },
     "636013073": {
       "nom": "Costa Rican Star",
-      "eta_brut": "2026-09-16 01:29",
+      "eta_brut": "2026-09-16 00:02",
       "section": "expected"
     },
     "311000873": {
@@ -169,12 +164,22 @@
     },
     "257308000": {
       "nom": "Silver Crystal",
-      "eta_brut": "2026-09-17 05:29",
+      "eta_brut": "2026-09-17 04:20",
       "section": "expected"
     },
     "246704000": {
       "nom": "Ual Bodewes",
       "eta_brut": "2026-09-17 15:45",
+      "section": "expected"
+    },
+    "636025338": {
+      "nom": "Pafsanias",
+      "eta_brut": "2026-09-18 21:24",
+      "section": "expected"
+    },
+    "636016036": {
+      "nom": "Mt Bromley",
+      "eta_brut": "2026-09-14 18:08",
       "section": "expected"
     },
     "241505000": {
@@ -205,11 +210,6 @@
     "636018240": {
       "nom": "Msc Denmark Vi",
       "eta_brut": "2026-09-14 01:21",
-      "section": "expected"
-    },
-    "219117000": {
-      "nom": "Maersk Brownsville",
-      "eta_brut": "",
       "section": "expected"
     }
   }
