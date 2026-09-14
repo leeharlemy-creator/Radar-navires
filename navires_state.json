@@ -10,24 +10,29 @@
       "eta_brut": "2026-09-12 03:51",
       "section": "in_port"
     },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-14 07:38",
+      "section": "expected"
+    },
     "477107100": {
       "nom": "Greentec",
       "eta_brut": "2026-09-16 17:34",
       "section": "expected"
     },
-    "563076300": {
-      "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-18 14:52",
-      "section": "expected"
-    },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 16:21",
+      "eta_brut": "2026-09-18 12:09",
+      "section": "expected"
+    },
+    "563076300": {
+      "nom": "Maersk Gironde",
+      "eta_brut": "2026-09-18 14:01",
       "section": "expected"
     },
     "310849000": {
       "nom": "Gaslog Italy",
-      "eta_brut": "2026-09-19 06:59",
+      "eta_brut": "2026-09-19 06:23",
       "section": "expected"
     },
     "477273600": {
@@ -37,41 +42,26 @@
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 04:33",
+      "eta_brut": "2026-09-22 04:38",
       "section": "expected"
     },
     "412525000": {
       "nom": "Jun Hai 2",
-      "eta_brut": "2026-09-14 02:40",
+      "eta_brut": "2026-09-14 06:16",
+      "section": "expected"
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-14 06:03",
       "section": "expected"
     },
     "377319000": {
       "nom": "M Y Unica",
-      "eta_brut": "2026-09-13 20:56",
-      "section": "expected"
-    },
-    "209118000": {
-      "nom": "Goteborg",
-      "eta_brut": "2026-09-13 19:43",
-      "section": "expected"
-    },
-    "210636000": {
-      "nom": "Gfs Leto",
-      "eta_brut": "2026-09-13 19:27",
-      "section": "expected"
-    },
-    "376316000": {
-      "nom": "Oubangui",
-      "eta_brut": "",
+      "eta_brut": "2026-09-14 05:28",
       "section": "expected"
     }
   },
   "Abidjan": {
-    "567097000": {
-      "nom": "Mookda Naree",
-      "eta_brut": "2026-09-08 20:33",
-      "section": "in_port"
-    },
     "636025427": {
       "nom": "Aquarama",
       "eta_brut": "2026-09-13 15:09",
@@ -117,44 +107,49 @@
       "eta_brut": "2026-09-11 07:45",
       "section": "in_port"
     },
+    "352004718": {
+      "nom": "Super Tomiyasu",
+      "eta_brut": "2026-09-13 07:53",
+      "section": "in_port"
+    },
     "314033000": {
       "nom": "Metsovo",
-      "eta_brut": "2026-09-14 12:49",
+      "eta_brut": "2026-09-14 12:39",
       "section": "expected"
     },
     "314001039": {
       "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-14 17:33",
+      "eta_brut": "2026-09-14 17:20",
       "section": "expected"
     },
     "352004607": {
       "nom": "Surville",
-      "eta_brut": "2026-09-14 18:56",
+      "eta_brut": "2026-09-14 18:10",
       "section": "expected"
     },
     "636017239": {
       "nom": "Msc Spring Iii",
-      "eta_brut": "2026-09-14 21:43",
+      "eta_brut": "2026-09-14 19:56",
       "section": "expected"
     },
     "370271000": {
       "nom": "Msc Soraya",
-      "eta_brut": "2026-09-14 23:12",
+      "eta_brut": "2026-09-15 05:25",
       "section": "expected"
     },
     "341816001": {
       "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 07:33",
+      "eta_brut": "2026-09-15 08:13",
       "section": "expected"
     },
     "563202300": {
       "nom": "Ea Chara",
-      "eta_brut": "2026-09-15 08:21",
+      "eta_brut": "2026-09-15 08:24",
       "section": "expected"
     },
     "636013068": {
       "nom": "Caribbean Star",
-      "eta_brut": "2026-09-15 14:39",
+      "eta_brut": "2026-09-15 15:01",
       "section": "expected"
     },
     "255917344": {
@@ -164,7 +159,12 @@
     },
     "636013073": {
       "nom": "Costa Rican Star",
-      "eta_brut": "2026-09-15 23:32",
+      "eta_brut": "2026-09-16 01:19",
+      "section": "expected"
+    },
+    "636018240": {
+      "nom": "Msc Denmark Vi",
+      "eta_brut": "2026-09-14 01:21",
       "section": "expected"
     },
     "219117000": {
@@ -199,7 +199,7 @@
     },
     "355927000": {
       "nom": "Tao Star",
-      "eta_brut": "2026-09-13 15:09",
+      "eta_brut": "",
       "section": "expected"
     }
   }
