@@ -5,6 +5,11 @@
       "eta_brut": "2026-09-14 08:59",
       "section": "in_port"
     },
+    "314001086": {
+      "nom": "Iskandar",
+      "eta_brut": "2026-09-15 07:56",
+      "section": "in_port"
+    },
     "636015447": {
       "nom": "Eastern Gardenia",
       "eta_brut": "2026-09-12 03:51",
@@ -15,21 +20,6 @@
       "eta_brut": "2026-09-15 01:48",
       "section": "in_port"
     },
-    "636016702": {
-      "nom": "Msc Oak F",
-      "eta_brut": "2026-09-15 07:15",
-      "section": "expected"
-    },
-    "314001086": {
-      "nom": "Iskandar",
-      "eta_brut": "2026-09-15 07:22",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-15 07:42",
-      "section": "expected"
-    },
     "477107100": {
       "nom": "Greentec",
       "eta_brut": "2026-09-16 16:03",
@@ -37,57 +27,62 @@
     },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 13:29",
+      "eta_brut": "2026-09-18 12:11",
       "section": "expected"
     },
     "563076300": {
       "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-18 14:54",
-      "section": "expected"
-    },
-    "310849000": {
-      "nom": "Gaslog Italy",
-      "eta_brut": "2026-09-20 03:31",
+      "eta_brut": "2026-09-18 15:12",
       "section": "expected"
     },
     "636025445": {
       "nom": "Aristogenis",
-      "eta_brut": "2026-09-20 11:48",
+      "eta_brut": "2026-09-20 15:43",
       "section": "expected"
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 04:54",
+      "eta_brut": "2026-09-22 04:53",
       "section": "expected"
     },
     "636019523": {
       "nom": "Lisa",
-      "eta_brut": "2026-09-25 07:15",
+      "eta_brut": "2026-09-25 08:11",
+      "section": "expected"
+    },
+    "310849000": {
+      "nom": "Gaslog Italy",
+      "eta_brut": "2026-10-18 20:49",
       "section": "expected"
     },
     "376108000": {
       "nom": "Lahama",
-      "eta_brut": "2026-09-15 06:16",
+      "eta_brut": "2026-09-15 09:28",
+      "section": "expected"
+    },
+    "375418000": {
+      "nom": "Sd Wonder",
+      "eta_brut": "2026-09-15 09:04",
       "section": "expected"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-15 06:04",
+      "eta_brut": "2026-09-15 08:52",
       "section": "expected"
     },
-    "376912000": {
-      "nom": "Men Goe",
-      "eta_brut": "2026-09-15 01:52",
+    "375455000": {
+      "nom": "Starling",
+      "eta_brut": "2026-09-15 08:44",
       "section": "expected"
     },
     "615404000": {
       "nom": "Leketi",
-      "eta_brut": "2026-09-15 01:48",
+      "eta_brut": "2026-09-15 07:52",
       "section": "expected"
     },
     "376316000": {
       "nom": "Oubangui",
-      "eta_brut": "2026-09-15 01:12",
+      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -122,6 +117,11 @@
       "eta_brut": "2026-09-12 19:29",
       "section": "in_port"
     },
+    "414199000": {
+      "nom": "Sheng Ji Hai",
+      "eta_brut": "2026-09-15 07:57",
+      "section": "in_port"
+    },
     "212366000": {
       "nom": "Handy Stranger",
       "eta_brut": "2026-09-08 16:45",
@@ -137,24 +137,14 @@
       "eta_brut": "2026-09-13 07:53",
       "section": "in_port"
     },
-    "636018240": {
-      "nom": "Msc Denmark Vi",
-      "eta_brut": "2026-09-14 06:00",
-      "section": "in_port"
-    },
-    "414199000": {
-      "nom": "Sheng Ji Hai",
-      "eta_brut": "2026-09-15 06:47",
-      "section": "expected"
-    },
-    "341816001": {
-      "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 07:35",
-      "section": "expected"
-    },
     "636013068": {
       "nom": "Caribbean Star",
-      "eta_brut": "2026-09-15 13:17",
+      "eta_brut": "2026-09-15 13:35",
+      "section": "expected"
+    },
+    "229550000": {
+      "nom": "Seadream",
+      "eta_brut": "2026-09-15 16:01",
       "section": "expected"
     },
     "255917344": {
@@ -164,32 +154,37 @@
     },
     "538007197": {
       "nom": "Joyce",
-      "eta_brut": "2026-09-15 20:03",
-      "section": "expected"
-    },
-    "314001039": {
-      "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-15 23:42",
+      "eta_brut": "2026-09-16 01:39",
       "section": "expected"
     },
     "636013073": {
       "nom": "Costa Rican Star",
-      "eta_brut": "2026-09-16 03:16",
+      "eta_brut": "2026-09-16 03:12",
+      "section": "expected"
+    },
+    "314001039": {
+      "nom": "Dsm Ferro",
+      "eta_brut": "2026-09-16 05:36",
       "section": "expected"
     },
     "257308000": {
       "nom": "Silver Crystal",
-      "eta_brut": "2026-09-17 06:25",
+      "eta_brut": "2026-09-17 06:42",
       "section": "expected"
     },
     "246704000": {
       "nom": "Ual Bodewes",
-      "eta_brut": "2026-09-18 05:02",
+      "eta_brut": "2026-09-18 08:52",
       "section": "expected"
     },
     "636025338": {
       "nom": "Pafsanias",
-      "eta_brut": "2026-09-18 21:56",
+      "eta_brut": "2026-09-18 19:54",
+      "section": "expected"
+    },
+    "311000873": {
+      "nom": "Rt Champion",
+      "eta_brut": "2026-09-19 12:39",
       "section": "expected"
     },
     "374678000": {
@@ -224,7 +219,7 @@
     },
     "376166000": {
       "nom": "Vb Impala",
-      "eta_brut": "2026-09-14 06:00",
+      "eta_brut": "",
       "section": "expected"
     }
   }
