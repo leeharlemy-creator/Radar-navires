@@ -17,7 +17,7 @@
     },
     "357036000": {
       "nom": "Surfer 19014",
-      "eta_brut": "2026-09-15 05:30",
+      "eta_brut": "2026-09-15 05:32",
       "section": "expected"
     },
     "477107100": {
@@ -32,7 +32,12 @@
     },
     "563076300": {
       "nom": "Maersk Gironde",
-      "eta_brut": "2026-09-18 15:02",
+      "eta_brut": "2026-09-18 15:07",
+      "section": "expected"
+    },
+    "310849000": {
+      "nom": "Gaslog Italy",
+      "eta_brut": "2026-09-19 22:04",
       "section": "expected"
     },
     "636025445": {
@@ -47,7 +52,12 @@
     },
     "636019523": {
       "nom": "Lisa",
-      "eta_brut": "2026-09-25 07:46",
+      "eta_brut": "2026-09-25 08:01",
+      "section": "expected"
+    },
+    "376912000": {
+      "nom": "Men Goe",
+      "eta_brut": "2026-09-15 01:52",
       "section": "expected"
     },
     "615404000": {
@@ -77,11 +87,6 @@
     },
     "210636000": {
       "nom": "Gfs Leto",
-      "eta_brut": "2026-09-14 21:48",
-      "section": "expected"
-    },
-    "210715000": {
-      "nom": "Gfs Lysa",
       "eta_brut": "",
       "section": "expected"
     }
@@ -139,17 +144,17 @@
     },
     "341816001": {
       "nom": "Captain Rabie",
-      "eta_brut": "2026-09-15 06:37",
+      "eta_brut": "2026-09-15 06:39",
       "section": "expected"
     },
     "636013068": {
       "nom": "Caribbean Star",
-      "eta_brut": "2026-09-15 13:15",
+      "eta_brut": "2026-09-15 13:13",
       "section": "expected"
     },
     "538007197": {
       "nom": "Joyce",
-      "eta_brut": "2026-09-15 15:23",
+      "eta_brut": "2026-09-15 16:26",
       "section": "expected"
     },
     "255917344": {
@@ -159,12 +164,12 @@
     },
     "314001039": {
       "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-15 19:41",
+      "eta_brut": "2026-09-15 20:23",
       "section": "expected"
     },
     "636013073": {
       "nom": "Costa Rican Star",
-      "eta_brut": "2026-09-16 03:36",
+      "eta_brut": "2026-09-16 03:34",
       "section": "expected"
     },
     "311000873": {
@@ -174,7 +179,7 @@
     },
     "257308000": {
       "nom": "Silver Crystal",
-      "eta_brut": "2026-09-17 05:12",
+      "eta_brut": "2026-09-17 05:32",
       "section": "expected"
     },
     "246704000": {
@@ -184,7 +189,7 @@
     },
     "636025338": {
       "nom": "Pafsanias",
-      "eta_brut": "2026-09-18 23:37",
+      "eta_brut": "2026-09-18 23:14",
       "section": "expected"
     },
     "636016036": {
