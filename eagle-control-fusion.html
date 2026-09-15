@@ -456,6 +456,55 @@
     0%, 92%{ opacity:0; r:6; }
     94%{ opacity:1; r:6; }
     100%{ opacity:0; r:14; }
+  }  /* Habillage de la carte Leaflet pour coller au thème navy/or de l'app
+     (par défaut, popups et contrôles Leaflet sont blancs et détonnent). */
+  .leaflet-popup-content-wrapper{
+    background: var(--navy);
+    color: #e8e6df;
+    border: 1px solid var(--gold);
+    border-radius: 8px;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.45);
+  }
+  .leaflet-popup-content{
+    margin: 12px 14px;
+    font-size: 13px;
+    line-height: 1.5;
+  }
+  .leaflet-popup-content strong{
+    color: var(--gold-light);
+    font-family: Georgia, serif;
+    font-size: 14px;
+  }
+  .leaflet-popup-tip{
+    background: var(--navy);
+    border: 1px solid var(--gold);
+  }
+  .leaflet-popup-close-button{
+    color: var(--gold-light) !important;
+  }
+  .leaflet-control-zoom a{
+    background: var(--navy) !important;
+    color: var(--gold-light) !important;
+    border: 1px solid var(--gold) !important;
+  }
+  .leaflet-control-zoom a:hover{
+    background: #16233a !important;
+  }
+  .leaflet-control-attribution{
+    background: rgba(10,22,40,0.75) !important;
+    color: #9aa3b0 !important;
+  }
+  .leaflet-control-attribution a{
+    color: var(--gold-light) !important;
+  }
+  .port-marker-label{
+    color: var(--gold-light);
+    font-family: Georgia, serif;
+    font-size: 11px;
+    font-weight: 600;
+    text-shadow: 0 0 4px #0a1628, 0 0 4px #0a1628, 0 0 4px #0a1628;
+    white-space: nowrap;
+    transform: translate(10px, -4px);
   }
 </style>
 </head>
@@ -2439,10 +2488,15 @@ function initCarte(){
     L.marker(coords, {
       icon: L.divIcon({
         className: '',
-        html: '<div style="background:#0a1628;border:2px solid #b8935a;border-radius:50%;width:14px;height:14px;"></div>',
-        iconSize:[14,14]
+        html: `
+          <div style="position:relative;display:flex;align-items:center;">
+            <div style="width:20px;height:20px;border-radius:50%;background:radial-gradient(circle,#b8935a 0%,#0a1628 70%);border:2px solid var(--gold-light);box-shadow:0 0 8px 2px rgba(184,147,90,0.6);display:flex;align-items:center;justify-content:center;font-size:11px;">⚓</div>
+            <span class="port-marker-label">${esc(nom)}</span>
+          </div>`,
+        iconSize: [20,20],
+        iconAnchor: [10,10]
       })
-    }).addTo(carteInstance).bindPopup(`<strong>Port de ${nom}</strong>`);
+    }).addTo(carteInstance).bindPopup(`<strong>⚓ Port de ${esc(nom)}</strong>`);
   });
 }
 
@@ -2704,4 +2758,3 @@ fetchWeather();
 
 </body>
 </html>
-
