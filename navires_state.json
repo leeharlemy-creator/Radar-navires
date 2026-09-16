@@ -32,47 +32,42 @@
     },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 12:22",
+      "eta_brut": "2026-09-18 11:53",
       "section": "expected"
     },
     "310849000": {
       "nom": "Gaslog Italy",
-      "eta_brut": "2026-09-19 23:53",
+      "eta_brut": "2026-09-20 00:10",
       "section": "expected"
     },
     "636025445": {
       "nom": "Aristogenis",
-      "eta_brut": "2026-09-20 05:28",
+      "eta_brut": "2026-09-20 06:16",
       "section": "expected"
     },
     "477273600": {
       "nom": "Glory Tom",
-      "eta_brut": "2026-09-21 14:35",
+      "eta_brut": "2026-09-21 03:14",
       "section": "expected"
     },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-23 13:45",
+      "eta_brut": "2026-09-22 20:36",
       "section": "expected"
     },
     "636019523": {
       "nom": "Lisa",
-      "eta_brut": "2026-09-25 07:11",
+      "eta_brut": "2026-09-25 10:39",
       "section": "expected"
     },
     "412525000": {
       "nom": "Jun Hai 2",
-      "eta_brut": "2026-09-15 23:47",
+      "eta_brut": "2026-09-16 03:23",
       "section": "expected"
     },
     "210715000": {
       "nom": "Gfs Lysa",
       "eta_brut": "2026-09-15 22:41",
-      "section": "expected"
-    },
-    "375455000": {
-      "nom": "Starling",
-      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -117,44 +112,39 @@
       "eta_brut": "2026-09-13 07:53",
       "section": "in_port"
     },
+    "352004607": {
+      "nom": "Surville",
+      "eta_brut": "2026-09-16 00:45",
+      "section": "in_port"
+    },
     "477745100": {
       "nom": "Golden Daisy",
       "eta_brut": "2026-09-12 02:01",
       "section": "in_port"
     },
-    "355927000": {
-      "nom": "Tao Star",
-      "eta_brut": "2026-09-13 16:21",
-      "section": "in_port"
-    },
-    "229550000": {
-      "nom": "Seadream",
-      "eta_brut": "2026-09-16 02:29",
-      "section": "expected"
-    },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-16 13:58",
-      "section": "expected"
-    },
-    "314001039": {
-      "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-17 09:03",
+      "eta_brut": "2026-09-16 17:46",
       "section": "expected"
     },
     "257308000": {
       "nom": "Silver Crystal",
-      "eta_brut": "2026-09-17 10:03",
+      "eta_brut": "2026-09-17 08:48",
+      "section": "expected"
+    },
+    "314001039": {
+      "nom": "Dsm Ferro",
+      "eta_brut": "2026-09-17 15:10",
       "section": "expected"
     },
     "636025338": {
       "nom": "Pafsanias",
-      "eta_brut": "2026-09-18 19:05",
+      "eta_brut": "2026-09-18 18:53",
       "section": "expected"
     },
     "246704000": {
       "nom": "Ual Bodewes",
-      "eta_brut": "2026-09-19 00:52",
+      "eta_brut": "2026-09-19 08:03",
       "section": "expected"
     },
     "311000873": {
@@ -164,17 +154,22 @@
     },
     "574000840": {
       "nom": "Vimc Brave",
-      "eta_brut": "2026-09-19 14:58",
+      "eta_brut": "2026-09-19 15:51",
       "section": "expected"
     },
     "256172000": {
       "nom": "Msc Coruna",
-      "eta_brut": "2026-09-20 04:44",
+      "eta_brut": "2026-09-20 04:01",
       "section": "expected"
     },
     "255806273": {
       "nom": "Bocs Spirit",
-      "eta_brut": "2026-09-20 14:38",
+      "eta_brut": "2026-09-20 18:29",
+      "section": "expected"
+    },
+    "636014240": {
+      "nom": "Colombian Star",
+      "eta_brut": "2026-09-21 17:13",
       "section": "expected"
     },
     "636025427": {
@@ -210,11 +205,6 @@
     "563107400": {
       "nom": "Kn Fortune",
       "eta_brut": "2026-09-15 07:57",
-      "section": "expected"
-    },
-    "374678000": {
-      "nom": "Orion Highway",
-      "eta_brut": "",
       "section": "expected"
     }
   }
