@@ -20,24 +20,24 @@
       "eta_brut": "2026-09-16 18:08",
       "section": "in_port"
     },
-    "636020499": {
-      "nom": "Msc Vancouver",
-      "eta_brut": "2026-09-15 01:48",
-      "section": "in_port"
-    },
     "477107100": {
       "nom": "Greentec",
       "eta_brut": "2026-09-16 20:48",
       "section": "in_port"
     },
+    "255805868": {
+      "nom": "Msc Desiree",
+      "eta_brut": "2026-09-18 09:07",
+      "section": "expected"
+    },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 14:42",
+      "eta_brut": "2026-09-18 15:15",
       "section": "expected"
     },
     "310849000": {
       "nom": "Gaslog Italy",
-      "eta_brut": "2026-09-19 22:18",
+      "eta_brut": "2026-09-19 23:08",
       "section": "expected"
     },
     "636025445": {
@@ -47,22 +47,47 @@
     },
     "255806498": {
       "nom": "Msc Julie",
-      "eta_brut": "2026-09-21 01:42",
+      "eta_brut": "2026-09-21 07:51",
       "section": "expected"
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 04:33",
+      "eta_brut": "2026-09-22 02:08",
       "section": "expected"
     },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-22 13:21",
+      "eta_brut": "2026-09-22 11:37",
       "section": "expected"
     },
     "636019523": {
       "nom": "Lisa",
-      "eta_brut": "2026-09-25 12:14",
+      "eta_brut": "2026-09-25 11:53",
+      "section": "expected"
+    },
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-16 23:19",
+      "section": "expected"
+    },
+    "375455000": {
+      "nom": "Starling",
+      "eta_brut": "2026-09-16 23:13",
+      "section": "expected"
+    },
+    "412525000": {
+      "nom": "Jun Hai 2",
+      "eta_brut": "2026-09-16 23:11",
+      "section": "expected"
+    },
+    "636020499": {
+      "nom": "Msc Vancouver",
+      "eta_brut": "2026-09-16 22:52",
+      "section": "expected"
+    },
+    "311001569": {
+      "nom": "Rt Darwin",
+      "eta_brut": "2026-09-16 22:00",
       "section": "expected"
     },
     "376108000": {
@@ -72,26 +97,6 @@
     },
     "304157000": {
       "nom": "Helene",
-      "eta_brut": "2026-09-16 20:48",
-      "section": "expected"
-    },
-    "376316000": {
-      "nom": "Oubangui",
-      "eta_brut": "2026-09-16 20:12",
-      "section": "expected"
-    },
-    "577018000": {
-      "nom": "Annis",
-      "eta_brut": "2026-09-16 19:55",
-      "section": "expected"
-    },
-    "511101258": {
-      "nom": "Asg Portofino",
-      "eta_brut": "2026-09-16 18:21",
-      "section": "expected"
-    },
-    "357036000": {
-      "nom": "Surfer 19014",
       "eta_brut": "",
       "section": "expected"
     }
@@ -149,37 +154,37 @@
     },
     "257308000": {
       "nom": "Silver Crystal",
-      "eta_brut": "2026-09-17 11:08",
+      "eta_brut": "2026-09-17 10:36",
       "section": "expected"
     },
     "636025338": {
       "nom": "Pafsanias",
-      "eta_brut": "2026-09-18 20:54",
+      "eta_brut": "2026-09-18 20:28",
       "section": "expected"
     },
     "314001039": {
       "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-18 23:55",
+      "eta_brut": "2026-09-19 05:21",
       "section": "expected"
     },
     "574000840": {
       "nom": "Vimc Brave",
-      "eta_brut": "2026-09-19 16:39",
+      "eta_brut": "2026-09-19 16:25",
       "section": "expected"
     },
     "246704000": {
       "nom": "Ual Bodewes",
-      "eta_brut": "2026-09-20 00:02",
+      "eta_brut": "2026-09-20 00:42",
       "section": "expected"
     },
     "256172000": {
       "nom": "Msc Coruna",
-      "eta_brut": "2026-09-20 03:00",
+      "eta_brut": "2026-09-20 02:54",
       "section": "expected"
     },
     "255806273": {
       "nom": "Bocs Spirit",
-      "eta_brut": "2026-09-20 15:49",
+      "eta_brut": "2026-09-20 15:55",
       "section": "expected"
     },
     "311000873": {
@@ -189,7 +194,7 @@
     },
     "636014240": {
       "nom": "Colombian Star",
-      "eta_brut": "2026-09-21 13:32",
+      "eta_brut": "2026-09-21 17:41",
       "section": "expected"
     },
     "563202300": {
