@@ -15,19 +15,19 @@
       "eta_brut": "2026-09-16 20:48",
       "section": "in_port"
     },
-    "255805868": {
-      "nom": "Msc Desiree",
-      "eta_brut": "2026-09-18 11:08",
-      "section": "expected"
-    },
     "314427000": {
       "nom": "Artemissio",
-      "eta_brut": "2026-09-18 14:25",
+      "eta_brut": "2026-09-18 14:24",
+      "section": "expected"
+    },
+    "210639000": {
+      "nom": "Gfs Rhea",
+      "eta_brut": "2026-09-19 14:49",
       "section": "expected"
     },
     "310849000": {
       "nom": "Gaslog Italy",
-      "eta_brut": "2026-09-20 03:41",
+      "eta_brut": "2026-09-20 04:24",
       "section": "expected"
     },
     "636025445": {
@@ -42,17 +42,22 @@
     },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-22 07:48",
+      "eta_brut": "2026-09-22 07:22",
       "section": "expected"
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 12:28",
+      "eta_brut": "2026-09-22 15:02",
       "section": "expected"
     },
     "255806498": {
       "nom": "Msc Julie",
-      "eta_brut": "2026-09-22 22:31",
+      "eta_brut": "2026-09-22 17:16",
+      "section": "expected"
+    },
+    "511101258": {
+      "nom": "Asg Portofino",
+      "eta_brut": "2026-09-17 22:00",
       "section": "expected"
     },
     "375772000": {
@@ -142,34 +147,29 @@
       "eta_brut": "2026-09-16 00:45",
       "section": "in_port"
     },
-    "341816001": {
-      "nom": "Captain Rabie",
-      "eta_brut": "2026-09-17 21:16",
-      "section": "expected"
-    },
     "636017239": {
       "nom": "Msc Spring Iii",
-      "eta_brut": "2026-09-18 02:20",
+      "eta_brut": "2026-09-18 02:52",
       "section": "expected"
     },
     "229550000": {
       "nom": "Seadream",
-      "eta_brut": "2026-09-18 04:25",
+      "eta_brut": "2026-09-18 08:45",
       "section": "expected"
     },
     "636025338": {
       "nom": "Pafsanias",
-      "eta_brut": "2026-09-18 18:48",
+      "eta_brut": "2026-09-18 20:29",
       "section": "expected"
     },
     "574000840": {
       "nom": "Vimc Brave",
-      "eta_brut": "2026-09-19 15:24",
+      "eta_brut": "2026-09-19 15:49",
       "section": "expected"
     },
     "256172000": {
       "nom": "Msc Coruna",
-      "eta_brut": "2026-09-20 04:03",
+      "eta_brut": "2026-09-20 04:20",
       "section": "expected"
     },
     "246704000": {
@@ -177,19 +177,44 @@
       "eta_brut": "2026-09-20 11:54",
       "section": "expected"
     },
-    "255806273": {
-      "nom": "Bocs Spirit",
-      "eta_brut": "2026-09-20 15:27",
-      "section": "expected"
-    },
     "311000873": {
       "nom": "Rt Champion",
       "eta_brut": "2026-09-20 16:33",
       "section": "expected"
     },
+    "255806273": {
+      "nom": "Bocs Spirit",
+      "eta_brut": "2026-09-20 17:07",
+      "section": "expected"
+    },
     "314001039": {
       "nom": "Dsm Ferro",
-      "eta_brut": "2026-09-20 22:40",
+      "eta_brut": "2026-09-21 03:57",
+      "section": "expected"
+    },
+    "636014240": {
+      "nom": "Colombian Star",
+      "eta_brut": "2026-09-21 19:22",
+      "section": "expected"
+    },
+    "376166000": {
+      "nom": "Vb Impala",
+      "eta_brut": "2026-09-18 00:09",
+      "section": "expected"
+    },
+    "636013073": {
+      "nom": "Costa Rican Star",
+      "eta_brut": "2026-09-17 23:37",
+      "section": "expected"
+    },
+    "257308000": {
+      "nom": "Silver Crystal",
+      "eta_brut": "2026-09-17 21:21",
+      "section": "expected"
+    },
+    "341816001": {
+      "nom": "Captain Rabie",
+      "eta_brut": "2026-09-17 19:01",
       "section": "expected"
     },
     "354092000": {
@@ -207,18 +232,8 @@
       "eta_brut": "2026-09-17 13:21",
       "section": "expected"
     },
-    "376166000": {
-      "nom": "Vb Impala",
-      "eta_brut": "2026-09-17 12:21",
-      "section": "expected"
-    },
     "312235000": {
       "nom": "Icm Nautical Jr 5",
-      "eta_brut": "2026-09-17 10:40",
-      "section": "expected"
-    },
-    "636019639": {
-      "nom": "Bao Express",
       "eta_brut": "",
       "section": "expected"
     }
