@@ -20,9 +20,14 @@
       "eta_brut": "2026-09-16 20:48",
       "section": "in_port"
     },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-19 07:53",
+      "section": "expected"
+    },
     "210639000": {
       "nom": "Gfs Rhea",
-      "eta_brut": "2026-09-19 12:15",
+      "eta_brut": "2026-09-19 12:47",
       "section": "expected"
     },
     "636025445": {
@@ -32,7 +37,7 @@
     },
     "255805868": {
       "nom": "Msc Desiree",
-      "eta_brut": "2026-09-20 12:18",
+      "eta_brut": "2026-09-20 17:27",
       "section": "expected"
     },
     "256521000": {
@@ -40,24 +45,34 @@
       "eta_brut": "2026-09-20 22:20",
       "section": "expected"
     },
-    "563103400": {
-      "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 15:11",
-      "section": "expected"
-    },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-22 15:36",
+      "eta_brut": "2026-09-22 15:04",
+      "section": "expected"
+    },
+    "563103400": {
+      "nom": "Maersk Amazon",
+      "eta_brut": "2026-09-22 15:21",
       "section": "expected"
     },
     "636019523": {
       "nom": "Lisa",
-      "eta_brut": "2026-09-25 17:10",
+      "eta_brut": "2026-09-25 18:29",
       "section": "expected"
     },
     "636018909": {
       "nom": "Solana S",
-      "eta_brut": "2026-09-27 08:09",
+      "eta_brut": "2026-09-26 16:20",
+      "section": "expected"
+    },
+    "376108000": {
+      "nom": "Lahama",
+      "eta_brut": "2026-09-19 06:12",
+      "section": "expected"
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-19 05:36",
       "section": "expected"
     },
     "376316000": {
@@ -73,21 +88,6 @@
     "376912000": {
       "nom": "Men Goe",
       "eta_brut": "2026-09-18 23:48",
-      "section": "expected"
-    },
-    "636021510": {
-      "nom": "Apalos",
-      "eta_brut": "2026-09-18 21:20",
-      "section": "expected"
-    },
-    "304157000": {
-      "nom": "Helene",
-      "eta_brut": "2026-09-18 19:44",
-      "section": "expected"
-    },
-    "615404000": {
-      "nom": "Leketi",
-      "eta_brut": "2026-09-18 19:39",
       "section": "expected"
     }
   },
@@ -105,11 +105,6 @@
     "636024312": {
       "nom": "Sea Admiral",
       "eta_brut": "2026-09-17 10:40",
-      "section": "in_port"
-    },
-    "215417000": {
-      "nom": "Michel A",
-      "eta_brut": "2026-09-18 12:21",
       "section": "in_port"
     },
     "248285000": {
@@ -132,6 +127,11 @@
       "eta_brut": "2026-09-13 07:53",
       "section": "in_port"
     },
+    "370271000": {
+      "nom": "Msc Soraya",
+      "eta_brut": "2026-09-19 05:57",
+      "section": "in_port"
+    },
     "352004607": {
       "nom": "Surville",
       "eta_brut": "2026-09-16 00:45",
@@ -142,29 +142,24 @@
       "eta_brut": "2026-09-15 13:05",
       "section": "in_port"
     },
-    "229550000": {
-      "nom": "Seadream",
-      "eta_brut": "2026-09-19 03:44",
-      "section": "expected"
-    },
     "563202500": {
       "nom": "Ea Centaurus",
-      "eta_brut": "2026-09-19 14:04",
+      "eta_brut": "2026-09-19 14:17",
       "section": "expected"
     },
     "574000840": {
       "nom": "Vimc Brave",
-      "eta_brut": "2026-09-19 18:27",
+      "eta_brut": "2026-09-19 18:51",
+      "section": "expected"
+    },
+    "255806005": {
+      "nom": "Msc India",
+      "eta_brut": "2026-09-19 23:22",
       "section": "expected"
     },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-19 19:27",
-      "section": "expected"
-    },
-    "256172000": {
-      "nom": "Msc Coruna",
-      "eta_brut": "2026-09-20 03:30",
+      "eta_brut": "2026-09-20 01:55",
       "section": "expected"
     },
     "311000873": {
@@ -174,7 +169,7 @@
     },
     "255806273": {
       "nom": "Bocs Spirit",
-      "eta_brut": "2026-09-20 18:04",
+      "eta_brut": "2026-09-20 17:40",
       "section": "expected"
     },
     "636014240": {
@@ -184,7 +179,17 @@
     },
     "352003159": {
       "nom": "Ivs Progress",
-      "eta_brut": "2026-09-24 10:30",
+      "eta_brut": "2026-09-24 14:08",
+      "section": "expected"
+    },
+    "255806304": {
+      "nom": "Northern Monument",
+      "eta_brut": "2026-09-24 16:11",
+      "section": "expected"
+    },
+    "215417000": {
+      "nom": "Michel A",
+      "eta_brut": "2026-09-18 23:57",
       "section": "expected"
     },
     "248604000": {
@@ -215,16 +220,6 @@
     "636013644": {
       "nom": "Tongala",
       "eta_brut": "2026-09-18 12:21",
-      "section": "expected"
-    },
-    "565771000": {
-      "nom": "Kota Sejati",
-      "eta_brut": "2026-09-18 10:01",
-      "section": "expected"
-    },
-    "636023832": {
-      "nom": "Monjasa Rover",
-      "eta_brut": "",
       "section": "expected"
     }
   }
