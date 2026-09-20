@@ -1,5 +1,10 @@
 {
   "Pointe-Noire": {
+    "563053300": {
+      "nom": "Maersk Hamburg",
+      "eta_brut": "2026-09-20 10:28",
+      "section": "in_port"
+    },
     "255618000": {
       "nom": "Msc Nora Iii",
       "eta_brut": "2026-09-19 01:28",
@@ -10,6 +15,11 @@
       "eta_brut": "2026-09-15 07:56",
       "section": "in_port"
     },
+    "314427000": {
+      "nom": "Artemissio",
+      "eta_brut": "2026-09-20 11:48",
+      "section": "in_port"
+    },
     "256521000": {
       "nom": "Endo Ponente",
       "eta_brut": "2026-09-20 22:20",
@@ -17,67 +27,42 @@
     },
     "255806498": {
       "nom": "Msc Julie",
-      "eta_brut": "2026-09-22 06:07",
+      "eta_brut": "2026-09-22 05:10",
       "section": "expected"
     },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-22 10:44",
+      "eta_brut": "2026-09-22 10:26",
       "section": "expected"
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 16:09",
+      "eta_brut": "2026-09-22 16:20",
       "section": "expected"
     },
     "255805868": {
       "nom": "Msc Desiree",
-      "eta_brut": "2026-09-22 19:57",
+      "eta_brut": "2026-09-23 00:55",
       "section": "expected"
     },
     "636019523": {
       "nom": "Lisa",
-      "eta_brut": "2026-09-25 12:26",
-      "section": "expected"
-    },
-    "636093081": {
-      "nom": "Matadi Express",
-      "eta_brut": "2026-09-20 09:24",
-      "section": "expected"
-    },
-    "615404000": {
-      "nom": "Leketi",
-      "eta_brut": "2026-09-20 09:20",
-      "section": "expected"
-    },
-    "376316000": {
-      "nom": "Oubangui",
-      "eta_brut": "2026-09-20 09:20",
-      "section": "expected"
-    },
-    "256909000": {
-      "nom": "Cma Cgm Belem",
-      "eta_brut": "2026-09-20 08:52",
+      "eta_brut": "2026-09-25 12:57",
       "section": "expected"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-20 08:28",
+      "eta_brut": "2026-09-20 11:56",
       "section": "expected"
     },
-    "352005649": {
-      "nom": "Oban",
-      "eta_brut": "2026-09-20 07:52",
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-20 11:48",
       "section": "expected"
     },
-    "375455000": {
-      "nom": "Starling",
-      "eta_brut": "2026-09-20 07:43",
-      "section": "expected"
-    },
-    "538011324": {
-      "nom": "St Lady Meenah",
-      "eta_brut": "",
+    "376316000": {
+      "nom": "Oubangui",
+      "eta_brut": "2026-09-20 11:36",
       "section": "expected"
     }
   },
@@ -134,22 +119,22 @@
     },
     "255806273": {
       "nom": "Bocs Spirit",
-      "eta_brut": "2026-09-20 17:52",
+      "eta_brut": "2026-09-20 17:39",
       "section": "expected"
     },
     "229550000": {
       "nom": "Seadream",
-      "eta_brut": "2026-09-20 18:05",
+      "eta_brut": "2026-09-20 18:10",
       "section": "expected"
     },
     "636014240": {
       "nom": "Colombian Star",
-      "eta_brut": "2026-09-21 16:46",
+      "eta_brut": "2026-09-21 16:22",
       "section": "expected"
     },
     "255806005": {
       "nom": "Msc India",
-      "eta_brut": "2026-09-22 04:06",
+      "eta_brut": "2026-09-22 10:18",
       "section": "expected"
     },
     "311000873": {
@@ -159,22 +144,22 @@
     },
     "352003159": {
       "nom": "Ivs Progress",
-      "eta_brut": "2026-09-24 04:18",
+      "eta_brut": "2026-09-24 05:36",
       "section": "expected"
     },
     "255806304": {
       "nom": "Northern Monument",
-      "eta_brut": "2026-09-24 15:35",
+      "eta_brut": "2026-09-24 17:00",
       "section": "expected"
     },
     "352001837": {
       "nom": "Grand Star",
-      "eta_brut": "2026-09-24 23:08",
+      "eta_brut": "2026-09-25 00:15",
       "section": "expected"
     },
     "374654000": {
       "nom": "Ultra Crimson",
-      "eta_brut": "2026-09-25 07:56",
+      "eta_brut": "2026-09-25 10:09",
       "section": "expected"
     },
     "563237900": {
