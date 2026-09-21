@@ -22,22 +22,22 @@
     },
     "255806498": {
       "nom": "Msc Julie",
-      "eta_brut": "2026-09-22 07:51",
+      "eta_brut": "2026-09-22 08:02",
       "section": "expected"
     },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-22 11:32",
+      "eta_brut": "2026-09-22 11:54",
       "section": "expected"
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 14:36",
+      "eta_brut": "2026-09-22 15:14",
       "section": "expected"
     },
     "255805868": {
       "nom": "Msc Desiree",
-      "eta_brut": "2026-09-24 00:56",
+      "eta_brut": "2026-09-24 07:18",
       "section": "expected"
     },
     "636019523": {
@@ -47,7 +47,7 @@
     },
     "375455000": {
       "nom": "Starling",
-      "eta_brut": "2026-09-20 20:12",
+      "eta_brut": "2026-09-21 03:19",
       "section": "expected"
     },
     "577018000": {
@@ -97,11 +97,6 @@
       "eta_brut": "2026-09-19 19:05",
       "section": "in_port"
     },
-    "255805855": {
-      "nom": "Msc Chloe",
-      "eta_brut": "2026-09-19 17:05",
-      "section": "in_port"
-    },
     "248285000": {
       "nom": "Ellirea",
       "eta_brut": "2026-09-12 19:29",
@@ -122,6 +117,11 @@
       "eta_brut": "2026-09-17 16:57",
       "section": "in_port"
     },
+    "352004718": {
+      "nom": "Super Tomiyasu",
+      "eta_brut": "2026-09-13 07:53",
+      "section": "in_port"
+    },
     "636014240": {
       "nom": "Colombian Star",
       "eta_brut": "2026-09-21 16:19",
@@ -129,22 +129,22 @@
     },
     "255806005": {
       "nom": "Msc India",
-      "eta_brut": "2026-09-23 09:49",
+      "eta_brut": "2026-09-23 15:54",
       "section": "expected"
     },
     "352003159": {
       "nom": "Ivs Progress",
-      "eta_brut": "2026-09-24 10:39",
+      "eta_brut": "2026-09-24 10:26",
       "section": "expected"
     },
     "255806304": {
       "nom": "Northern Monument",
-      "eta_brut": "2026-09-24 16:17",
+      "eta_brut": "2026-09-24 16:14",
       "section": "expected"
     },
     "352001837": {
       "nom": "Grand Star",
-      "eta_brut": "2026-09-25 02:21",
+      "eta_brut": "2026-09-25 02:58",
       "section": "expected"
     },
     "311000873": {
@@ -154,17 +154,27 @@
     },
     "636014571": {
       "nom": "W Ace",
-      "eta_brut": "2026-09-25 07:53",
+      "eta_brut": "2026-09-25 07:54",
       "section": "expected"
     },
     "374654000": {
       "nom": "Ultra Crimson",
-      "eta_brut": "2026-09-25 10:29",
+      "eta_brut": "2026-09-25 11:22",
       "section": "expected"
     },
     "636022355": {
       "nom": "Lila Incheon",
       "eta_brut": "2026-09-25 14:05",
+      "section": "expected"
+    },
+    "563059200": {
+      "nom": "Maersk Herrera",
+      "eta_brut": "2026-09-21 01:29",
+      "section": "expected"
+    },
+    "255805855": {
+      "nom": "Msc Chloe",
+      "eta_brut": "2026-09-20 20:05",
       "section": "expected"
     },
     "314033000": {
@@ -190,11 +200,6 @@
     "636017239": {
       "nom": "Msc Spring Iii",
       "eta_brut": "2026-09-20 08:57",
-      "section": "expected"
-    },
-    "563237900": {
-      "nom": "Cote Divoire Express",
-      "eta_brut": "",
       "section": "expected"
     }
   }
