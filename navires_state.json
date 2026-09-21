@@ -25,24 +25,19 @@
       "eta_brut": "2026-09-20 18:56",
       "section": "in_port"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-21 19:41",
-      "section": "expected"
-    },
     "255806498": {
       "nom": "Msc Julie",
-      "eta_brut": "2026-09-22 08:27",
+      "eta_brut": "2026-09-22 08:32",
       "section": "expected"
     },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-22 11:38",
+      "eta_brut": "2026-09-22 12:09",
       "section": "expected"
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-22 16:16",
+      "eta_brut": "2026-09-22 22:37",
       "section": "expected"
     },
     "636019523": {
@@ -52,22 +47,27 @@
     },
     "255805868": {
       "nom": "Msc Desiree",
-      "eta_brut": "2026-09-25 13:27",
+      "eta_brut": "2026-09-25 19:47",
       "section": "expected"
     },
     "636018909": {
       "nom": "Solana S",
-      "eta_brut": "2026-09-28 02:11",
+      "eta_brut": "2026-09-27 22:32",
       "section": "expected"
     },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 10:00",
+      "eta_brut": "2026-09-29 07:16",
       "section": "expected"
     },
     "375455000": {
       "nom": "Starling",
       "eta_brut": "2026-09-21 18:00",
+      "section": "expected"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-21 17:52",
       "section": "expected"
     },
     "677044800": {
@@ -139,7 +139,7 @@
     },
     "219028421": {
       "nom": "Torm Cavatina",
-      "eta_brut": "2026-09-22 22:47",
+      "eta_brut": "2026-09-23 04:56",
       "section": "expected"
     },
     "352003159": {
@@ -149,7 +149,7 @@
     },
     "352001837": {
       "nom": "Grand Star",
-      "eta_brut": "2026-09-24 21:55",
+      "eta_brut": "2026-09-24 21:10",
       "section": "expected"
     },
     "311000873": {
@@ -159,12 +159,12 @@
     },
     "636014571": {
       "nom": "W Ace",
-      "eta_brut": "2026-09-25 09:18",
+      "eta_brut": "2026-09-25 06:39",
       "section": "expected"
     },
     "374654000": {
       "nom": "Ultra Crimson",
-      "eta_brut": "2026-09-25 11:39",
+      "eta_brut": "2026-09-25 12:09",
       "section": "expected"
     },
     "636026621": {
@@ -174,17 +174,32 @@
     },
     "247452100": {
       "nom": "Great Cotonou",
-      "eta_brut": "2026-09-25 18:52",
-      "section": "expected"
-    },
-    "636022355": {
-      "nom": "Lila Incheon",
-      "eta_brut": "2026-09-25 22:28",
+      "eta_brut": "2026-09-25 19:23",
       "section": "expected"
     },
     "357431000": {
       "nom": "Es Honesty",
       "eta_brut": "2026-09-25 22:29",
+      "section": "expected"
+    },
+    "636022355": {
+      "nom": "Lila Incheon",
+      "eta_brut": "2026-09-26 02:04",
+      "section": "expected"
+    },
+    "257085720": {
+      "nom": "Nova",
+      "eta_brut": "2026-09-21 20:25",
+      "section": "expected"
+    },
+    "636017324": {
+      "nom": "Kps Ibrahim Bey",
+      "eta_brut": "2026-09-21 19:08",
+      "section": "expected"
+    },
+    "538009430": {
+      "nom": "Team Tombi",
+      "eta_brut": "2026-09-21 17:05",
       "section": "expected"
     },
     "215338000": {
@@ -209,16 +224,6 @@
     },
     "563202500": {
       "nom": "Ea Centaurus",
-      "eta_brut": "2026-09-21 13:31",
-      "section": "expected"
-    },
-    "352005433": {
-      "nom": "Summer Queen",
-      "eta_brut": "2026-09-21 09:09",
-      "section": "expected"
-    },
-    "636022347": {
-      "nom": "Green Bay",
       "eta_brut": "",
       "section": "expected"
     }
