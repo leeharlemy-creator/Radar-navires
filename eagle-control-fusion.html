@@ -608,6 +608,12 @@
       </div>
     </div>
 
+    <div class="dash-card" style="margin-bottom:16px;">
+      <div class="card-title">🛰️ Cibles AIS observées</div>
+      <div style="font-size:10.5px;color:var(--muted);margin-bottom:10px;">Calculé à partir des positions AIS réelles confirmées via VesselAPI — pas une estimation.</div>
+      <div class="stat-row" id="ais-stats-row"></div>
+    </div>
+
     <div class="dashboard-grid">
       <div class="dash-card">
         <div class="card-title">🚢 Arrivées prioritaires</div>
@@ -1284,11 +1290,27 @@ function renderDashboard(){
   document.getElementById('dash-date').textContent = today.toLocaleDateString('fr-FR',{day:'2-digit',month:'long',year:'numeric'});
   const activeDeals = marches.filter(m=>m.etape==='prospection'||m.etape==='negociation');
   const signed = marches.filter(m=>m.etape==='signe');
+  const aisConfirmes = navires.filter(n=>n.aisConfirme).length;
   stats.innerHTML = `
     <div class="stat"><div class="num">${navires.length}</div><div class="lbl">Navires suivis</div></div>
+    <div class="stat"><div class="num">${aisConfirmes}</div><div class="lbl">Position AIS réelle confirmée</div></div>
     <div class="stat"><div class="num">${activeDeals.length}</div><div class="lbl">Opportunités actives</div></div>
     <div class="stat"><div class="num">${signed.length}</div><div class="lbl">Contrats signés</div></div>
     <div class="stat"><div class="num">${contacts.length}</div><div class="lbl">Contacts réseau</div></div>`;
+
+  const naviresAis = navires.filter(n=>n.aisConfirme);
+  const enTransitAis = naviresAis.filter(n=>n.statut==='transit').length;
+  const enRadeAis = naviresAis.filter(n=>n.statut==='mouillage').length;
+  const vitesses = naviresAis.map(n=>n.vitesseNoeuds).filter(v=>v!=null && !isNaN(v));
+  const vitesseMoyenne = vitesses.length ? (vitesses.reduce((a,b)=>a+b,0)/vitesses.length) : null;
+  const aisRow = document.getElementById('ais-stats-row');
+  if(aisRow){
+    aisRow.innerHTML = `
+      <div class="stat"><div class="num">${aisConfirmes}</div><div class="lbl">Cibles observées</div></div>
+      <div class="stat"><div class="num">${enTransitAis}</div><div class="lbl">En transit</div></div>
+      <div class="stat"><div class="num">${enRadeAis}</div><div class="lbl">En rade</div></div>
+      <div class="stat"><div class="num">${vitesseMoyenne != null ? vitesseMoyenne.toFixed(1) : '—'}</div><div class="lbl">Vitesse moyenne (nds)</div></div>`;
+  }
   const todayStr9 = new Date().toISOString().slice(0,10);
   const ordered = navires
     .filter(n => n.statut !== 'arrivee' && (!n.eta || n.eta >= todayStr9))
@@ -1687,7 +1709,9 @@ function mapperNavStatusVersStatut(navStatus){
               eta: '',
               type: typeReel,
               tirantEau: tirantEauReel != null ? String(tirantEauReel) : '',
+              vitesseNoeuds: item.sog != null ? Number(item.sog) : null,
               ajouteLe: Date.now(),
+              aisConfirme: Date.now(),
               notes: `Importé automatiquement le ${new Date().toISOString().slice(0,10)} — ${item.sog != null ? Math.round(item.sog)+' kn, ' : ''}${item.nav_status != null ? item.nav_status : ''}${statutReel ? ' — statut AIS réel appliqué' : ''}`
             });
             total++;
@@ -1698,6 +1722,8 @@ function mapperNavStatusVersStatut(navStatus){
               if(statutReel) existant.statut = statutReel;
               if(tirantEauReel != null && !existant.tirantEau) existant.tirantEau = String(tirantEauReel);
               if(typeReel && !existant.type) existant.type = typeReel;
+              if(item.sog != null) existant.vitesseNoeuds = Number(item.sog);
+              existant.aisConfirme = Date.now();
             }
           }
         });
@@ -1858,7 +1884,7 @@ async function importerNaviresDepuisGithub(){
         // Rafraîchit le statut selon la vraie section radar (IN PORT / EXPECTED),
         // sauf si le navire a été marqué "Départ" manuellement (on ne le réanime pas).
         if(!existant.depart){
-          const statutRadar = mapperSectionRadarVersStatut(brut);
+          const statutRadar = mapperSectionRadarVersStatut(brut, existant.eta || etaConvertie);
           if(statutRadar && existant.statut !== statutRadar){
             existant.statut = statutRadar;
             changed = true;
@@ -1871,7 +1897,7 @@ async function importerNaviresDepuisGithub(){
           nom: nom,
           pavillon: '',
           destination: port,
-          statut: mapperSectionRadarVersStatut(brut),
+          statut: mapperSectionRadarVersStatut(brut, etaConvertie),
           eta: etaConvertie,
           type: '',
           mmsi: mmsi,
@@ -1889,14 +1915,25 @@ async function importerNaviresDepuisGithub(){
 }
 
 // Traduit la section myshiptracking.com (IN PORT / EXPECTED) transmise par le script
-// GitHub en statut réel de l'app. Si le script n'a pas encore été mis à jour pour
-// transmettre cette info, on retombe sur "mouillage" par prudence — plus honnête
-// que de forcer "à quai" pour un navire dont on ne connaît pas vraiment la position.
-function mapperSectionRadarVersStatut(brut){
+// GitHub en statut réel de l'app. Pour un navire "attendu" (EXPECTED), on affine avec
+// l'ETA : si elle est à plus de 24h, il est probablement encore en mer (transit) ;
+// sinon, probablement déjà à l'ancre en attente (en rade). Ce n'est pas garanti à 100%,
+// mais plus réaliste que de tout classer "en rade" par défaut.
+function mapperSectionRadarVersStatut(brut, etaConvertie){
   if(brut && typeof brut === 'object'){
     const section = (brut.section || brut.statut || '').toLowerCase();
     if(section.includes('port') || section.includes('quai')) return 'arrivee';
-    if(section.includes('expected') || section.includes('attendu')) return 'mouillage';
+    if(section.includes('expected') || section.includes('attendu')){
+      if(etaConvertie){
+        const etaComplet = etaConvertie.includes('T') ? etaConvertie : etaConvertie+'T00:00:00';
+        const etaDate = new Date(etaComplet);
+        if(!isNaN(etaDate.getTime())){
+          const heuresRestantes = (etaDate - new Date()) / 3600000;
+          if(heuresRestantes > 24) return 'transit';
+        }
+      }
+      return 'mouillage';
+    }
   }
   return 'mouillage';
 }
