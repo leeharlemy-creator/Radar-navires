@@ -20,44 +20,49 @@
       "eta_brut": "2026-09-22 11:08",
       "section": "in_port"
     },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-22 19:42",
+      "section": "expected"
+    },
     "636016702": {
       "nom": "Msc Oak F",
-      "eta_brut": "2026-09-22 21:12",
+      "eta_brut": "2026-09-22 22:15",
       "section": "expected"
     },
     "563103400": {
       "nom": "Maersk Amazon",
-      "eta_brut": "2026-09-22 22:28",
+      "eta_brut": "2026-09-22 22:16",
       "section": "expected"
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-24 02:23",
+      "eta_brut": "2026-09-23 21:20",
       "section": "expected"
     },
     "538009604": {
       "nom": "Boston",
-      "eta_brut": "2026-09-25 11:24",
-      "section": "expected"
-    },
-    "636019523": {
-      "nom": "Lisa",
-      "eta_brut": "2026-09-25 16:32",
+      "eta_brut": "2026-09-25 10:54",
       "section": "expected"
     },
     "636018909": {
       "nom": "Solana S",
-      "eta_brut": "2026-09-28 12:33",
+      "eta_brut": "2026-09-28 09:36",
       "section": "expected"
     },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 13:16",
+      "eta_brut": "2026-09-29 14:58",
       "section": "expected"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-22 14:32",
+      "eta_brut": "2026-09-22 17:36",
+      "section": "expected"
+    },
+    "376108000": {
+      "nom": "Lahama",
+      "eta_brut": "2026-09-22 17:19",
       "section": "expected"
     },
     "376912000": {
@@ -67,16 +72,6 @@
     },
     "212840000": {
       "nom": "Sl Egret",
-      "eta_brut": "2026-09-22 12:36",
-      "section": "expected"
-    },
-    "563379000": {
-      "nom": "X Press Meghna",
-      "eta_brut": "2026-09-22 11:37",
-      "section": "expected"
-    },
-    "636093081": {
-      "nom": "Matadi Express",
       "eta_brut": "",
       "section": "expected"
     }
@@ -132,19 +127,14 @@
       "eta_brut": "2026-09-21 17:05",
       "section": "in_port"
     },
-    "352004100": {
-      "nom": "Aquadonna",
-      "eta_brut": "2026-09-22 17:13",
-      "section": "expected"
-    },
     "352003159": {
       "nom": "Ivs Progress",
-      "eta_brut": "2026-09-24 07:09",
+      "eta_brut": "2026-09-24 06:38",
       "section": "expected"
     },
     "352001837": {
       "nom": "Grand Star",
-      "eta_brut": "2026-09-24 23:04",
+      "eta_brut": "2026-09-24 22:33",
       "section": "expected"
     },
     "311000873": {
@@ -159,7 +149,7 @@
     },
     "636014571": {
       "nom": "W Ace",
-      "eta_brut": "2026-09-25 12:11",
+      "eta_brut": "2026-09-25 11:38",
       "section": "expected"
     },
     "636026621": {
@@ -169,22 +159,27 @@
     },
     "357431000": {
       "nom": "Es Honesty",
-      "eta_brut": "2026-09-25 16:55",
+      "eta_brut": "2026-09-25 16:43",
       "section": "expected"
     },
     "241836000": {
       "nom": "Siena",
-      "eta_brut": "2026-09-25 21:12",
+      "eta_brut": "2026-09-25 19:05",
       "section": "expected"
     },
     "636022355": {
       "nom": "Lila Incheon",
-      "eta_brut": "2026-09-25 22:22",
+      "eta_brut": "2026-09-25 23:25",
+      "section": "expected"
+    },
+    "247452100": {
+      "nom": "Great Cotonou",
+      "eta_brut": "2026-09-26 04:39",
       "section": "expected"
     },
     "375617000": {
       "nom": "Vb Superenzo 10",
-      "eta_brut": "2026-09-22 13:01",
+      "eta_brut": "2026-09-22 14:09",
       "section": "expected"
     },
     "312235000": {
@@ -210,11 +205,6 @@
     "277590000": {
       "nom": "Limarko Breeze",
       "eta_brut": "2026-09-22 08:04",
-      "section": "expected"
-    },
-    "431434000": {
-      "nom": "Euphony Ace",
-      "eta_brut": "",
       "section": "expected"
     }
   }
