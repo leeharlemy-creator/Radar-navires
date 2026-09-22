@@ -15,9 +15,19 @@
       "eta_brut": "2026-09-20 18:56",
       "section": "in_port"
     },
+    "255806498": {
+      "nom": "Msc Julie",
+      "eta_brut": "2026-09-22 11:08",
+      "section": "in_port"
+    },
     "477534200": {
       "nom": "Effy N",
-      "eta_brut": "2026-09-22 12:37",
+      "eta_brut": "2026-09-22 13:30",
+      "section": "expected"
+    },
+    "636016702": {
+      "nom": "Msc Oak F",
+      "eta_brut": "2026-09-22 18:17",
       "section": "expected"
     },
     "538005069": {
@@ -25,29 +35,39 @@
       "eta_brut": "2026-09-23 18:01",
       "section": "expected"
     },
-    "636019523": {
-      "nom": "Lisa",
-      "eta_brut": "2026-09-25 07:49",
-      "section": "expected"
-    },
     "538009604": {
       "nom": "Boston",
-      "eta_brut": "2026-09-25 12:31",
+      "eta_brut": "2026-09-25 12:13",
       "section": "expected"
     },
-    "255805868": {
-      "nom": "Msc Desiree",
-      "eta_brut": "2026-09-26 18:20",
+    "636019523": {
+      "nom": "Lisa",
+      "eta_brut": "2026-09-25 16:14",
       "section": "expected"
     },
     "636018909": {
       "nom": "Solana S",
-      "eta_brut": "2026-09-28 14:06",
+      "eta_brut": "2026-09-28 13:31",
       "section": "expected"
     },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 07:19",
+      "eta_brut": "2026-09-29 09:59",
+      "section": "expected"
+    },
+    "677044800": {
+      "nom": "Volgo Balt 242",
+      "eta_brut": "2026-09-22 11:48",
+      "section": "expected"
+    },
+    "563379000": {
+      "nom": "X Press Meghna",
+      "eta_brut": "2026-09-22 11:37",
+      "section": "expected"
+    },
+    "636093081": {
+      "nom": "Matadi Express",
+      "eta_brut": "2026-09-22 11:08",
       "section": "expected"
     },
     "615404000": {
@@ -62,22 +82,7 @@
     },
     "376108000": {
       "nom": "Lahama",
-      "eta_brut": "2026-09-22 10:00",
-      "section": "expected"
-    },
-    "563053300": {
-      "nom": "Maersk Hamburg",
-      "eta_brut": "2026-09-22 10:00",
-      "section": "expected"
-    },
-    "677044800": {
-      "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-22 08:36",
-      "section": "expected"
-    },
-    "209118000": {
-      "nom": "Goteborg",
-      "eta_brut": "2026-09-22 08:28",
+      "eta_brut": "",
       "section": "expected"
     }
   },
@@ -134,12 +139,12 @@
     },
     "312235000": {
       "nom": "Icm Nautical Jr 5",
-      "eta_brut": "2026-09-22 12:25",
+      "eta_brut": "2026-09-22 12:53",
       "section": "expected"
     },
     "352003159": {
       "nom": "Ivs Progress",
-      "eta_brut": "2026-09-24 03:40",
+      "eta_brut": "2026-09-24 06:20",
       "section": "expected"
     },
     "352001837": {
@@ -154,12 +159,12 @@
     },
     "374654000": {
       "nom": "Ultra Crimson",
-      "eta_brut": "2026-09-25 07:28",
+      "eta_brut": "2026-09-25 05:32",
       "section": "expected"
     },
     "636014571": {
       "nom": "W Ace",
-      "eta_brut": "2026-09-25 09:27",
+      "eta_brut": "2026-09-25 10:49",
       "section": "expected"
     },
     "636026621": {
@@ -169,17 +174,22 @@
     },
     "357431000": {
       "nom": "Es Honesty",
-      "eta_brut": "2026-09-25 19:01",
-      "section": "expected"
-    },
-    "247452100": {
-      "nom": "Great Cotonou",
-      "eta_brut": "2026-09-25 20:40",
+      "eta_brut": "2026-09-25 17:37",
       "section": "expected"
     },
     "636022355": {
       "nom": "Lila Incheon",
-      "eta_brut": "2026-09-26 01:36",
+      "eta_brut": "2026-09-25 23:04",
+      "section": "expected"
+    },
+    "247452100": {
+      "nom": "Great Cotonou",
+      "eta_brut": "2026-09-26 05:09",
+      "section": "expected"
+    },
+    "355927000": {
+      "nom": "Tao Star",
+      "eta_brut": "2026-09-22 09:25",
       "section": "expected"
     },
     "352005910": {
@@ -214,11 +224,6 @@
     },
     "636014240": {
       "nom": "Colombian Star",
-      "eta_brut": "2026-09-22 01:49",
-      "section": "expected"
-    },
-    "563237900": {
-      "nom": "Cote Divoire Express",
       "eta_brut": "",
       "section": "expected"
     }
