@@ -10,9 +10,9 @@
       "eta_brut": "2026-09-20 11:48",
       "section": "in_port"
     },
-    "563223900": {
-      "nom": "Paul",
-      "eta_brut": "2026-09-20 18:56",
+    "477534200": {
+      "nom": "Effy N",
+      "eta_brut": "2026-09-23 15:22",
       "section": "in_port"
     },
     "255806498": {
@@ -22,47 +22,47 @@
     },
     "538009604": {
       "nom": "Boston",
-      "eta_brut": "2026-09-25 15:31",
-      "section": "expected"
-    },
-    "636019523": {
-      "nom": "Lisa",
-      "eta_brut": "2026-09-25 17:47",
+      "eta_brut": "2026-09-25 15:30",
       "section": "expected"
     },
     "636018909": {
       "nom": "Solana S",
-      "eta_brut": "2026-09-28 10:20",
+      "eta_brut": "2026-09-28 08:54",
       "section": "expected"
     },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 10:27",
+      "eta_brut": "2026-09-29 10:38",
+      "section": "expected"
+    },
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-23 15:22",
+      "section": "expected"
+    },
+    "376316000": {
+      "nom": "Oubangui",
+      "eta_brut": "2026-09-23 14:56",
       "section": "expected"
     },
     "677044800": {
       "nom": "Volgo Balt 242",
-      "eta_brut": "2026-09-23 11:44",
+      "eta_brut": "2026-09-23 14:43",
       "section": "expected"
     },
     "376108000": {
       "nom": "Lahama",
-      "eta_brut": "2026-09-23 08:47",
+      "eta_brut": "2026-09-23 14:32",
       "section": "expected"
     },
-    "375455000": {
-      "nom": "Starling",
-      "eta_brut": "2026-09-23 07:35",
+    "563223900": {
+      "nom": "Paul",
+      "eta_brut": "2026-09-23 14:08",
       "section": "expected"
     },
-    "355970000": {
-      "nom": "Surfer19006",
-      "eta_brut": "2026-09-23 07:30",
-      "section": "expected"
-    },
-    "377299000": {
-      "nom": "Christos Carver",
-      "eta_brut": "2026-09-23 07:02",
+    "577018000": {
+      "nom": "Annis",
+      "eta_brut": "2026-09-23 14:08",
       "section": "expected"
     }
   },
@@ -117,24 +117,24 @@
       "eta_brut": "2026-09-22 22:33",
       "section": "in_port"
     },
-    "352003159": {
-      "nom": "Ivs Progress",
-      "eta_brut": "2026-09-24 02:55",
+    "352004100": {
+      "nom": "Aquadonna",
+      "eta_brut": "2026-09-23 15:47",
       "section": "expected"
     },
-    "219117000": {
-      "nom": "Maersk Brownsville",
-      "eta_brut": "2026-09-24 05:24",
+    "352003159": {
+      "nom": "Ivs Progress",
+      "eta_brut": "2026-09-24 02:43",
       "section": "expected"
     },
     "241836000": {
       "nom": "Siena",
-      "eta_brut": "2026-09-24 22:27",
+      "eta_brut": "2026-09-24 21:15",
       "section": "expected"
     },
     "352001837": {
       "nom": "Grand Star",
-      "eta_brut": "2026-09-25 01:28",
+      "eta_brut": "2026-09-24 23:55",
       "section": "expected"
     },
     "311000873": {
@@ -144,12 +144,12 @@
     },
     "374654000": {
       "nom": "Ultra Crimson",
-      "eta_brut": "2026-09-25 09:55",
+      "eta_brut": "2026-09-25 09:45",
       "section": "expected"
     },
     "636014571": {
       "nom": "W Ace",
-      "eta_brut": "2026-09-25 10:05",
+      "eta_brut": "2026-09-25 10:40",
       "section": "expected"
     },
     "636026621": {
@@ -157,14 +157,19 @@
       "eta_brut": "2026-09-25 16:12",
       "section": "expected"
     },
-    "538007197": {
-      "nom": "Joyce",
-      "eta_brut": "2026-09-25 17:31",
-      "section": "expected"
-    },
     "357431000": {
       "nom": "Es Honesty",
-      "eta_brut": "2026-09-25 23:01",
+      "eta_brut": "2026-09-25 22:31",
+      "section": "expected"
+    },
+    "247452100": {
+      "nom": "Great Cotonou",
+      "eta_brut": "2026-09-26 00:29",
+      "section": "expected"
+    },
+    "636014240": {
+      "nom": "Colombian Star",
+      "eta_brut": "2026-09-23 11:21",
       "section": "expected"
     },
     "215551000": {
@@ -204,7 +209,7 @@
     },
     "375617000": {
       "nom": "Vb Superenzo 10",
-      "eta_brut": "2026-09-22 14:09",
+      "eta_brut": "",
       "section": "expected"
     }
   }
