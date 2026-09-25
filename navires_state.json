@@ -5,11 +5,6 @@
       "eta_brut": "2026-09-21 16:36",
       "section": "in_port"
     },
-    "352004702": {
-      "nom": "Haian Gama",
-      "eta_brut": "2026-09-24 03:00",
-      "section": "in_port"
-    },
     "314427000": {
       "nom": "Artemissio",
       "eta_brut": "2026-09-20 11:48",
@@ -27,7 +22,7 @@
     },
     "538005069": {
       "nom": "Rig Andromeda",
-      "eta_brut": "2026-09-26 04:33",
+      "eta_brut": "2026-09-26 03:45",
       "section": "expected"
     },
     "256521000": {
@@ -37,12 +32,32 @@
     },
     "636018909": {
       "nom": "Solana S",
-      "eta_brut": "2026-09-28 04:31",
+      "eta_brut": "2026-09-28 03:52",
       "section": "expected"
     },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 10:20",
+      "eta_brut": "2026-09-29 10:18",
+      "section": "expected"
+    },
+    "232060242": {
+      "nom": "Cma Cgm Shakespeare",
+      "eta_brut": "2026-09-25 03:50",
+      "section": "expected"
+    },
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-25 03:12",
+      "section": "expected"
+    },
+    "352004702": {
+      "nom": "Haian Gama",
+      "eta_brut": "2026-09-25 03:12",
+      "section": "expected"
+    },
+    "376912000": {
+      "nom": "Men Goe",
+      "eta_brut": "2026-09-24 20:19",
       "section": "expected"
     },
     "376108000": {
@@ -57,26 +72,6 @@
     },
     "375418000": {
       "nom": "Sd Wonder",
-      "eta_brut": "2026-09-24 17:02",
-      "section": "expected"
-    },
-    "376316000": {
-      "nom": "Oubangui",
-      "eta_brut": "2026-09-24 16:36",
-      "section": "expected"
-    },
-    "615404000": {
-      "nom": "Leketi",
-      "eta_brut": "2026-09-24 14:27",
-      "section": "expected"
-    },
-    "210639000": {
-      "nom": "Gfs Rhea",
-      "eta_brut": "2026-09-24 14:24",
-      "section": "expected"
-    },
-    "615401000": {
-      "nom": "Loufoulakari",
       "eta_brut": "",
       "section": "expected"
     }
@@ -95,11 +90,6 @@
     "256679000": {
       "nom": "Varoli Piazza",
       "eta_brut": "2026-09-24 08:57",
-      "section": "in_port"
-    },
-    "212366000": {
-      "nom": "Handy Stranger",
-      "eta_brut": "2026-09-17 16:57",
       "section": "in_port"
     },
     "352004718": {
@@ -132,24 +122,24 @@
       "eta_brut": "2026-09-24 19:05",
       "section": "in_port"
     },
-    "352001837": {
-      "nom": "Grand Star",
-      "eta_brut": "2026-09-25 01:12",
-      "section": "expected"
+    "257268000": {
+      "nom": "Tosca",
+      "eta_brut": "2026-09-24 16:57",
+      "section": "in_port"
     },
     "311000873": {
       "nom": "Rt Champion",
       "eta_brut": "2026-09-25 05:09",
       "section": "expected"
     },
-    "374654000": {
-      "nom": "Ultra Crimson",
-      "eta_brut": "2026-09-25 10:42",
-      "section": "expected"
-    },
     "636014571": {
       "nom": "W Ace",
-      "eta_brut": "2026-09-25 10:48",
+      "eta_brut": "2026-09-25 10:07",
+      "section": "expected"
+    },
+    "374654000": {
+      "nom": "Ultra Crimson",
+      "eta_brut": "2026-09-25 11:02",
       "section": "expected"
     },
     "636026621": {
@@ -159,27 +149,42 @@
     },
     "357431000": {
       "nom": "Es Honesty",
-      "eta_brut": "2026-09-25 17:27",
+      "eta_brut": "2026-09-25 17:06",
       "section": "expected"
     },
     "636022355": {
       "nom": "Lila Incheon",
-      "eta_brut": "2026-09-25 20:51",
+      "eta_brut": "2026-09-25 20:18",
       "section": "expected"
     },
     "247452100": {
       "nom": "Great Cotonou",
-      "eta_brut": "2026-09-25 21:32",
-      "section": "expected"
-    },
-    "372843000": {
-      "nom": "Msc Fiammetta",
-      "eta_brut": "2026-09-26 18:27",
+      "eta_brut": "2026-09-25 22:56",
       "section": "expected"
     },
     "352005738": {
       "nom": "Norse Zealand",
-      "eta_brut": "2026-09-26 19:36",
+      "eta_brut": "2026-09-26 18:00",
+      "section": "expected"
+    },
+    "372843000": {
+      "nom": "Msc Fiammetta",
+      "eta_brut": "2026-09-26 18:43",
+      "section": "expected"
+    },
+    "219028421": {
+      "nom": "Torm Cavatina",
+      "eta_brut": "2026-09-26 19:31",
+      "section": "expected"
+    },
+    "636013068": {
+      "nom": "Caribbean Star",
+      "eta_brut": "2026-09-25 01:45",
+      "section": "expected"
+    },
+    "212366000": {
+      "nom": "Handy Stranger",
+      "eta_brut": "2026-09-24 23:37",
       "section": "expected"
     },
     "249509000": {
@@ -210,16 +215,6 @@
     "255806273": {
       "nom": "Bocs Spirit",
       "eta_brut": "2026-09-24 16:57",
-      "section": "expected"
-    },
-    "257268000": {
-      "nom": "Tosca",
-      "eta_brut": "2026-09-24 16:45",
-      "section": "expected"
-    },
-    "538009521": {
-      "nom": "Aegean Spirit",
-      "eta_brut": "2026-09-24 15:53",
       "section": "expected"
     }
   }
