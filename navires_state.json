@@ -15,19 +15,14 @@
       "eta_brut": "2026-09-25 19:36",
       "section": "in_port"
     },
-    "357036000": {
-      "nom": "Surfer 19014",
-      "eta_brut": "2026-09-26 12:04",
-      "section": "expected"
-    },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 09:32",
+      "eta_brut": "2026-09-29 09:14",
       "section": "expected"
     },
     "255806496": {
       "nom": "Msc Anzu",
-      "eta_brut": "2026-09-29 15:35",
+      "eta_brut": "2026-09-29 14:19",
       "section": "expected"
     },
     "256521000": {
@@ -35,9 +30,19 @@
       "eta_brut": "2026-09-29 23:32",
       "section": "expected"
     },
+    "376316000": {
+      "nom": "Oubangui",
+      "eta_brut": "2026-09-26 09:52",
+      "section": "expected"
+    },
     "314427000": {
       "nom": "Artemissio",
       "eta_brut": "2026-09-26 08:12",
+      "section": "expected"
+    },
+    "357036000": {
+      "nom": "Surfer 19014",
+      "eta_brut": "2026-09-26 08:08",
       "section": "expected"
     },
     "376108000": {
@@ -109,12 +114,12 @@
     },
     "352005738": {
       "nom": "Norse Zealand",
-      "eta_brut": "2026-09-26 17:26",
+      "eta_brut": "2026-09-26 18:04",
       "section": "expected"
     },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-26 19:13",
+      "eta_brut": "2026-09-26 18:16",
       "section": "expected"
     },
     "538013011": {
@@ -124,12 +129,12 @@
     },
     "219028421": {
       "nom": "Torm Cavatina",
-      "eta_brut": "2026-09-28 16:33",
+      "eta_brut": "2026-09-28 22:00",
       "section": "expected"
     },
     "566041000": {
       "nom": "Cs Standard",
-      "eta_brut": "2026-09-29 23:29",
+      "eta_brut": "2026-09-29 22:24",
       "section": "expected"
     },
     "311002137": {
@@ -137,24 +142,24 @@
       "eta_brut": "2026-09-30 12:57",
       "section": "expected"
     },
+    "636021994": {
+      "nom": "Msc Michigan Vii",
+      "eta_brut": "2026-10-02 04:01",
+      "section": "expected"
+    },
     "311031900": {
       "nom": "Seven Borealis",
-      "eta_brut": "2026-10-03 00:03",
+      "eta_brut": "2026-10-03 00:24",
       "section": "expected"
     },
     "257312000": {
       "nom": "Silver Bird",
-      "eta_brut": "2026-10-03 08:58",
+      "eta_brut": "2026-10-03 06:54",
       "section": "expected"
     },
     "212167000": {
       "nom": "Pagoda",
-      "eta_brut": "2026-10-04 20:40",
-      "section": "expected"
-    },
-    "538007515": {
-      "nom": "Atlantis Unity",
-      "eta_brut": "2026-10-07 02:39",
+      "eta_brut": "2026-10-05 02:12",
       "section": "expected"
     },
     "636093228": {
