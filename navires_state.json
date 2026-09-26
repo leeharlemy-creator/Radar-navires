@@ -22,22 +22,22 @@
     },
     "636018909": {
       "nom": "Solana S",
-      "eta_brut": "2026-09-28 05:58",
+      "eta_brut": "2026-09-28 07:08",
       "section": "expected"
     },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 09:23",
+      "eta_brut": "2026-09-29 09:48",
       "section": "expected"
     },
     "255806496": {
       "nom": "Msc Anzu",
-      "eta_brut": "2026-09-29 11:06",
+      "eta_brut": "2026-09-29 13:44",
       "section": "expected"
     },
     "256521000": {
       "nom": "Endo Ponente",
-      "eta_brut": "2026-09-29 15:22",
+      "eta_brut": "2026-09-29 23:32",
       "section": "expected"
     },
     "615404000": {
@@ -117,34 +117,19 @@
       "eta_brut": "2026-09-25 14:37",
       "section": "in_port"
     },
-    "247452100": {
-      "nom": "Great Cotonou",
-      "eta_brut": "2026-09-25 22:16",
-      "section": "expected"
-    },
-    "636022355": {
-      "nom": "Lila Incheon",
-      "eta_brut": "2026-09-25 22:48",
+    "352005738": {
+      "nom": "Norse Zealand",
+      "eta_brut": "2026-09-26 17:49",
       "section": "expected"
     },
     "563308200": {
       "nom": "Hermann Schulte",
-      "eta_brut": "2026-09-26 18:01",
-      "section": "expected"
-    },
-    "352005738": {
-      "nom": "Norse Zealand",
       "eta_brut": "2026-09-26 18:48",
-      "section": "expected"
-    },
-    "219028421": {
-      "nom": "Torm Cavatina",
-      "eta_brut": "2026-09-27 19:53",
       "section": "expected"
     },
     "256615000": {
       "nom": "Cma Cgm Cedrus",
-      "eta_brut": "2026-09-27 19:53",
+      "eta_brut": "2026-09-27 20:14",
       "section": "expected"
     },
     "538013011": {
@@ -152,9 +137,14 @@
       "eta_brut": "2026-09-28 00:24",
       "section": "expected"
     },
+    "219028421": {
+      "nom": "Torm Cavatina",
+      "eta_brut": "2026-09-28 04:10",
+      "section": "expected"
+    },
     "566041000": {
       "nom": "Cs Standard",
-      "eta_brut": "2026-09-30 09:35",
+      "eta_brut": "2026-09-30 09:09",
       "section": "expected"
     },
     "311002137": {
@@ -164,7 +154,37 @@
     },
     "311031900": {
       "nom": "Seven Borealis",
-      "eta_brut": "2026-10-01 22:14",
+      "eta_brut": "2026-10-02 03:49",
+      "section": "expected"
+    },
+    "257312000": {
+      "nom": "Silver Bird",
+      "eta_brut": "2026-10-03 01:44",
+      "section": "expected"
+    },
+    "229997000": {
+      "nom": "Cma Cgm Pride",
+      "eta_brut": "2026-10-03 08:54",
+      "section": "expected"
+    },
+    "247484800": {
+      "nom": "Jolly Verde",
+      "eta_brut": "2026-09-25 22:53",
+      "section": "expected"
+    },
+    "247452100": {
+      "nom": "Great Cotonou",
+      "eta_brut": "2026-09-25 22:12",
+      "section": "expected"
+    },
+    "352005910": {
+      "nom": "Scombrus",
+      "eta_brut": "2026-09-25 21:37",
+      "section": "expected"
+    },
+    "229550000": {
+      "nom": "Seadream",
+      "eta_brut": "2026-09-25 21:09",
       "section": "expected"
     },
     "352112000": {
@@ -185,16 +205,6 @@
     "215551000": {
       "nom": "Ft Sturla",
       "eta_brut": "2026-09-25 16:37",
-      "section": "expected"
-    },
-    "538010235": {
-      "nom": "Anikitos",
-      "eta_brut": "2026-09-25 12:37",
-      "section": "expected"
-    },
-    "312235000": {
-      "nom": "Icm Nautical Jr 5",
-      "eta_brut": "",
       "section": "expected"
     }
   }
