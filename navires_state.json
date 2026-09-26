@@ -17,12 +17,12 @@
     },
     "566960000": {
       "nom": "Apl Detroit",
-      "eta_brut": "2026-09-29 09:14",
+      "eta_brut": "2026-09-29 09:06",
       "section": "expected"
     },
     "255806496": {
       "nom": "Msc Anzu",
-      "eta_brut": "2026-09-29 14:19",
+      "eta_brut": "2026-09-29 13:53",
       "section": "expected"
     },
     "256521000": {
@@ -30,9 +30,14 @@
       "eta_brut": "2026-09-29 23:32",
       "section": "expected"
     },
+    "615404000": {
+      "nom": "Leketi",
+      "eta_brut": "2026-09-26 13:27",
+      "section": "expected"
+    },
     "376316000": {
       "nom": "Oubangui",
-      "eta_brut": "2026-09-26 09:52",
+      "eta_brut": "2026-09-26 13:20",
       "section": "expected"
     },
     "314427000": {
@@ -53,11 +58,6 @@
     "375455000": {
       "nom": "Starling",
       "eta_brut": "2026-09-26 07:20",
-      "section": "expected"
-    },
-    "352100000": {
-      "nom": "Darioush Iii",
-      "eta_brut": "2026-09-26 07:07",
       "section": "expected"
     }
   },
@@ -112,14 +112,19 @@
       "eta_brut": "2026-09-24 17:17",
       "section": "in_port"
     },
-    "352005738": {
-      "nom": "Norse Zealand",
-      "eta_brut": "2026-09-26 18:04",
-      "section": "expected"
-    },
     "563308200": {
       "nom": "Hermann Schulte",
+      "eta_brut": "2026-09-26 18:11",
+      "section": "expected"
+    },
+    "352005738": {
+      "nom": "Norse Zealand",
       "eta_brut": "2026-09-26 18:16",
+      "section": "expected"
+    },
+    "256615000": {
+      "nom": "Cma Cgm Cedrus",
+      "eta_brut": "2026-09-27 16:37",
       "section": "expected"
     },
     "538013011": {
@@ -129,12 +134,12 @@
     },
     "219028421": {
       "nom": "Torm Cavatina",
-      "eta_brut": "2026-09-28 22:00",
+      "eta_brut": "2026-09-29 03:50",
       "section": "expected"
     },
     "566041000": {
       "nom": "Cs Standard",
-      "eta_brut": "2026-09-29 22:24",
+      "eta_brut": "2026-09-29 20:57",
       "section": "expected"
     },
     "311002137": {
@@ -144,7 +149,7 @@
     },
     "636021994": {
       "nom": "Msc Michigan Vii",
-      "eta_brut": "2026-10-02 04:01",
+      "eta_brut": "2026-10-01 15:28",
       "section": "expected"
     },
     "311031900": {
@@ -154,12 +159,12 @@
     },
     "257312000": {
       "nom": "Silver Bird",
-      "eta_brut": "2026-10-03 06:54",
+      "eta_brut": "2026-10-03 03:16",
       "section": "expected"
     },
-    "212167000": {
-      "nom": "Pagoda",
-      "eta_brut": "2026-10-05 02:12",
+    "538003061": {
+      "nom": "Sea Phantom",
+      "eta_brut": "2026-09-26 07:57",
       "section": "expected"
     },
     "636093228": {
@@ -204,11 +209,6 @@
     },
     "636017324": {
       "nom": "Kps Ibrahim Bey",
-      "eta_brut": "2026-09-25 17:01",
-      "section": "expected"
-    },
-    "215551000": {
-      "nom": "Ft Sturla",
       "eta_brut": "",
       "section": "expected"
     }
