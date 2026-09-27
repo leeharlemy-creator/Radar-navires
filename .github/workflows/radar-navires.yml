@@ -2,15 +2,18 @@ name: Radar navires - Saye Armand
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    # Réduit à 2 fois par jour (7h et 19h UTC) au lieu de toutes les 3h,
+    # pour paraître moins "robotique" face au blocage anti-scraping de
+    # myshiptracking.com (erreur 403 apparue fin septembre 2026).
+    - cron: '0 7 * * *'
+    - cron: '0 19 * * *'
   workflow_dispatch:
-
-permissions:
-  contents: write
 
 jobs:
   check-navires:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: actions/checkout@v4
 
@@ -18,22 +21,17 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Installer les dépendances
-        run: pip install requests
+      - run: pip install requests
 
-      - name: Vérifier les navires et alerter si nouveauté
+      - run: python check_navires.py
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-        run: python check_navires.py
 
-      - name: Sauvegarder l'état pour la prochaine vérification
-        run: |
-
+      - run: |
           git config user.name "radar-bot"
           git config user.email "radar-bot@users.noreply.github.com"
           git add navires_state.json
           git diff --staged --quiet || git commit -m "Mise à jour état navires"
           git pull --rebase origin main
           git push
-          
