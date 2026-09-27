@@ -9,6 +9,7 @@ vraie section (IN PORT = a quai / EXPECTED = attendu, pas encore arrive).
 import json
 import os
 import re
+import time
 from pathlib import Path
 
 import requests
@@ -23,12 +24,24 @@ STATE_FILE = Path.cwd() / "navires_state.json"
 TELEGRAM_TOKEN = os.environ.get("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.environ.get("TELEGRAM_CHAT_ID")
 
+# En-tetes renforces pour ressembler davantage a un vrai navigateur (le site
+# a commence a bloquer les requetes trop simples avec une erreur 403).
 HEADERS = {
     "User-Agent": (
         "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
-        "(KHTML, like Gecko) Chrome/124.0 Safari/537.36"
+        "(KHTML, like Gecko) Chrome/128.0.0.0 Safari/537.36"
     ),
-    "Accept-Language": "fr-FR,fr;q=0.9,en;q=0.8",
+    "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+    "Accept-Language": "fr-FR,fr;q=0.9,en-US;q=0.8,en;q=0.7",
+    "Accept-Encoding": "gzip, deflate, br",
+    "Referer": "https://www.myshiptracking.com/",
+    "Connection": "keep-alive",
+    "Upgrade-Insecure-Requests": "1",
+    "Sec-Fetch-Dest": "document",
+    "Sec-Fetch-Mode": "navigate",
+    "Sec-Fetch-Site": "same-origin",
+    "Sec-Fetch-User": "?1",
+    "Cache-Control": "max-age=0",
 }
 
 VESSEL_LINK_RE = re.compile(
@@ -40,9 +53,6 @@ ETA_NEAR_RE = re.compile(
     r'(\d{4}-\d{2}-\d{2})\s*<b>(\d{1,2}:\d{2})</b>'
 )
 
-# myshiptracking separe la page en sections via des ancres/titres.
-# On repere le titre de section le plus proche AVANT chaque navire pour
-# savoir s'il est reellement a quai (IN PORT) ou juste attendu (EXPECTED).
 SECTION_MARKERS = [
     (re.compile(r'IN\s*PORT', re.IGNORECASE), "in_port"),
     (re.compile(r'EXPECTED', re.IGNORECASE), "expected"),
@@ -54,8 +64,6 @@ def slug_to_name(slug):
 
 
 def section_pour_position(html, position):
-    """Cherche, en remontant dans le HTML avant `position`, le dernier
-    marqueur de section rencontre (IN PORT ou EXPECTED)."""
     avant = html[:position]
     derniere_section = None
     derniere_position = -1
@@ -64,11 +72,11 @@ def section_pour_position(html, position):
             if m.start() > derniere_position:
                 derniere_position = m.start()
                 derniere_section = label
-    return derniere_section or "expected"  # par prudence si rien trouve
+    return derniere_section or "expected"
 
 
-def fetch_vessels_in_port(url, port_name):
-    resp = requests.get(url, headers=HEADERS, timeout=20)
+def fetch_vessels_in_port(url, port_name, session):
+    resp = session.get(url, headers=HEADERS, timeout=25)
     html = resp.text
 
     print(f"  Statut HTTP : {resp.status_code}")
@@ -112,11 +120,6 @@ def save_state(state):
 
 
 def send_telegram(message):
-    """Envoie l'alerte Telegram. En cas d'echec (panne reseau, timeout,
-    Telegram indisponible, etc.), on affiche l'erreur mais on NE PLANTE
-    PAS le script : les donnees des navires doivent etre sauvegardees
-    quoi qu'il arrive, pour ne pas re-signaler les memes navires au
-    prochain passage."""
     if not TELEGRAM_TOKEN or not TELEGRAM_CHAT_ID:
         print("Telegram non configure - message qui aurait ete envoye :")
         print(message)
@@ -140,12 +143,25 @@ def main():
     state = load_state()
     new_state = {}
     alerts = []
+    erreurs_403 = []
 
-    for port, url in PORTS.items():
+    # Une session partagee (avec ses cookies) ressemble davantage a une vraie
+    # navigation qu'une requete isolee a chaque fois.
+    session = requests.Session()
+
+    for i, (port, url) in enumerate(PORTS.items()):
         print(f"Verification de {port}...")
         try:
-            vessels = fetch_vessels_in_port(url, port)
+            if i > 0:
+                time.sleep(3)  # petite pause entre les deux ports, moins "robotique"
+            vessels = fetch_vessels_in_port(url, port, session)
             print(f"  {len(vessels)} navire(s) trouve(s) a {port}")
+        except requests.exceptions.HTTPError as e:
+            print(f"  Erreur en recuperant {port} : {e}")
+            if e.response is not None and e.response.status_code == 403:
+                erreurs_403.append(port)
+            new_state[port] = state.get(port, {})
+            continue
         except Exception as e:
             print(f"  Erreur en recuperant {port} : {e}")
             new_state[port] = state.get(port, {})
@@ -167,10 +183,25 @@ def main():
     if alerts:
         send_telegram("Radar navires Royal Eagle Control :\n" + "\n".join(alerts))
         print("Alerte(s) detectee(s) :", alerts)
+    elif erreurs_403 and len(erreurs_403) == len(PORTS):
+        # Le site bloque desormais nos requetes (403 sur tous les ports) :
+        # on prevUS Armand une seule fois par situation, pas a chaque run,
+        # pour ne pas le spammer si le blocage dure plusieurs jours.
+        deja_signale = state.get("_403_signale", False)
+        if not deja_signale:
+            send_telegram(
+                "⚠️ Royal Eagle Control : myshiptracking.com bloque desormais "
+                "les requetes automatiques du radar (erreur 403). Aucune "
+                "donnee ne peut etre recuperee tant que ce blocage dure. "
+                "A signaler a Claude pour chercher une solution."
+            )
+        new_state["_403_signale"] = True
+        print("Blocage 403 confirme sur tous les ports - alerte envoyee (une seule fois).")
     else:
         print("Aucun nouveau navire detecte.")
+        if "_403_signale" in state:
+            new_state["_403_signale"] = False  # le blocage semble leve, on reinitialise
 
-    # Sauvegarde TOUJOURS effectuee, meme si l'envoi Telegram a echoue.
     save_state(new_state)
 
 
