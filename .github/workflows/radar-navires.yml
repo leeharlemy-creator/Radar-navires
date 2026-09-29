@@ -2,11 +2,7 @@ name: Radar navires - Saye Armand
 
 on:
   schedule:
-    # Réduit à 2 fois par jour (7h et 19h UTC) au lieu de toutes les 3h,
-    # pour paraître moins "robotique" face au blocage anti-scraping de
-    # myshiptracking.com (erreur 403 apparue fin septembre 2026).
-    - cron: '0 7 * * *'
-    - cron: '0 19 * * *'
+    - cron: '0 */3 * * *'
   workflow_dispatch:
 
 jobs:
@@ -21,12 +17,13 @@ jobs:
         with:
           python-version: '3.12'
 
-      - run: pip install requests
+      - run: pip install requests websockets
 
       - run: python check_navires.py
         env:
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
+          AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
 
       - run: |
           git config user.name "radar-bot"
