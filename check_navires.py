@@ -106,6 +106,8 @@ async def ecouter_zones():
                     continue
 
                 message_type = message.get("MessageType")
+                if total_brut <= 5:
+                    print(f"  [DIAGNOSTIC] Message {total_brut} (type={message_type}) : {str(message)[:500]}")
                 meta = message.get("MetaData", {})
                 mmsi = meta.get("MMSI")
                 nom = (meta.get("ShipName") or "").strip()
