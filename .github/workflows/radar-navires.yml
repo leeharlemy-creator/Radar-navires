@@ -1,34 +1,38 @@
-name: Radar navires - Saye Armand
+name: Radar navires
 
 on:
   schedule:
-    - cron: '0 */3 * * *'
+    # 1 fois par jour a 07:00 UTC (quota VesselAPI limite a 150/mois)
+    - cron: '0 7 * * *'
   workflow_dispatch:
 
 jobs:
-  check-navires:
+  radar:
     runs-on: ubuntu-latest
-    permissions:
-      contents: write
     steps:
-      - uses: actions/checkout@v4
+      - name: Cloner le depot
+        uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
+      - name: Installer Python
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: '3.11'
 
-      - run: pip install requests websockets
+      - name: Installer les dependances
+        run: pip install requests
 
-      - run: python check_navires.py
+      - name: Lancer le radar
         env:
+          VESSELAPI_KEY: ${{ secrets.VESSELAPI_KEY }}
           TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
           TELEGRAM_CHAT_ID: ${{ secrets.TELEGRAM_CHAT_ID }}
-          AISSTREAM_API_KEY: ${{ secrets.AISSTREAM_API_KEY }}
+        run: python check_navires.py
 
-      - run: |
-          git config user.name "radar-bot"
-          git config user.email "radar-bot@users.noreply.github.com"
+      - name: Enregistrer les changements
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git pull --rebase
           git add navires_state.json
-          git diff --staged --quiet || git commit -m "Mise à jour état navires"
-          git pull --rebase origin main
+          git diff --staged --quiet || git commit -m "Mise a jour radar navires"
           git push
