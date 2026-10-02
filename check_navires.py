@@ -1,33 +1,28 @@
 """
-Radar navires - Royal Eagle Control (v2 - AISstream.io)
-Remplace le scraping de myshiptracking.com (desormais bloque, erreur 403)
-par un vrai flux AIS officiel et gratuit : aisstream.io (WebSocket).
+Radar navires - Royal Eagle Control (v3 - VesselAPI)
+Remplace myshiptracking.com (bloque, erreur 403) et AISstream.io (pas assez
+de recepteurs terrestres dans le Golfe de Guinee) par VesselAPI, qui a
+confirme a plusieurs reprises des positions reelles a Pointe-Noire et Abidjan.
 
-Se connecte, ecoute pendant une fenetre de temps limitee (le script tourne
-une fois puis s'arrete, comme avant), collecte les positions + donnees
-statiques (nom, destination, ETA) des navires vus dans les zones de
-Pointe-Noire et Abidjan, puis alerte Telegram sur les nouveaux navires.
+ATTENTION QUOTA : VesselAPI est limite a 150 requetes/mois sur le compte
+d'Armand. Ce script en consomme 2 par execution (1 par port). Programme
+pour ne tourner qu'1 fois par jour (~30-60 requetes/mois selon configuration),
+pour laisser de la marge aux clics manuels "Actualiser avec l'AIS" dans l'app.
 """
 
-import asyncio
 import json
 import os
 from pathlib import Path
 
 import requests
-import websockets
 
-AISSTREAM_API_KEY = os.environ.get("AISSTREAM_API_KEY")
+VESSELAPI_KEY = os.environ.get("VESSELAPI_KEY")
 
-# Zones (boites englobantes) autour de chaque port. Format AISstream :
-# [[lat_sud_ouest, lon_sud_ouest], [lat_nord_est, lon_nord_est]]
+# Memes zones que celles utilisees cote app (onglet Carte / bouton AIS).
 ZONES = {
-    "Pointe-Noire": [[-5.2, 11.4], [-4.3, 12.3]],
-    "Abidjan": [[4.9, -4.5], [5.6, -3.5]],
+    "Pointe-Noire": {"latBottom": -5.2, "latTop": -4.3, "lonLeft": 11.4, "lonRight": 12.3},
+    "Abidjan": {"latBottom": 4.9, "latTop": 5.6, "lonLeft": -4.5, "lonRight": -3.5},
 }
-
-# Duree d'ecoute du flux avant de traiter et sauvegarder les resultats.
-FENETRE_ECOUTE_SECONDES = 90
 
 STATE_FILE = Path.cwd() / "navires_state.json"
 
@@ -46,138 +41,30 @@ def statut_depuis_nav_status(nav_status):
     return None
 
 
-def eta_depuis_static_data(eta_dict):
-    """Le champ Eta d'AISstream (dans ShipStaticData) arrive sous forme
-    {'Month':.., 'Day':.., 'Hour':.., 'Minute':..} (annee non fournie)."""
-    if not eta_dict:
-        return ""
-    try:
-        mois = eta_dict.get("Month", 0)
-        jour = eta_dict.get("Day", 0)
-        heure = eta_dict.get("Hour", 0)
-        minute = eta_dict.get("Minute", 0)
-        if not mois or not jour:
-            return ""
-        from datetime import datetime
-        maintenant = datetime.utcnow()
-        annee = maintenant.year
-        if mois < maintenant.month:
-            annee += 1
-        return f"{annee:04d}-{mois:02d}-{jour:02d} {heure:02d}:{minute:02d}"
-    except Exception:
-        return ""
+def fetch_vessels_in_zone(port_name, zone):
+    url = (
+        "https://api.vesselapi.com/v1/location/vessels/bounding-box"
+        f"?filter.latBottom={zone['latBottom']}&filter.latTop={zone['latTop']}"
+        f"&filter.lonLeft={zone['lonLeft']}&filter.lonRight={zone['lonRight']}"
+    )
+    resp = requests.get(
+        url, headers={"Authorization": f"Bearer {VESSELAPI_KEY}"}, timeout=25
+    )
+    print(f"  Statut HTTP : {resp.status_code}")
+    resp.raise_for_status()
+    data = resp.json()
+    items = data.get("vessels", [])
+    print(f"  {len(items)} navire(s) brut(s) recu(s) pour {port_name}.")
 
-
-async def ecouter_zones():
-    """Se connecte a AISstream.io, ecoute pendant FENETRE_ECOUTE_SECONDES,
-    et retourne un dict {port: {mmsi: {nom, eta_brut, section}}}."""
-    resultats = {port: {} for port in ZONES}
-    donnees_statiques = {}
-    total_brut = 0
-    total_rejetes = 0
-
-    bounding_boxes = list(ZONES.values())
-
-    try:
-        async with websockets.connect("wss://stream.aisstream.io/v0/stream") as ws:
-            subscribe_message = {
-                "APIKey": AISSTREAM_API_KEY,
-                "BoundingBoxes": bounding_boxes,
-                "FilterMessageTypes": ["PositionReport", "ShipStaticData"],
-            }
-            await ws.send(json.dumps(subscribe_message))
-            print(f"  Abonnement envoye pour {len(bounding_boxes)} zone(s).")
-
-            fin = asyncio.get_event_loop().time() + FENETRE_ECOUTE_SECONDES
-            while True:
-                temps_restant = fin - asyncio.get_event_loop().time()
-                if temps_restant <= 0:
-                    break
-                try:
-                    message_brut = await asyncio.wait_for(ws.recv(), timeout=temps_restant)
-                except asyncio.TimeoutError:
-                    break
-
-                total_brut += 1
-                try:
-                    message = json.loads(message_brut)
-                except Exception:
-                    total_rejetes += 1
-                    continue
-
-                message_type = message.get("MessageType")
-                if total_brut <= 5:
-                    print(f"  [DIAGNOSTIC] Message {total_brut} (type={message_type}) : {str(message)[:500]}")
-                meta = message.get("MetaData", {})
-                mmsi = meta.get("MMSI")
-                nom = (meta.get("ShipName") or "").strip()
-                lat = meta.get("latitude")
-                lon = meta.get("longitude")
-                if mmsi and lat is not None and lon is not None:
-                    pos = donnees_statiques.setdefault(mmsi, {})
-                    pos["lat"] = lat
-                    pos["lon"] = lon
-
-                if message_type == "ShipStaticData":
-                    data = message.get("Message", {}).get("ShipStaticData", {})
-                    destination = (data.get("Destination") or "").strip()
-                    eta_brut = eta_depuis_static_data(data.get("Eta"))
-                    if mmsi:
-                        entree = donnees_statiques.setdefault(mmsi, {})
-                        if nom:
-                            entree["nom"] = nom
-                        if destination:
-                            entree["destination"] = destination
-                        if eta_brut:
-                            entree["eta_brut"] = eta_brut
-
-                elif message_type == "PositionReport":
-                    data = message.get("Message", {}).get("PositionReport", {})
-                    nav_status = data.get("NavigationalStatus")
-                    section = statut_depuis_nav_status(nav_status)
-                    if mmsi and section:
-                        entree = donnees_statiques.setdefault(mmsi, {})
-                        entree["section"] = section
-                        if nom:
-                            entree["nom"] = nom
-
-    except Exception as e:
-        print(f"  Erreur de connexion AISstream : {e}")
-
-    print(f"  {total_brut} message(s) brut(s) recu(s), {total_rejetes} rejete(s).")
-
-    for mmsi, info in donnees_statiques.items():
-        nom = info.get("nom", "")
-        if not nom:
+    vessels = {}
+    for item in items:
+        mmsi = item.get("mmsi") or item.get("imo")
+        nom = (item.get("vessel_name") or "").strip()
+        if not mmsi or not nom:
             continue
-        section = info.get("section", "expected")
-        eta_brut = info.get("eta_brut", "")
-        destination = (info.get("destination") or "").upper()
-
-        port_cible = None
-        lat, lon = info.get("lat"), info.get("lon")
-        if lat is not None and lon is not None:
-            for nom_port, ((s_lat, w_lon), (n_lat, e_lon)) in ZONES.items():
-                if s_lat <= lat <= n_lat and w_lon <= lon <= e_lon:
-                    port_cible = nom_port
-                    break
-
-        if not port_cible:
-            if "POINTE" in destination or "PNR" in destination:
-                port_cible = "Pointe-Noire"
-            elif "ABIDJAN" in destination or "ABJ" in destination:
-                port_cible = "Abidjan"
-
-        if not port_cible:
-            continue
-
-        resultats[port_cible][str(mmsi)] = {
-            "nom": nom,
-            "eta_brut": eta_brut,
-            "section": section,
-        }
-
-    return resultats
+        section = statut_depuis_nav_status(item.get("nav_status")) or "expected"
+        vessels[str(mmsi)] = {"nom": nom, "eta_brut": "", "section": section}
+    return vessels
 
 
 def load_state():
@@ -213,36 +100,37 @@ def send_telegram(message):
 
 def main():
     print(f"Repertoire de travail : {Path.cwd()}")
-    if not AISSTREAM_API_KEY:
-        print("ERREUR : AISSTREAM_API_KEY manquant (secret GitHub non configure).")
+    if not VESSELAPI_KEY:
+        print("ERREUR : VESSELAPI_KEY manquant (secret GitHub non configure).")
         return
 
     state = load_state()
-    print(f"Ecoute du flux AISstream pendant {FENETRE_ECOUTE_SECONDES}s...")
-    resultats = asyncio.run(ecouter_zones())
-
     new_state = {}
     alerts = []
 
-    for port, vessels in resultats.items():
-        print(f"{port} : {len(vessels)} navire(s) identifie(s) dans cette fenetre d'ecoute.")
+    for port, zone in ZONES.items():
+        print(f"Verification de {port}...")
+        try:
+            vessels = fetch_vessels_in_zone(port, zone)
+        except Exception as e:
+            print(f"  Erreur en recuperant {port} : {e}")
+            new_state[port] = state.get(port, {})
+            continue
+
         new_state[port] = vessels
         previous = state.get(port, {})
         newly_arrived = {
             mmsi: v for mmsi, v in vessels.items() if mmsi not in previous
         }
         if newly_arrived:
-            noms = ", ".join(
-                f"{v['nom']} ({v['eta_brut']})" if v['eta_brut'] else v['nom']
-                for v in newly_arrived.values()
-            )
+            noms = ", ".join(v['nom'] for v in newly_arrived.values())
             alerts.append(f"Nouveau(x) navire(s) a {port} : {noms}")
 
     if alerts:
-        send_telegram("Radar navires Royal Eagle Control (AISstream) :\n" + "\n".join(alerts))
+        send_telegram("Radar navires Royal Eagle Control (VesselAPI) :\n" + "\n".join(alerts))
         print("Alerte(s) envoyee(s) :", alerts)
     else:
-        print("Aucun nouveau navire detecte durant cette fenetre.")
+        print("Aucun nouveau navire detecte.")
 
     save_state(new_state)
 
